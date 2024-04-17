@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login";
-import Home from "./Pages/home";
+import Home from "./Pages/Home.d";
 
 export default function App() {
   return (
