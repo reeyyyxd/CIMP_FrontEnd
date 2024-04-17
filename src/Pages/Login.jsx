@@ -1,5 +1,5 @@
 export default function Login() {
     return (
-        <h1 className="text-center">Hello World</h1>
+        <h1 className="text-center text-3xl">Welcome to Login Page!</h1>
     )
 }
