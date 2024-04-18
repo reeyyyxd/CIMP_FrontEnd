@@ -1,15 +1,23 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Pages/Login";
-import Home from "./Pages/home";
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
+
+import Login from "./Pages/Login"
+import Home from "./Pages/Home"
 
 export default function App() {
+  
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />,
+    },
+    {
+      path: 'login',
+      element: <Login />
+    }
+  ])
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
-  );
+    <RouterProvider router={router}/>
+  )
+
 }

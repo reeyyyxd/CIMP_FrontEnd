@@ -29,7 +29,7 @@ const Title = styled.span`
 const Navbar = () => {
 	return (
 		<Nav>
-			<Logo src="src/assets/cit.png" alt="CIT Logo" />
+			<Logo src="../src/assets/images/cit.png" alt="CIT Logo" />
 			<Title>Inventory Management Portal</Title>
 		</Nav>
 	);

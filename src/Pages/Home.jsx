@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import Navbar from "../navbar";
-import Sidebar from "../sidebar";
-import ProfileDropdown from "../dropdown";
+import Navbar from "../Extras/navbar";
+import Sidebar from "../Extras/sidebar";
+import ProfileDropdown from "../Extras/dropdown";
 import styled from "styled-components";
 
 const ProfileContainer = styled.div`
@@ -36,7 +36,7 @@ const DropdownContainer = styled.div`
 	cursor: pointer;
 `;
 
-function Home() {
+export default function Home() {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
 	const toggleDropdown = () => {
@@ -52,10 +52,10 @@ function Home() {
 			<Navbar />
 			<Sidebar>
 				<ProfileContainer>
-					<Image src="src/assets/xx.jpg" alt="Profile" />
+					<Image src="../src/assets/images/xx.jpg" alt="Profile" />
 					<ProfileText>
-						<p>Jobeth Cala</p>
-						<p style={{ fontSize: "10px", marginLeft: "1px" }}>PCO-Staff</p>
+						<p style={{ marginTop: "10px" }}>Jobeth Cala</p>
+						<p style={{ fontSize: "10px", marginTop: "12px" }}>PCO-Staff</p>
 					</ProfileText>
 					<DropdownContainer onClick={toggleDropdown}>
 						<FontAwesomeIcon
@@ -72,5 +72,3 @@ function Home() {
 		</div>
 	);
 }
-
-export default Home;
