@@ -1,11 +1,13 @@
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { SetStateAction, useEffect, useState } from "react";
-import {  Link, useSearchParams } from "react-router-dom";
+import { useNavigate,Link, useSearchParams, createSearchParams } from "react-router-dom";
 import '../App.css';
 
 
 export default function Filter() {
+
+  const navigate = useNavigate();
 
   const [queryResults, setQueryResults] = useState([])
 
@@ -95,7 +97,7 @@ export default function Filter() {
 
 
 const handleFilter = () => {
-    console.log({ acc_per,department,designation,status,uom,supplier,building,room,name,model,type,invoicedate,lifespan })
+    //console.log({ acc_per,department,designation,status,uom,supplier,building,room,name,model,type,invoicedate,lifespan })
   
     axios
       .get("http://localhost:8080/item/filter", {
@@ -116,7 +118,7 @@ const handleFilter = () => {
         }
       })
       .then(result => {
-        console.log(result.data)
+        //console.log(result.data)
   
         setQueryResults(result.data)
       })
@@ -310,14 +312,21 @@ try {
 }
 }
 
-
+const clicker2 = () => {
+  navigate({
+    pathname:"/viewAll",
+    search: createSearchParams({
+      id: 5
+    }).toString()
+  });
+}
 
 
     return (
         
         <><><><h4 className="text-center">Welcome to the Filter Page!</h4><>
 
-        
+
         <p></p><select onChange={handleaccPer}>
           <option value=""></option>
           {O_accPer.map((O_accPers, index) => (
@@ -336,111 +345,111 @@ try {
           ))}
         </select></><>
 
-        <select onChange={handleDes}>
-          <option value=""></option>
-          {O_des.map((O_dess, index) => (
-            <option key={index} value={O_dess}>
-              {O_dess}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleDes}>
+            <option value=""></option>
+            {O_des.map((O_dess, index) => (
+              <option key={index} value={O_dess}>
+                {O_dess}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleUom}>
-          <option value=""></option>
-          {O_uom.map((O_uoms, index) => (
-            <option key={index} value={O_uoms}>
-              {O_uoms}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleUom}>
+            <option value=""></option>
+            {O_uom.map((O_uoms, index) => (
+              <option key={index} value={O_uoms}>
+                {O_uoms}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleStat}>
-          <option value=""></option>
-          {O_status.map((O_statuss, index) => (
-            <option key={index} value={O_statuss}>
-              {O_statuss}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleStat}>
+            <option value=""></option>
+            {O_status.map((O_statuss, index) => (
+              <option key={index} value={O_statuss}>
+                {O_statuss}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleSupp}>
-          <option value=""></option>
-          {O_supp.map((O_supps, index) => (
-            <option key={index} value={O_supps}>
-              {O_supps}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleSupp}>
+            <option value=""></option>
+            {O_supp.map((O_supps, index) => (
+              <option key={index} value={O_supps}>
+                {O_supps}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleBuilding}>
-          <option value=""></option>
-          {O_building.map((O_buildings, index) => (
-            <option key={index} value={O_buildings}>
-              {O_buildings}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleBuilding}>
+            <option value=""></option>
+            {O_building.map((O_buildings, index) => (
+              <option key={index} value={O_buildings}>
+                {O_buildings}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleRoom}>
-          <option value=""></option>
-          {O_room.map((O_rooms, index) => (
-            <option key={index} value={O_rooms}>
-              {O_rooms}
-            </option>
-          ))}
-        </select></><>
-        
-        <select onChange={handleName}>
-          <option value=""></option>
-          {O_name.map((O_names, index) => (
-            <option key={index} value={O_names}>
-              {O_names}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleRoom}>
+            <option value=""></option>
+            {O_room.map((O_rooms, index) => (
+              <option key={index} value={O_rooms}>
+                {O_rooms}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleModel}>
-          <option value=""></option>
-          {O_model.map((O_models, index) => (
-            <option key={index} value={O_models}>
-              {O_models}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleName}>
+            <option value=""></option>
+            {O_name.map((O_names, index) => (
+              <option key={index} value={O_names}>
+                {O_names}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleType}>
-          <option value=""></option>
-          {O_type.map((O_types, index) => (
-            <option key={index} value={O_types}>
-              {O_types}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleModel}>
+            <option value=""></option>
+            {O_model.map((O_models, index) => (
+              <option key={index} value={O_models}>
+                {O_models}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleInvoice}>
-          <option value=""></option>
-          {O_invoicedate.map((O_invoicedates, index) => (
-            <option key={index} value={O_invoicedates}>
-              {O_invoicedates}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleType}>
+            <option value=""></option>
+            {O_type.map((O_types, index) => (
+              <option key={index} value={O_types}>
+                {O_types}
+              </option>
+            ))}
+          </select></><>
 
-        <select onChange={handleLifespan}>
-          <option value=""></option>
-          {O_lifespan.map((O_lifespans, index) => (
-            <option key={index} value={O_lifespans}>
-              {O_lifespans}
-            </option>
-          ))}
-        </select></><>
+          <select onChange={handleInvoice}>
+            <option value=""></option>
+            {O_invoicedate.map((O_invoicedates, index) => (
+              <option key={index} value={O_invoicedates}>
+                {O_invoicedates}
+              </option>
+            ))}
+          </select></><>
 
-        
+          <select onChange={handleLifespan}>
+            <option value=""></option>
+            {O_lifespan.map((O_lifespans, index) => (
+              <option key={index} value={O_lifespans}>
+                {O_lifespans}
+              </option>
+            ))}
+          </select></><>
 
 
-        <h1><p></p> <Button variant="outlined" onClick={handleFilter}>filter</Button>
 
-        </h1><table className="user-table">
+
+          <h1><p></p> <Button variant="outlined" onClick={handleFilter}>filter</Button>
+
+          </h1><table className="user-table">
             <thead>
               <tr>
                 <th>property tag</th>
@@ -465,7 +474,12 @@ try {
             <tbody>
               {queryResults.map(item => (
                 <tr key={item.propertyTag}>
-                  <td>{item.iid}</td>
+                  
+                  <td><Link onClick={() => {
+                      const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
+                      window.open(url, '_blank');
+                  }}>{item.iid}</Link></td>
+                  
                   <td>{item.accPerson}</td>
                   <td>{item.department}</td>
                   <td>{item.designation}</td>
@@ -486,7 +500,7 @@ try {
             </tbody>
           </table></></>
 
-
+          
     )
 }
 
