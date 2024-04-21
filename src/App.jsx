@@ -5,6 +5,7 @@ import Home from "./Pages/Home"
 import Filter from "./Pages/Filter"
 import Search from "./Pages/Search"
 import ViewAll from "./Pages/ViewAll"
+import Item from "./Pages/Items"
 
 export default function App() {
   
@@ -28,6 +29,10 @@ export default function App() {
     {
       path: 'viewAll',
       element: <ViewAll />
+    },
+    {
+      path: 'items',
+      element: <Item />
     }
   ])
 
