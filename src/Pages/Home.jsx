@@ -78,7 +78,13 @@ export default function Home() {
                    <span class="text-lg font-normal">Advance Search</span>
                     </a>
 					<a href="home" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
-                   <span class="text-lg font-normal">Report</span>
+                   <span class="text-lg font-normal">Logs</span>
+                    </a>
+					<a href="home" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
+                   <span class="text-lg font-normal">Requests</span>
+                    </a>
+					<a href="home" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
+                   <span class="text-lg font-normal">Recieve</span>
                     </a>	
 			</Sidebar>
 		</div>

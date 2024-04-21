@@ -25,6 +25,7 @@ export default function Filter() {
     const [O_type, setO_type] = useState([])
     const [O_invoicedate, setO_invoicedate] = useState([])
     const [O_lifespan, setO_lifespan] = useState([])
+    const [O_sum, setO_sum] = useState([])
 
 
     const [acc_per, setacc_per] = useState("")
@@ -93,6 +94,11 @@ export default function Filter() {
     const handleLifespan = event => {
       setlifespan(event.target.value)
     }
+
+    const handleSum = event => {
+      setO_sum(event.target.value)
+    }
+    
 
 
 
@@ -312,14 +318,49 @@ try {
 }
 }
 
+
+const fetchO_sum = () => {
+  
+
+  axios
+      .get("http://localhost:8080/item/sum", {
+        params: {
+          acc_per: acc_per,
+          department: department,
+          designation: designation,
+          status: status,
+          uom: uom,
+          supplier: supplier,
+          building: building,
+          room: room,
+          name: name,
+          model: model,
+          type: type,
+          invoice_date: invoicedate,
+          lifespan: lifespan
+        }
+      })
+      .then(result => {
+        //console.log(result.data)
+  
+        setO_sum(result.data)
+      })
+      .catch(error => {
+        console.log(error)
+        alert("service error")
+      })
+};
+
 const goHome = () => {
   navigate("/home")
 }
 
 
+
+
     return (
         
-        <><><><h4 className="text-center">Welcome to the Filter Page!</h4><>
+        <><><><><h4 className="text-center">Welcome to the Filter Page!</h4><>
 
 
         <p></p><select onChange={handleaccPer}>
@@ -442,9 +483,11 @@ const goHome = () => {
 
 
 
-          <h1><p></p> <Button variant="outlined" onClick={handleFilter}>filter</Button> &nbsp;
+          <h1><p></p> <Button variant="outlined" onClick={function(){ handleFilter(); fetchO_sum()}}>filter</Button> &nbsp;
 
-          <Button variant="outlined" onClick={goHome}>home</Button>
+            <Button variant="outlined" onClick={goHome}>home</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <label id="sumLabel" onChange={handleSum}>Total Cost: {O_sum}</label>
 
           </h1><table className="user-table">
             <thead>
@@ -471,12 +514,12 @@ const goHome = () => {
             <tbody>
               {queryResults.map(item => (
                 <tr key={item.propertyTag}>
-                  
+
                   <td><Link onClick={() => {
-                      const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
-                      window.open(url, '_blank');
-                  }}>{item.iid}</Link></td>
-                  
+                    const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
+                    window.open(url, '_blank');
+                  } }>{item.iid}</Link></td>
+
                   <td>{item.accPerson}</td>
                   <td>{item.department}</td>
                   <td>{item.designation}</td>
@@ -496,8 +539,8 @@ const goHome = () => {
               ))}
             </tbody>
           </table></></>
-
           
+          </>
     )
 }
 
