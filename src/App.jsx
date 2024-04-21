@@ -6,6 +6,7 @@ import Filter from "./Pages/Filter"
 import Search from "./Pages/Search"
 import ViewAll from "./Pages/ViewAll"
 import Item from "./Pages/Items"
+import AddItems from "./Pages/AddItems"
 
 export default function App() {
   
@@ -33,6 +34,10 @@ export default function App() {
     {
       path: 'items',
       element: <Item />
+    },
+    {
+      path: 'additems',
+      element: <AddItems />
     }
   ])
 

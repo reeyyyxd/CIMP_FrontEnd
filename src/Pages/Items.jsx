@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import axios from 'axios';
 import Navbar from "../Extras/navbar";
 import Sidebar from "../Extras/sidebar";
@@ -7,7 +9,7 @@ import Home from "./Home";
 
 
 export default function Items() {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -28,10 +30,17 @@ export default function Items() {
         <Sidebar />
         <ProfileDropdown />
         <Home />
-        <div class="container mx-auto ml-32 mt-8">
+        <div class="flex justify-start ml-60 mt-28 md:col-span-2">
+                <button type="submit" 
+                    className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full"
+                    onClick={() => navigate("/additems")}>
+                    Add
+                </button>
+                </div>
+            <div class="container mx-auto ml-32 mt-2">
             <div class="container flex justify-center">
             <div class="overflow-x-auto"> 
-            <table class="w-full mt-12 text-sm text-left rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
+            <table class="w-full text-sm text-left rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
