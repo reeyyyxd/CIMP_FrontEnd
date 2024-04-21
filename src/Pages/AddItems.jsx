@@ -7,15 +7,17 @@ import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
 
 export default function addItems() {
+    const navigate = useNavigate();
   /*const navigate = useNavigate();
-const [inputs, setInputs] = useState({
-    itemDescription: "",
-    propertyTag: "",
-    accountablePerson: "",
-    designation: "",
-    quantity: "",
-    unitCost: ""
-});
+
+//   const [inputs, setInputs] = useState({
+//     itemDescription: "",
+//     propertyTag: "",
+//     accountablePerson: "",
+//     designation: "",
+//     quantity: "",
+//     unitCost: ""
+// });
 
 // Function to handle input field changes
 const handleInputChange = (e) => {
@@ -134,8 +136,11 @@ const handleChange = event => {
         <Sidebar />
         <ProfileDropdown />
         <Home />
-<form onSubmit={handleSubmit} className="container mx-auto mt-32 flex justify-center overflow-x-auto">
-<div class="grid gap-6 mb-6 md:grid-cols-4"> 
+
+<form onSubmit={handleSubmit} 
+className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl">
+<div class="grid gap-6 mb-6 md:grid-cols-3"> 
+
                 <input
                     type="text"
                     name="accPerson"
@@ -304,11 +309,18 @@ const handleChange = event => {
                     placeholder="Location Room"
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
-                <div class="flex justify-center md:col-span-2">
+                <div class="flex justify-center ml-56 md:col-span-3">
                 <button type="submit" 
                     className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full">
                     Add
                 </button>
+                <div class="pl-12">
+                <button type="button" 
+                    className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full"
+                    onClick={() => navigate("/items")}>
+                    Back
+                </button>
+                </div>
                 </div>
                 </div>
             </form>                        
