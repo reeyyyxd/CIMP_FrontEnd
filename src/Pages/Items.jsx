@@ -31,7 +31,7 @@ export default function Items() {
         <div class="container mx-auto ml-32 mt-8">
             <div class="container flex justify-center">
             <div class="overflow-x-auto"> 
-            <table class="w-full mt-12 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table class="w-full mt-12 text-sm text-left rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -91,11 +91,8 @@ export default function Items() {
                     {data.map(item => (
                     <tr key={item.iid} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            1
-                        </th>
-                        <td class="px-6 py-4">
                             {item.iid}
-                        </td>
+                        </th>
                         <td class="px-6 py-4">
                             {item.accPerson}
                         </td>
@@ -139,10 +136,10 @@ export default function Items() {
                             {item.unitOfMeasurement}
                         </td> 
                         <td class="px-6 py-4">
-                            {item.did}
+                            {item.description.did}
                         </td> 
                         <td class="px-6 py-4">
-                            {item.lid}
+                            {item.location.lid}
                         </td>              
                     </tr>       
                     ))}     
