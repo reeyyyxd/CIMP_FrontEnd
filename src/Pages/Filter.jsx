@@ -312,13 +312,8 @@ try {
 }
 }
 
-const clicker2 = () => {
-  navigate({
-    pathname:"/viewAll",
-    search: createSearchParams({
-      id: 5
-    }).toString()
-  });
+const goHome = () => {
+  navigate("/home")
 }
 
 
@@ -447,7 +442,9 @@ const clicker2 = () => {
 
 
 
-          <h1><p></p> <Button variant="outlined" onClick={handleFilter}>filter</Button>
+          <h1><p></p> <Button variant="outlined" onClick={handleFilter}>filter</Button> &nbsp;
+
+          <Button variant="outlined" onClick={goHome}>home</Button>
 
           </h1><table className="user-table">
             <thead>
