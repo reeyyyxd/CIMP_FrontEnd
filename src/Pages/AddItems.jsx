@@ -184,6 +184,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     onChange={handleChange}
                     placeholder="Invoice Date"
                     pattern="[0-9]*"
+                    title="Please input valid year, e.g., 2024"
                     required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
@@ -194,8 +195,8 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     onChange={handleChange}
                     placeholder="Issue Order"
                     required
-                    pattern="[0-9]+([.][0-9]+)?"
-                    title="Please enter a numerical character"
+                    pattern="[0-9]*"
+                    title="Please enter a numerical character (1-9)"
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -214,6 +215,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     onChange={handleChange}
                     placeholder="Quantity"
                     pattern="[0-9]*"
+                    title="Please enter a numerical character (1-9)"
                     required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
@@ -251,6 +253,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     onChange={handleChange}
                     placeholder="Total Cost"
                     pattern="[0-9]+([.][0-9]+)?"
+                    title="Please enter a valid number, e.g., 12.34"
                     required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
@@ -261,6 +264,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     onChange={handleChange}
                     placeholder="Unit Cost"
                     pattern="[0-9]+([.][0-9]+)?"
+                    title="Please enter a valid number, e.g., 12.34"
                     required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
