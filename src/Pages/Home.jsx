@@ -52,7 +52,7 @@ export default function Home() {
 			<Navbar />
 			<Sidebar>
 				<ProfileContainer>
-					<Image src="../src/assets/images/xx.jpg" alt="Profile" />
+					<Image src="../src/assets/images/MasterBaiter.jpg" alt="Profile" />
 					<ProfileText>
 						<p style={{ marginTop: "10px" }}>Jobeth Cala</p>
 						<p style={{ fontSize: "10px", marginTop: "12px",}}>PCO-Staff</p>

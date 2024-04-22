@@ -187,6 +187,8 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.issueOrder}
                     onChange={handleChange}
                     placeholder="Issue Order"
+                    pattern="[0-9]+([.][0-9]+)?"
+                    title="Please enter a numerical character"
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
