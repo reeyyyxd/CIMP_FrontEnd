@@ -507,7 +507,7 @@ const goHome = () => {
           </div>
           </h1>
           
-          <div class="container mx-auto ml-32 mt-2">
+          <div class="mx-auto ml-32 mt-2">
     <div class="container flex justify-center">
     <div class="overflow-x-auto"> 
     <table class="w-full text-sm text-left rtl:text-right ml-28 mr-28 text-gray-500 dark:text-gray-400">

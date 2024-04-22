@@ -37,9 +37,9 @@ export default function Items() {
                     Add
                 </button>
                 </div>
-            <div class="container mx-auto ml-32 mt-2">
+            <div class="mx-auto ml-32 mt-2">
             <div class="container flex justify-center">
-            <div class="overflow-x-auto"> 
+            <div class="overflow-x-scroll"> 
             <table class="w-full text-sm text-left rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white">
                     <tr>
