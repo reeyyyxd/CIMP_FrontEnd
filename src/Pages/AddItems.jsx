@@ -147,6 +147,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.accPerson}
                     onChange={handleChange}
                     placeholder="Accountable Person"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />       
                 <input
@@ -155,6 +156,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.department}
                     onChange={handleChange}
                     placeholder="Department"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -163,6 +165,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.designation}
                     onChange={handleChange}
                     placeholder="Designation"
+                    required       
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -171,6 +174,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.invoiceNumber}
                     onChange={handleChange}
                     placeholder="Invoice Number"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -179,6 +183,8 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.invoiceDate}
                     onChange={handleChange}
                     placeholder="Invoice Date"
+                    pattern="[0-9]*"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -187,6 +193,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.issueOrder}
                     onChange={handleChange}
                     placeholder="Issue Order"
+                    required
                     pattern="[0-9]+([.][0-9]+)?"
                     title="Please enter a numerical character"
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
@@ -197,6 +204,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.lifespan}
                     onChange={handleChange}
                     placeholder="Lifespan"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -205,6 +213,8 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.quantity}
                     onChange={handleChange}
                     placeholder="Quantity"
+                    pattern="[0-9]*"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -213,6 +223,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.remarks}
                     onChange={handleChange}
                     placeholder="Remarks"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -221,6 +232,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.status}
                     onChange={handleChange}
                     placeholder="Status"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -229,6 +241,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.supplier}
                     onChange={handleChange}
                     placeholder="Supplier"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -237,6 +250,8 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.totalCost}
                     onChange={handleChange}
                     placeholder="Total Cost"
+                    pattern="[0-9]+([.][0-9]+)?"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -245,6 +260,8 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.unitCost}
                     onChange={handleChange}
                     placeholder="Unit Cost"
+                    pattern="[0-9]+([.][0-9]+)?"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -253,6 +270,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.unitOfMeasurement}
                     onChange={handleChange}
                     placeholder="Unit of Measurement"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -261,6 +279,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.description.name}
                     onChange={handleChange}
                     placeholder="Description Name"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -269,6 +288,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.description.model}
                     onChange={handleChange}
                     placeholder="Description Model"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -277,6 +297,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.description.serialNumber}
                     onChange={handleChange}
                     placeholder="Description Serial Number"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -285,6 +306,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.description.type}
                     onChange={handleChange}
                     placeholder="Description Type"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -293,6 +315,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.description.other}
                     onChange={handleChange}
                     placeholder="Description Other"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -301,6 +324,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.location.building}
                     onChange={handleChange}
                     placeholder="Location Building"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
@@ -309,6 +333,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     value={formData.location.room}
                     onChange={handleChange}
                     placeholder="Location Room"
+                    required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <div class="flex justify-center ml-56 md:col-span-3">
