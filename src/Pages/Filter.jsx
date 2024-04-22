@@ -4,6 +4,10 @@ import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate,Link, useSearchParams, createSearchParams } from "react-router-dom";
 import '../App.css';
 
+import Navbar from "../Extras/navbar";
+import Sidebar from "../Extras/sidebar";
+import ProfileDropdown from "../Extras/dropdown";
+import Home from "./Home";
 
 export default function Filter() {
 
@@ -360,18 +364,26 @@ const goHome = () => {
 
     return (
         
-        <><><><><h4 className="text-center">Welcome to the Filter Page!</h4><>
+        <><><><>
+        {/* <h4 className="text-center">Welcome to the Filter Page!</h4> */}
+        <>
+        <Navbar/>
+        <Sidebar />
+        <ProfileDropdown />
+        <Home />
 
 
-        <p></p><select onChange={handleaccPer}>
+        <p></p>
+        <div class="ml-60 mt-28 md:col-span-2">
+        <select onChange={handleaccPer}>
           <option value=""></option>
           {O_accPer.map((O_accPers, index) => (
             <option key={index} value={O_accPers}>
               {O_accPers}
             </option>
           ))}
-        </select></></>
-
+        </select>
+        
         <select onChange={handleDep}>
           <option value=""></option>
           {O_dep.map((O_deps, index) => (
@@ -379,7 +391,7 @@ const goHome = () => {
               {O_deps}
             </option>
           ))}
-        </select></><>
+        </select>
 
           <select onChange={handleDes}>
             <option value=""></option>
@@ -388,7 +400,7 @@ const goHome = () => {
                 {O_dess}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleUom}>
             <option value=""></option>
@@ -397,7 +409,7 @@ const goHome = () => {
                 {O_uoms}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleStat}>
             <option value=""></option>
@@ -406,7 +418,7 @@ const goHome = () => {
                 {O_statuss}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleSupp}>
             <option value=""></option>
@@ -415,7 +427,7 @@ const goHome = () => {
                 {O_supps}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleBuilding}>
             <option value=""></option>
@@ -424,7 +436,7 @@ const goHome = () => {
                 {O_buildings}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleRoom}>
             <option value=""></option>
@@ -433,7 +445,7 @@ const goHome = () => {
                 {O_rooms}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleName}>
             <option value=""></option>
@@ -442,7 +454,7 @@ const goHome = () => {
                 {O_names}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleModel}>
             <option value=""></option>
@@ -451,7 +463,7 @@ const goHome = () => {
                 {O_models}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleType}>
             <option value=""></option>
@@ -460,7 +472,7 @@ const goHome = () => {
                 {O_types}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleInvoice}>
             <option value=""></option>
@@ -469,7 +481,7 @@ const goHome = () => {
                 {O_invoicedates}
               </option>
             ))}
-          </select></><>
+          </select>
 
           <select onChange={handleLifespan}>
             <option value=""></option>
@@ -478,44 +490,66 @@ const goHome = () => {
                 {O_lifespans}
               </option>
             ))}
-          </select></><>
+          </select>
+          </div>
+          </>
+          </>
 
 
 
 
-          <h1><p></p> <Button variant="outlined" onClick={function(){ handleFilter(); fetchO_sum()}}>filter</Button> &nbsp;
-
+          <h1><p></p> 
+          <div class="flex justify-start ml-60 mt-5 md:col-span-2">
+            <Button variant="outlined" onClick={function(){ handleFilter(); fetchO_sum()}}>filter</Button> &nbsp;
             <Button variant="outlined" onClick={goHome}>home</Button>&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <label id="sumLabel" onChange={handleSum}>Total Cost: {O_sum}</label>
-
-          </h1><table className="user-table">
-            <thead>
+              <label id="sumLabel" onChange={handleSum}>Total Cost: {O_sum}</label>
+          </div>
+          </h1>
+          
+          <div class="container mx-auto ml-32 mt-2">
+    <div class="container flex justify-center">
+    <div class="overflow-x-auto"> 
+    <table class="w-full text-sm text-left rtl:text-right ml-28 mr-28 text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white">
               <tr>
-                <th>property tag</th>
-                <th>Accountable Person</th>
-                <th>Department</th>
-                <th>Designation</th>
-                <th>invoiceDate</th>
-                <th>invoiceNumber</th>
-                <th>Issue Order Number</th>
-                <th>Supplier</th>
-                <th>lifespan</th>
-                <th>UOM</th>
-                <th>Quantity</th>
-                <th>Unit Cost</th>
-                <th>Total Cost</th>
-                <th>Status</th>
-                <th>Remarks</th>
-
-
+                <th scope="col" class="px-6 py-3">
+                  property tag</th>
+                <th scope="col" class="px-6 py-3">
+                  Accountable Person</th>
+                <th scope="col" class="px-6 py-3">
+                  Department</th>
+                <th scope="col" class="px-6 py-3">
+                  Designation</th>
+                <th scope="col" class="px-6 py-3">
+                  invoiceDate</th>
+                <th scope="col" class="px-6 py-3">
+                  invoiceNumber</th>
+                <th scope="col" class="px-6 py-3">
+                  Issue Order Number</th>
+                <th scope="col" class="px-6 py-3">
+                  Supplier</th>
+                <th scope="col" class="px-6 py-3">
+                  lifespan</th>
+                <th scope="col" class="px-6 py-3">
+                  UOM</th>
+                <th scope="col" class="px-6 py-3">
+                  Quantity</th>
+                <th scope="col" class="px-6 py-3">
+                  Unit Cost</th>
+                <th scope="col" class="px-6 py-3">
+                  Total Cost</th>
+                <th scope="col" class="px-6 py-3">
+                  Status</th>
+                <th scope="col" class="px-6 py-3">
+                  Remarks</th>
               </tr>
             </thead>
             <tbody>
               {queryResults.map(item => (
-                <tr key={item.propertyTag}>
+                <tr key={item.propertyTag} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 
-                  <td><Link onClick={() => {
+                  <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><Link onClick={() => {
                     const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
                     window.open(url, '_blank');
                   } }>{item.iid}</Link></td>
@@ -538,8 +572,11 @@ const goHome = () => {
                 </tr>
               ))}
             </tbody>
-          </table></></>
-          
+          </table>
+          </div>
+          </div>
+          </div>    
+          </></>
           </>
     )
 }

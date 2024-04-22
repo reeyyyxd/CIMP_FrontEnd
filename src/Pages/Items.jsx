@@ -32,7 +32,7 @@ export default function Items() {
         <Home />
         <div class="flex justify-start ml-60 mt-28 md:col-span-2">
                 <button type="button" 
-                    className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full"
+                    className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-10 rounded-full"
                     onClick={() => navigate("/additems")}>
                     Add
                 </button>
