@@ -38,6 +38,8 @@ export default function ViewAll() {
 
 return(
 
+  <div className="flex justify-center text-center mt-28">
+  <div className="border border-gray-300 p-4 max-w-lg shadow-2xl rounded-2xl">
     <><><><p>FULL INFORMATION</p>
     
     
@@ -86,10 +88,11 @@ return(
         ) : (
         <div>No location data available</div>
         )
-        }
-            
+        }  
 
     </></>
+    </div>
+        </div>  
     
     
 )
