@@ -1,7 +1,7 @@
-import { useLocation,useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Paper, Typography } from "@mui/material";
 
 
 export default function ViewAll() {
@@ -34,6 +34,16 @@ export default function ViewAll() {
           alert("service error");
       });
     };
+
+    const [showDiv, setShowDiv] = useState(false);
+
+  const handleToggle = () => {
+    setShowDiv(!showDiv); // Toggle the state
+  };
+
+  const handleClose = () => {
+    setShowDiv(false); // Close the div
+  };
 
 
 return(
@@ -92,6 +102,18 @@ return(
 
     </></>
     </div>
+
+    <Button variant="contained" onClick={handleToggle}>
+        {showDiv ? 'Hide Div' : 'Show Div'}
+      </Button>
+      {showDiv && (
+        <Paper style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', padding: '20px' }}>
+          <Typography variant="h6">Floating Div</Typography>
+          <Typography variant="body1">Some information goes here...</Typography>
+          <Button onClick={handleClose} variant="contained">Exit</Button>
+        </Paper>
+      )}
+
         </div>  
     
     
