@@ -547,7 +547,7 @@ const goHome = () => {
             </thead>
             <tbody>
               {queryResults.map(item => (
-                <tr key={item.propertyTag} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr key={item.iid} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 
                   <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><Link onClick={() => {
                     const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
