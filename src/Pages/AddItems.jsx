@@ -11,6 +11,7 @@ export default function addItems() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
+
         accPerson: "",
         department: "",
         designation: "",
@@ -39,26 +40,56 @@ export default function addItems() {
 
     });
 
+    // const handleChange = event => {
+    //     const { name, value } = event.target;
+    
+
+    //     if (name.includes('.')) {
+    //     const [parentKey, childKey] = name.split('.');
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         [parentKey]: {
+    //         ...prevState[parentKey],
+    //         [childKey]: value 
+    //         }
+    //     }));
+    //     } else {
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         [name]: value
+    //     }));
+    //     }
+    // };
     const handleChange = event => {
         const { name, value } = event.target;
     
-
-        if (name.includes('.')) {
-        const [parentKey, childKey] = name.split('.');
-        setFormData(prevState => ({
-            ...prevState,
-            [parentKey]: {
-            ...prevState[parentKey],
-            [childKey]: value 
-            }
-        }));
+        if (name === 'quantity' || name === 'unitCost') {
+            const quantity = name === 'quantity' ? value : formData.quantity;
+            const unitCost = name === 'unitCost' ? value : formData.unitCost;
+            const totalCost = parseFloat(quantity) * parseFloat(unitCost);
+    
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value,
+                totalCost: totalCost.toString()
+            }));
+        } else if (name.includes('.')) {
+            const [parentKey, childKey] = name.split('.');
+            setFormData(prevState => ({
+                ...prevState,
+                [parentKey]: {
+                    ...prevState[parentKey],
+                    [childKey]: value 
+                }
+            }));
         } else {
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
         }
     };
+    
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -214,7 +245,7 @@ export default function addItems() {
                     required
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
-                {/* <input
+                <input
                     type="text"
                     name="totalCost"
                     value={formData.totalCost}
@@ -223,8 +254,9 @@ export default function addItems() {
                     pattern="[0-9]+([.][0-9]+)?"
                     title="Please enter a valid number, e.g., 12.34"
                     required
+                    readOnly
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                /> */}
+                /> 
                 <input
                     type="text"
                     name="unitCost"
