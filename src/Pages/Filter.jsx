@@ -9,7 +9,8 @@ import Sidebar from "../Extras/sidebar";
 import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
 
-export default function Filter() {
+export default function Filter() 
+{
 
   const navigate = useNavigate();
 
@@ -108,8 +109,13 @@ export default function Filter() {
 
 const handleFilter = () => {
     //console.log({ acc_per,department,designation,status,uom,supplier,building,room,name,model,type,invoicedate,lifespan })
-  
-    axios
+
+    if (acc_per === "" && department === "" && designation === "" && status === "" && uom === "" && supplier === ""
+        && building === "" && room === "" && name === "" && model === "" && type === "" && invoicedate === "" && lifespan === ""){
+      alert("Choose at least 1")
+    }else{
+
+      axios
       .get("http://localhost:8080/item/filter", {
         params: {
           acc_per: acc_per,
@@ -134,12 +140,13 @@ const handleFilter = () => {
       })
       .catch(error => {
         console.log(error)
-        alert("service error")
+        alert("No Data found!")
       })
+
+    }
   }
   
   
-
 useEffect(() => {
     fetchO_accPer();
   }, []);
@@ -325,8 +332,11 @@ try {
 
 const fetchO_sum = () => {
   
-
-  axios
+  if (acc_per === "" && department === "" && designation === "" && status === "" && uom === "" && supplier === ""
+        && building === "" && room === "" && name === "" && model === "" && type === "" && invoicedate === "" && lifespan === ""){
+      
+    }else{
+      axios
       .get("http://localhost:8080/item/sum", {
         params: {
           acc_per: acc_per,
@@ -351,8 +361,11 @@ const fetchO_sum = () => {
       })
       .catch(error => {
         console.log(error)
-        alert("service error")
+        alert("No Data Found!")
+
+        setO_sum("")
       })
+    }
 };
 
 const goHome = () => {
@@ -360,7 +373,9 @@ const goHome = () => {
 }
 
 
-
+const handlePrint = () => {
+  window.print();
+};
 
     return (
         
@@ -501,7 +516,7 @@ const goHome = () => {
           <h1><p></p> 
           <div class="flex justify-start ml-60 mt-5 md:col-span-2">
             <Button variant="outlined" onClick={function(){ handleFilter(); fetchO_sum()}}>filter</Button> &nbsp;
-            <Button variant="outlined" onClick={goHome}>home</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <Button variant="outlined" onClick={handlePrint}>Print</Button>&nbsp;&nbsp;&nbsp;&nbsp;
 
               <label id="sumLabel" onChange={handleSum}>Total Cost: {O_sum}</label>
           </div>

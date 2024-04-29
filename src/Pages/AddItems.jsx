@@ -7,11 +7,99 @@ import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
 
 export default function addItems() {
-    
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
+  /*const navigate = useNavigate();
 
+//   const [inputs, setInputs] = useState({
+//     itemDescription: "",
+//     propertyTag: "",
+//     accountablePerson: "",
+//     designation: "",
+//     quantity: "",
+//     unitCost: ""
+// });
+
+// Function to handle input field changes
+const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+        ...inputs,
+        [name]: value
+    });
+};
+
+// Function to handle form submission
+const handleSubmit = (e) => {   
+    e.preventDefault();
+    // Add your logic to handle form submission here
+};*/
+  const [formData, setFormData] = useState({
+    accPerson: "",
+    department: "",
+    designation: "",
+    invoiceNumber: "",
+    invoiceDate: "",
+    issueOrder: "",
+    lifespan: "",
+    quantity: "",
+    remarks: "",
+    status: "",
+    supplier: "",
+    totalCost: "",
+    unitCost: "",
+    unitOfMeasurement: "",
+    description : {
+        name: "",
+        model: "",
+        serialNumber: "",
+        type: "",
+        other: ""
+    },
+    location : {
+        building: "",
+        room: ""
+    }
+
+  });
+
+//   const handleChange = event => {
+//     const { name, value } = event.target;
+//     setFormData(prevState => ({
+//       ...prevState,
+//       [name]: value
+//     }));
+//   };
+const handleChange = event => {
+    const { name, value } = event.target;
+  
+    // If the name contains dot notation (indicating a nested object property)
+    if (name.includes('.')) {
+      const [parentKey, childKey] = name.split('.'); // Split the name into parent and child keys
+      setFormData(prevState => ({
+        ...prevState,
+        [parentKey]: {
+          ...prevState[parentKey],
+          [childKey]: value // Update the nested object property value
+        }
+      }));
+    } else {
+      // If it's not a nested object property, update normally
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    }
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      await axios.post('http://localhost:8080/item/insertItem', formData);
+      // Optionally, you can handle success response or navigate to another page
+      window.alert('Data inserted successfully');
+      console.log('Data inserted successfully');
+      setFormData({
         accPerson: "",
         department: "",
         designation: "",
@@ -23,7 +111,7 @@ export default function addItems() {
         remarks: "",
         status: "",
         supplier: "",
-        totalCost: 0,
+        totalCost: "",
         unitCost: "",
         unitOfMeasurement: "",
         description : {
@@ -37,97 +125,11 @@ export default function addItems() {
             building: "",
             room: ""
         }
-
-    });
-
-    // const handleChange = event => {
-    //     const { name, value } = event.target;
-    
-
-    //     if (name.includes('.')) {
-    //     const [parentKey, childKey] = name.split('.');
-    //     setFormData(prevState => ({
-    //         ...prevState,
-    //         [parentKey]: {
-    //         ...prevState[parentKey],
-    //         [childKey]: value 
-    //         }
-    //     }));
-    //     } else {
-    //     setFormData(prevState => ({
-    //         ...prevState,
-    //         [name]: value
-    //     }));
-    //     }
-    // };
-    const handleChange = event => {
-        const { name, value } = event.target;
-    
-        if (name === 'quantity' || name === 'unitCost') {
-            const quantity = name === 'quantity' ? value : formData.quantity;
-            const unitCost = name === 'unitCost' ? value : formData.unitCost;
-            const totalCost = parseFloat(quantity) * parseFloat(unitCost);
-    
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: value,
-                totalCost: totalCost.toString()
-            }));
-        } else if (name.includes('.')) {
-            const [parentKey, childKey] = name.split('.');
-            setFormData(prevState => ({
-                ...prevState,
-                [parentKey]: {
-                    ...prevState[parentKey],
-                    [childKey]: value 
-                }
-            }));
-        } else {
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
-        }
-    };
-    
-
-    const handleSubmit = async event => {
-        event.preventDefault();
-        const totalCost = parseFloat(formData.quantity) * parseFloat(formData.unitCost);
-        try {
-        await axios.post('http://localhost:8080/item/insertItem', {
-            accPerson: formData.accPerson,
-            department: formData.department,
-            designation: formData.designation,
-            invoiceNumber: formData.invoiceNumber,
-            invoiceDate: formData.invoiceDate,
-            issueOrder: formData.issueOrder,
-            lifespan: formData.lifespan,
-            quantity: formData.quantity,
-            remarks: formData.remarks,
-            status: formData.status,
-            supplier: formData.supplier,
-            totalCost: totalCost,
-            unitCost: formData.unitCost,
-            unitOfMeasurement: formData.unitOfMeasurement,
-            description : {
-                name: formData.description.name,
-                model: formData.description.model,
-                serialNumber: formData.description.serialNumber,
-                type: formData.description.type,
-                other: formData.description.other
-            },
-            location : {
-                building: formData.location.building,
-                room: formData.location.room
-            }
-        });
-        window.alert('Data inserted successfully');
-        console.log('Data inserted successfully');
-        } catch (error) {
-        console.error('Error inserting data:', error);
-        }
-    };
+      });
+    } catch (error) {
+      console.error('Error inserting data:', error);
+    }
+  };
 
     return(
         <>
@@ -136,9 +138,9 @@ export default function addItems() {
         <ProfileDropdown />
         <Home />
 
-        <form onSubmit={handleSubmit} 
-            className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl">
-            <div class="grid gap-6 mb-6 md:grid-cols-3"> 
+<form onSubmit={handleSubmit} 
+className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl">
+<div class="grid gap-6 mb-6 md:grid-cols-3"> 
 
                 <input
                     type="text"
@@ -254,9 +256,8 @@ export default function addItems() {
                     pattern="[0-9]+([.][0-9]+)?"
                     title="Please enter a valid number, e.g., 12.34"
                     required
-                    readOnly
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                /> 
+                />
                 <input
                     type="text"
                     name="unitCost"
@@ -341,21 +342,21 @@ export default function addItems() {
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <div class="flex justify-center ml-56 md:col-span-3">
-                    <button type="submit" 
-                        className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full">
-                        Add
-                    </button>
-                    <div class="pl-12">
-                        <button type="button" 
-                            className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full"
-                            onClick={() => navigate("/items")}>
-                            Back
-                        </button>
-                    </div>
+                <button type="submit" 
+                    className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full">
+                    Add
+                </button>
+                <div class="pl-12">
+                <button type="button" 
+                    className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full"
+                    onClick={() => navigate("/items")}>
+                    Back
+                </button>
                 </div>
-            </div>
-        </form>                        
-    </>
+                </div>
+                </div>
+            </form>                        
+        </>
     );
 };
 

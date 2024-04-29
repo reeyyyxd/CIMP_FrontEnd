@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { TextField, Button } from "@mui/material";
 
+import Navbar from "../Extras/navbar";
+import Sidebar from "../Extras/sidebar";
+import ProfileDropdown from "../Extras/dropdown";
+import Home from "./Home";
+
 export default function Search() {
 
     const [search, setSearch] = useState("");
@@ -34,6 +39,8 @@ export default function Search() {
 
 
     return(
+
+        
 
             <><><><><><><p>Search:</p>
             <TextField onChange={handleSearch} variant="filled"></TextField></>

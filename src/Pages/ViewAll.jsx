@@ -9,7 +9,7 @@ export default function ViewAll() {
     const [searchparams] = useSearchParams();
     const [queryResults, setQueryResults] = useState([])
     
-
+  
     let id = searchparams.get("id");
     console.log(searchparams.get("id"));
     
