@@ -9,31 +9,6 @@ import Home from "./Home";
 export default function addItems() {
     const navigate = useNavigate();
 
-  /*const navigate = useNavigate();
-
-//   const [inputs, setInputs] = useState({
-//     itemDescription: "",
-//     propertyTag: "",
-//     accountablePerson: "",
-//     designation: "",
-//     quantity: "",
-//     unitCost: ""
-// });
-
-// Function to handle input field changes
-const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setInputs({
-        ...inputs,
-        [name]: value
-    });
-};
-
-// Function to handle form submission
-const handleSubmit = (e) => {   
-    e.preventDefault();
-    // Add your logic to handle form submission here
-};*/
   const [formData, setFormData] = useState({
     accPerson: "",
     department: "",
@@ -63,73 +38,77 @@ const handleSubmit = (e) => {
 
   });
 
-//   const handleChange = event => {
-//     const { name, value } = event.target;
-//     setFormData(prevState => ({
-//       ...prevState,
-//       [name]: value
-//     }));
-//   };
+
+
 const handleChange = event => {
     const { name, value } = event.target;
-  
-    // If the name contains dot notation (indicating a nested object property)
-    if (name.includes('.')) {
-      const [parentKey, childKey] = name.split('.'); // Split the name into parent and child keys
-      setFormData(prevState => ({
-        ...prevState,
-        [parentKey]: {
-          ...prevState[parentKey],
-          [childKey]: value // Update the nested object property value
-        }
-      }));
+
+    if (name === 'quantity' || name === 'unitCost') {
+        const quantity = name === 'quantity' ? value : formData.quantity;
+        const unitCost = name === 'unitCost' ? value : formData.unitCost;
+        const totalCost = parseFloat(quantity) * parseFloat(unitCost);
+
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value,
+            totalCost: totalCost.toString()
+        }));
+    } else if (name.includes('.')) {
+        const [parentKey, childKey] = name.split('.');
+        setFormData(prevState => ({
+            ...prevState,
+            [parentKey]: {
+                ...prevState[parentKey],
+                [childKey]: value 
+            }
+        }));
     } else {
-      // If it's not a nested object property, update normally
-      setFormData(prevState => ({
-        ...prevState,
-        [name]: value
-      }));
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     }
-  };
+};
+
+  
 
   const handleSubmit = async event => {
     event.preventDefault();
+    const totalCost = parseFloat(formData.quantity) * parseFloat(formData.unitCost);
     try {
-      await axios.post('http://localhost:8080/item/insertItem', formData);
-      // Optionally, you can handle success response or navigate to another page
-      window.alert('Data inserted successfully');
-      console.log('Data inserted successfully');
-      setFormData({
-        accPerson: "",
-        department: "",
-        designation: "",
-        invoiceNumber: "",
-        invoiceDate: "",
-        issueOrder: "",
-        lifespan: "",
-        quantity: "",
-        remarks: "",
-        status: "",
-        supplier: "",
-        totalCost: "",
-        unitCost: "",
-        unitOfMeasurement: "",
+    await axios.post('http://localhost:8080/item/insertItem', {
+        accPerson: formData.accPerson,
+        department: formData.department,
+        designation: formData.designation,
+        invoiceNumber: formData.invoiceNumber,
+        invoiceDate: formData.invoiceDate,
+        issueOrder: formData.issueOrder,
+        lifespan: formData.lifespan,
+        quantity: formData.quantity,
+        remarks: formData.remarks,
+        status: formData.status,
+        supplier: formData.supplier,
+        totalCost: totalCost,
+        unitCost: formData.unitCost,
+        unitOfMeasurement: formData.unitOfMeasurement,
         description : {
-            name: "",
-            model: "",
-            serialNumber: "",
-            type: "",
-            other: ""
+            name: formData.description.name,
+            model: formData.description.model,
+            serialNumber: formData.description.serialNumber,
+            type: formData.description.type,
+            other: formData.description.other
         },
         location : {
-            building: "",
-            room: ""
+            building: formData.location.building,
+            room: formData.location.room
         }
-      });
+    });
+    window.alert('Data inserted successfully');
+    console.log('Data inserted successfully');
     } catch (error) {
-      console.error('Error inserting data:', error);
+    console.error('Error inserting data:', error);
     }
-  };
+};
 
     return(
         <>
@@ -256,6 +235,7 @@ className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto bor
                     pattern="[0-9]+([.][0-9]+)?"
                     title="Please enter a valid number, e.g., 12.34"
                     required
+                    readOnly
                     className="mr-2 border border-gray-300 rounded-md px-3 py-2"
                 />
                 <input
