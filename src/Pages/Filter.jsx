@@ -110,11 +110,6 @@ export default function Filter()
 const handleFilter = () => {
     //console.log({ acc_per,department,designation,status,uom,supplier,building,room,name,model,type,invoicedate,lifespan })
 
-    if (acc_per === "" && department === "" && designation === "" && status === "" && uom === "" && supplier === ""
-        && building === "" && room === "" && name === "" && model === "" && type === "" && invoicedate === "" && lifespan === ""){
-      alert("Choose at least 1")
-    }else{
-
       axios
       .get("http://localhost:8080/item/filter", {
         params: {
@@ -142,8 +137,6 @@ const handleFilter = () => {
         console.log(error)
         alert("No Data found!")
       })
-
-    }
   }
   
   

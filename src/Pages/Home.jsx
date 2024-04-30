@@ -74,10 +74,10 @@ export default function Home() {
 				<a href="items" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
                    <span class="text-lg font-normal">Inventory</span>
                     </a>
-					<a href="/search" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
+					<a href="search" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
                    <span class="text-lg font-normal">Search</span>
                     </a>	
-					<a href="/filter" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
+					<a href="filter" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">
                    <span class="text-lg font-normal">Advance Search</span>
                     </a>
 					<a href="home" class="pl-10 pt-5 flex flex-rowh-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-white hover:text-black">

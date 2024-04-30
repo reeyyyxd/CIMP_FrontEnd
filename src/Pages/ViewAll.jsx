@@ -20,9 +20,9 @@ export default function ViewAll() {
     const handleFetchSearch = () => {
       console.log(id);
   
-      axios.get("http://localhost:8080/item/search", {
+      axios.get("http://localhost:8080/item/fullInfo", {
           params: {
-              search: id
+              info: id
           }
       })
       .then(result => {
