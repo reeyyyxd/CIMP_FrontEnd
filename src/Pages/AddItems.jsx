@@ -105,6 +105,33 @@ const handleChange = event => {
     });
     window.alert('Data inserted successfully');
     console.log('Data inserted successfully');
+    setFormData({
+        accPerson: "",
+        department: "",
+        designation: "",
+        invoiceNumber: "",
+        invoiceDate: "",
+        issueOrder: "",
+        lifespan: "",
+        quantity: "",
+        remarks: "",
+        status: "",
+        supplier: "",
+        totalCost: "",
+        unitCost: "",
+        unitOfMeasurement: "",
+        description : {
+            name: "",
+            model: "",
+            serialNumber: "",
+            type: "",
+            other: ""
+        },
+        location : {
+            building: "",
+            room: ""
+        }
+      });
     } catch (error) {
     console.error('Error inserting data:', error);
     }
