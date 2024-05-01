@@ -383,7 +383,6 @@ const handlePrint = () => {
 
         <p></p>
         <div class="ml-60 mt-28">
-        
         <select onChange={handleaccPer}
         className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm">
           <option value="" disabled selected>Accountable Person</option>
@@ -445,7 +444,7 @@ const handlePrint = () => {
           </select>
 
           <select onChange={handleBuilding}
-          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
             <option value="" disabled selected>Location Building</option>
             {O_building.map((O_buildings, index) => (
               <option key={index} value={O_buildings}>
@@ -455,7 +454,7 @@ const handlePrint = () => {
           </select>
 
           <select onChange={handleRoom}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm">
             <option value="" disabled selected>Location Room</option>
             {O_room.map((O_rooms, index) => (
               <option key={index} value={O_rooms}>
@@ -505,7 +504,7 @@ const handlePrint = () => {
           </select>
 
           <select onChange={handleLifespan}
-          className="border border-gray-700 rounded-md mt-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 mt-2 p-2 w-40 bg-gray-800 text-white text-sm">
             <option value="" disabled selected>Lifespan</option>
             {O_lifespan.map((O_lifespans, index) => (
               <option key={index} value={O_lifespans}>
