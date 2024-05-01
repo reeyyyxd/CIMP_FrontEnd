@@ -382,9 +382,11 @@ const handlePrint = () => {
 
 
         <p></p>
-        <div class="ml-60 mt-28 md:col-span-2">
-        <select onChange={handleaccPer}>
-          <option value=""></option>
+        <div class="ml-60 mt-28">
+        
+        <select onChange={handleaccPer}
+        className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm">
+          <option value="" disabled selected>Accountable Person</option>
           {O_accPer.map((O_accPers, index) => (
             <option key={index} value={O_accPers}>
               {O_accPers}
@@ -392,8 +394,9 @@ const handlePrint = () => {
           ))}
         </select>
         
-        <select onChange={handleDep}>
-          <option value=""></option>
+        <select onChange={handleDep}
+        className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">  
+          <option value="" disabled selected>Deparment</option>
           {O_dep.map((O_deps, index) => (
             <option key={index} value={O_deps}>
               {O_deps}
@@ -401,8 +404,9 @@ const handlePrint = () => {
           ))}
         </select>
 
-          <select onChange={handleDes}>
-            <option value=""></option>
+          <select onChange={handleDes}
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Designation</option>
             {O_des.map((O_dess, index) => (
               <option key={index} value={O_dess}>
                 {O_dess}
@@ -410,8 +414,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleUom}>
-            <option value=""></option>
+          <select onChange={handleUom}
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Uom</option>
             {O_uom.map((O_uoms, index) => (
               <option key={index} value={O_uoms}>
                 {O_uoms}
@@ -419,8 +424,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleStat}>
-            <option value=""></option>
+          <select onChange={handleStat}
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Status</option>
             {O_status.map((O_statuss, index) => (
               <option key={index} value={O_statuss}>
                 {O_statuss}
@@ -428,8 +434,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleSupp}>
-            <option value=""></option>
+          <select onChange={handleSupp}
+          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Supplier</option>
             {O_supp.map((O_supps, index) => (
               <option key={index} value={O_supps}>
                 {O_supps}
@@ -437,8 +444,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleBuilding}>
-            <option value=""></option>
+          <select onChange={handleBuilding}
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Location Building</option>
             {O_building.map((O_buildings, index) => (
               <option key={index} value={O_buildings}>
                 {O_buildings}
@@ -446,8 +454,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleRoom}>
-            <option value=""></option>
+          <select onChange={handleRoom}
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Location Room</option>
             {O_room.map((O_rooms, index) => (
               <option key={index} value={O_rooms}>
                 {O_rooms}
@@ -455,8 +464,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleName}>
-            <option value=""></option>
+          <select onChange={handleName}
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Description Name</option>
             {O_name.map((O_names, index) => (
               <option key={index} value={O_names}>
                 {O_names}
@@ -464,8 +474,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleModel}>
-            <option value=""></option>
+          <select onChange={handleModel}
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Description Model</option>
             {O_model.map((O_models, index) => (
               <option key={index} value={O_models}>
                 {O_models}
@@ -473,8 +484,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleType}>
-            <option value=""></option>
+          <select onChange={handleType}
+          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Description Type</option>
             {O_type.map((O_types, index) => (
               <option key={index} value={O_types}>
                 {O_types}
@@ -482,8 +494,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleInvoice}>
-            <option value=""></option>
+          <select onChange={handleInvoice}
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Invoice Number</option>
             {O_invoicedate.map((O_invoicedates, index) => (
               <option key={index} value={O_invoicedates}>
                 {O_invoicedates}
@@ -491,8 +504,9 @@ const handlePrint = () => {
             ))}
           </select>
 
-          <select onChange={handleLifespan}>
-            <option value=""></option>
+          <select onChange={handleLifespan}
+          className="border border-gray-700 rounded-md mt-2 p-2 w-40 bg-gray-800 text-white text-sm">
+            <option value="" disabled selected>Lifespan</option>
             {O_lifespan.map((O_lifespans, index) => (
               <option key={index} value={O_lifespans}>
                 {O_lifespans}
@@ -502,9 +516,6 @@ const handlePrint = () => {
           </div>
           </>
           </>
-
-
-
 
           <h1><p></p> 
           <div class="flex justify-start ml-60 mt-5 md:col-span-2">
@@ -518,7 +529,7 @@ const handlePrint = () => {
           <div class="mx-auto ml-32 mt-2">
     <div class="container flex justify-center">
     <div class="overflow-x-auto"> 
-    <table class="w-full text-sm text-left rtl:text-right ml-28 mr-28 text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-center rtl:text-right ml-28 mr-28 text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white">
               <tr>
                 <th scope="col" class="px-6 py-3">
