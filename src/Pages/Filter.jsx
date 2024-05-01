@@ -366,9 +366,66 @@ const goHome = () => {
 }
 
 
-const handlePrint = () => {
-  window.print();
-};
+const handlePrintTable = () => {
+  const printableContent = generatePrintableTable();
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(printableContent);
+  printWindow.document.close();
+  printWindow.print();
+}
+
+const generatePrintableTable = () => {
+  let printableContent = `
+      <style>
+          table {
+              border-collapse: collapse;
+              width: 100%;
+          }
+          th, td {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+          }
+          th {
+              background-color: #f2f2f2;
+          }
+      </style>
+      <table>
+          <thead>
+              <tr>
+                  <th>Property Tag</th>
+                  
+                  <th>Invoice Number</th>
+                  <th>Issue Order Number</th>
+                  <th>Accountable Person</th>
+                  <th>Department</th>
+                  <th>Designation</th>
+                  <th>invoiceDate</th>
+                  <th>Serial Number</th>
+              </tr>
+          </thead>
+          <tbody>
+  `;
+  queryResults.forEach(item => {
+      printableContent += `
+          <tr>
+              <td>${item.iid}</td>
+              <td>${item.invoiceNumber}</td>
+              <td>${item.issueOrder}</td>
+              <td>${item.accPerson}</td>
+              <td>${item.department}</td>
+              <td>${item.designation}</td>
+              <td>${item.invoiceDate}</td>
+              <td>${item.description ? item.description.serialNumber : 'None'}</td>
+          </tr>
+      `;
+  });
+  printableContent += `
+          </tbody>
+      </table>
+  `;
+  return printableContent;
+}
 
     return (
         
@@ -519,7 +576,7 @@ const handlePrint = () => {
           <h1><p></p> 
           <div class="flex justify-start ml-60 mt-5 md:col-span-2">
             <Button variant="outlined" onClick={function(){ handleFilter(); fetchO_sum()}}>filter</Button> &nbsp;
-            <Button variant="outlined" onClick={handlePrint}>Print</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <Button variant="outlined" onClick={handlePrintTable}>Print</Button>&nbsp;&nbsp;&nbsp;&nbsp;
 
               <label id="sumLabel" onChange={handleSum}>Total Cost: {O_sum}</label>
           </div>
