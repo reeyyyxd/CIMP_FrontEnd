@@ -8,104 +8,7 @@ import Home from "./Home";
 
 export default function addItems() {
     const navigate = useNavigate();
-//asasd asddf gsdfg dsf gds
-  const [formData, setFormData] = useState({
-    accPerson: "",
-    department: "",
-    designation: "",
-    invoiceNumber: "",
-    invoiceDate: "",
-    issueOrder: "",
-    lifespan: "",
-    quantity: "",
-    remarks: "",
-    status: "",
-    supplier: "",
-    totalCost: "",
-    unitCost: "",
-    unitOfMeasurement: "",
-    description : {
-        name: "",
-        model: "",
-        serialNumber: "",
-        type: "",
-        other: ""
-    },
-    location : {
-        building: "",
-        room: ""
-    }
-
-  });
-
-
-
-const handleChange = event => {
-    const { name, value } = event.target;
-
-    if (name === 'quantity' || name === 'unitCost') {
-        const quantity = name === 'quantity' ? value : formData.quantity;
-        const unitCost = name === 'unitCost' ? value : formData.unitCost;
-        const totalCost = parseFloat(quantity) * parseFloat(unitCost);
-
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value,
-            totalCost: totalCost.toString()
-        }));
-    } else if (name.includes('.')) {
-        const [parentKey, childKey] = name.split('.');
-        setFormData(prevState => ({
-            ...prevState,
-            [parentKey]: {
-                ...prevState[parentKey],
-                [childKey]: value 
-            }
-        }));
-    } else {
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
-};
-
-  
-
-  const handleSubmit = async event => {
-    event.preventDefault();
-    const totalCost = parseFloat(formData.quantity) * parseFloat(formData.unitCost);
-    try {
-    await axios.post('http://localhost:8080/item/insertItem', {
-        accPerson: formData.accPerson,
-        department: formData.department,
-        designation: formData.designation,
-        invoiceNumber: formData.invoiceNumber,
-        invoiceDate: formData.invoiceDate,
-        issueOrder: formData.issueOrder,
-        lifespan: formData.lifespan,
-        quantity: formData.quantity,
-        remarks: formData.remarks,
-        status: formData.status,
-        supplier: formData.supplier,
-        totalCost: totalCost,
-        unitCost: formData.unitCost,
-        unitOfMeasurement: formData.unitOfMeasurement,
-        description : {
-            name: formData.description.name,
-            model: formData.description.model,
-            serialNumber: formData.description.serialNumber,
-            type: formData.description.type,
-            other: formData.description.other
-        },
-        location : {
-            building: formData.location.building,
-            room: formData.location.room
-        }
-    });
-    window.alert('Data inserted successfully');
-    console.log('Data inserted successfully');
-    setFormData({
+    const [formData, setFormData] = useState({
         accPerson: "",
         department: "",
         designation: "",
@@ -131,11 +34,107 @@ const handleChange = event => {
             building: "",
             room: ""
         }
-      });
-    } catch (error) {
-    console.error('Error inserting data:', error);
-    }
-};
+
+    });
+
+
+
+    const handleChange = event => {
+        const { name, value } = event.target;
+
+        if (name === 'quantity' || name === 'unitCost') {
+            const quantity = name === 'quantity' ? value : formData.quantity;
+            const unitCost = name === 'unitCost' ? value : formData.unitCost;
+            const totalCost = parseFloat(quantity) * parseFloat(unitCost);
+
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value,
+                totalCost: totalCost.toString()
+            }));
+        } else if (name.includes('.')) {
+            const [parentKey, childKey] = name.split('.');
+            setFormData(prevState => ({
+                ...prevState,
+                [parentKey]: {
+                    ...prevState[parentKey],
+                    [childKey]: value 
+                }
+            }));
+        } else {
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
+    };
+
+  
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+        const totalCost = parseFloat(formData.quantity) * parseFloat(formData.unitCost);
+        try {
+        await axios.post('http://localhost:8080/item/insertItem', {
+            accPerson: formData.accPerson,
+            department: formData.department,
+            designation: formData.designation,
+            invoiceNumber: formData.invoiceNumber,
+            invoiceDate: formData.invoiceDate,
+            issueOrder: formData.issueOrder,
+            lifespan: formData.lifespan,
+            quantity: formData.quantity,
+            remarks: formData.remarks,
+            status: formData.status,
+            supplier: formData.supplier,
+            totalCost: totalCost,
+            unitCost: formData.unitCost,
+            unitOfMeasurement: formData.unitOfMeasurement,
+            description : {
+                name: formData.description.name,
+                model: formData.description.model,
+                serialNumber: formData.description.serialNumber,
+                type: formData.description.type,
+                other: formData.description.other
+            },
+            location : {
+                building: formData.location.building,
+                room: formData.location.room
+            }
+        });
+        window.alert('Data added!');
+        console.log('Data added!');
+        setFormData({
+            accPerson: "",
+            department: "",
+            designation: "",
+            invoiceNumber: "",
+            invoiceDate: "",
+            issueOrder: "",
+            lifespan: "",
+            quantity: "",
+            remarks: "",
+            status: "",
+            supplier: "",
+            totalCost: "",
+            unitCost: "",
+            unitOfMeasurement: "",
+            description : {
+                name: "",
+                model: "",
+                serialNumber: "",
+                type: "",
+                other: ""
+            },
+            location : {
+                building: "",
+                room: ""
+            }
+        });
+        } catch (error) {
+        console.error('Error inserting data:', error);
+        }
+    };
 
     return(
         <>
@@ -144,9 +143,9 @@ const handleChange = event => {
         <ProfileDropdown />
         <Home />
 
-<form onSubmit={handleSubmit} 
-className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl">
-<div class="grid gap-6 mb-6 md:grid-cols-3"> 
+        <form onSubmit={handleSubmit} 
+        className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl">
+        <div class="grid gap-6 mb-6 md:grid-cols-3"> 
 
                 <input
                     type="text"
