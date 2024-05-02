@@ -202,8 +202,8 @@ export default function Items() {
             </table>
 
             {showOverlay && selectedItem && (   
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-40 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-md shadow-md">
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+          <div className="bg-white bg-opacity-95 p-6 rounded-md shadow-md">
             <h2 className="text-lg text-center font-semibold mb-4">Edit Item</h2>
             <form onSubmit={handleUpdate}>
 
@@ -225,7 +225,7 @@ export default function Items() {
               onChange={(e) => setSelectedItem({ ...selectedItem, department: e.target.value })}
               className="border border-gray-300 rounded-md px-3 py-2 mb-2"
               placeholder="Department"
-              required
+              requiredz 
             />
             
             <label htmlFor="accPerson" className="ml-2">Designation:</label> 
