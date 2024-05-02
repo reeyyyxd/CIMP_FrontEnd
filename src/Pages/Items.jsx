@@ -202,9 +202,9 @@ export default function Items() {
             </table>
 
             {showOverlay && selectedItem && (   
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-40 flex justify-center items-center">
           <div className="bg-white p-6 rounded-md shadow-md">
-            <h2 className="text-lg font-semibold mb-4">Edit Item</h2>
+            <h2 className="text-lg text-center font-semibold mb-4">Edit Item</h2>
             <form onSubmit={handleUpdate}>
 
             <div className="mb-2">
@@ -218,7 +218,7 @@ export default function Items() {
               required
             />
                 
-            <label htmlFor="accPerson" className="mr-2">Department:</label> 
+            <label htmlFor="accPerson" className="ml-4">Department:</label> 
             <input
               type="text"
               value={selectedItem.department || ''} // Provide a fallback value
@@ -228,7 +228,7 @@ export default function Items() {
               required
             />
             
-            <label htmlFor="accPerson" className="mr-2">Designation:</label> 
+            <label htmlFor="accPerson" className="ml-2">Designation:</label> 
             <input
               type="text"
               value={selectedItem.designation || ''} // Provide a fallback value
@@ -251,7 +251,7 @@ export default function Items() {
               required
             />
             
-            <label htmlFor="accPerson" className="mr-2">Invoice Date:</label> 
+            <label htmlFor="accPerson" className="ml-11">Invoice Date:</label> 
             <input
               type="text"
               value={selectedItem.invoiceDate || ''} // Provide a fallback value
@@ -285,7 +285,7 @@ export default function Items() {
             
 
             
-            <label htmlFor="accPerson" className="mr-2">Quantity:</label> 
+            <label htmlFor="accPerson" className="ml-24">Quantity:</label> 
             <input
               type="text"
               value={selectedItem.quantity || ''} // Provide a fallback value
@@ -321,7 +321,7 @@ export default function Items() {
             
 
             
-            <label htmlFor="accPerson" className="mr-2">Supplier:</label> 
+            <label htmlFor="accPerson" className="ml-28">Supplier:</label> 
             <input
               type="text"
               value={selectedItem.supplier || ''} // Provide a fallback value
@@ -357,7 +357,7 @@ export default function Items() {
            
 
             
-            <label htmlFor="accPerson" className="mr-2">Unit of Measurement:</label> 
+            <label htmlFor="accPerson" className="pl-2 ml-20">Unit of Measurement:</label> 
             <input
               type="text"
               value={selectedItem.unitOfMeasurement || ''} // Provide a fallback value
@@ -393,7 +393,7 @@ export default function Items() {
             
 
             
-            <label htmlFor="accPerson" className="mr-2">Description Serial Number:</label> 
+            <label htmlFor="accPerson" className="ml-6">Description Serial Number:</label> 
             <input
               type="text"
               value={selectedItem.description.serialNumber || ''} // Provide a fallback value
@@ -429,7 +429,7 @@ export default function Items() {
            
 
             
-            <label htmlFor="accPerson" className="mr-2">Location Building:</label> 
+            <label htmlFor="accPerson" className="ml-7">Location Building:</label> 
             <input
               type="text"
               value={selectedItem.location.building || ''} // Provide a fallback value
