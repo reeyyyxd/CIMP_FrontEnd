@@ -441,7 +441,7 @@ const generatePrintableTable = () => {
         <p></p>
         <div class="ml-60 mt-28">
         <select onChange={handleaccPer}
-        className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm">
+        className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
           <option value="" disabled selected>Accountable Person</option>
           {O_accPer.map((O_accPers, index) => (
             <option key={index} value={O_accPers}>
@@ -451,7 +451,7 @@ const generatePrintableTable = () => {
         </select>
         
         <select onChange={handleDep}
-        className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">  
+        className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">  
           <option value="" disabled selected>Deparment</option>
           {O_dep.map((O_deps, index) => (
             <option key={index} value={O_deps}>
@@ -461,7 +461,7 @@ const generatePrintableTable = () => {
         </select>
 
           <select onChange={handleDes}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Designation</option>
             {O_des.map((O_dess, index) => (
               <option key={index} value={O_dess}>
@@ -471,7 +471,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleUom}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Uom</option>
             {O_uom.map((O_uoms, index) => (
               <option key={index} value={O_uoms}>
@@ -481,7 +481,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleStat}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Status</option>
             {O_status.map((O_statuss, index) => (
               <option key={index} value={O_statuss}>
@@ -491,7 +491,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleSupp}
-          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Supplier</option>
             {O_supp.map((O_supps, index) => (
               <option key={index} value={O_supps}>
@@ -501,7 +501,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleBuilding}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Location Building</option>
             {O_building.map((O_buildings, index) => (
               <option key={index} value={O_buildings}>
@@ -511,7 +511,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleRoom}
-          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Location Room</option>
             {O_room.map((O_rooms, index) => (
               <option key={index} value={O_rooms}>
@@ -521,7 +521,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleName}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Description Name</option>
             {O_name.map((O_names, index) => (
               <option key={index} value={O_names}>
@@ -531,7 +531,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleModel}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Description Model</option>
             {O_model.map((O_models, index) => (
               <option key={index} value={O_models}>
@@ -541,7 +541,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleType}
-          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Description Type</option>
             {O_type.map((O_types, index) => (
               <option key={index} value={O_types}>
@@ -551,7 +551,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleInvoice}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Invoice Number</option>
             {O_invoicedate.map((O_invoicedates, index) => (
               <option key={index} value={O_invoicedates}>
@@ -561,7 +561,7 @@ const generatePrintableTable = () => {
           </select>
 
           <select onChange={handleLifespan}
-          className="border border-gray-700 rounded-md ml-2 mt-2 p-2 w-40 bg-gray-800 text-white text-sm">
+          className="border border-gray-700 rounded-md ml-2 mt-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="" disabled selected>Lifespan</option>
             {O_lifespan.map((O_lifespans, index) => (
               <option key={index} value={O_lifespans}>
@@ -603,7 +603,7 @@ const generatePrintableTable = () => {
     <div class="container flex justify-center">
     <div class="overflow-x-auto"> 
     <table class="w-full text-sm text-center rtl:text-right ml-28 mr-28 text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white hover:bg-red-950">
               <tr>
                 <th scope="col" class="px-6 py-3">
                   property tag</th>
@@ -639,8 +639,8 @@ const generatePrintableTable = () => {
             </thead>
             <tbody>
               {queryResults.map(item => (
-                <tr key={item.iid} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                  <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><Link onClick={() => {
+                <tr key={item.iid} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
+                  <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "><Link onClick={() => {
                     const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
                     window.open(url, '_blank');
                   } }>{item.iid}</Link></td>

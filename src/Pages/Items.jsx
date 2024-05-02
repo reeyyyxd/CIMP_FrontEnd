@@ -78,7 +78,7 @@ export default function Items() {
         <Home />
         <div class="flex justify-start ml-60 mt-28 md:col-span-2">
                 <button type="button" 
-                    className="bg-red-900 hover:bg-red-400 text-white text-sm font-bold py-2 px-10 rounded-full"
+                    className="bg-red-900 hover:bg-red-950 text-white text-sm font-bold py-2 px-10 rounded-full"
                     onClick={() => navigate("/additems")}>
                     Add
                 </button>
@@ -87,7 +87,7 @@ export default function Items() {
             <div class="container flex justify-center">
             <div class="overflow-x-scroll"> 
             <table class="w-full text-sm text-left rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white hover:bg-red-950">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             PROPERTY TAG
@@ -144,7 +144,7 @@ export default function Items() {
                 </thead>
                 <tbody>
                     {data.map(item => (
-                    <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {item.iid}
                         </th>
@@ -223,17 +223,17 @@ export default function Items() {
               type="text"
               value={selectedItem.department || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, department: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-24"
               placeholder="Department"
               requiredz 
             />
             
-            <label htmlFor="accPerson" className="ml-2">Designation:</label> 
+            <label htmlFor="accPerson" className="ml-4">Designation:</label> 
             <input
               type="text"
               value={selectedItem.designation || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, designation: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-10"
               placeholder="Designation"
               required
             />
@@ -246,27 +246,27 @@ export default function Items() {
               type="text"
               value={selectedItem.invoiceNumber || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, invoiceNumber: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-7"
               placeholder="Invoice Number"
               required
             />
             
-            <label htmlFor="accPerson" className="ml-11">Invoice Date:</label> 
+            <label htmlFor="accPerson" className="ml-4">Invoice Date:</label> 
             <input
               type="text"
               value={selectedItem.invoiceDate || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, invoiceDate: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 ml-24 mb-2"
               placeholder="Invoice Date"
               required
             />
 
-            <label htmlFor="accPerson" className="mr-2">Issue Order:</label> 
+            <label htmlFor="accPerson" className="mr-2 ml-3">Issue Order:</label> 
             <input
               type="text"
               value={selectedItem.issueOrder || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, issueOrder: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-9"
               placeholder="Issue Order"
               required
             />
@@ -278,31 +278,31 @@ export default function Items() {
               type="text"
               value={selectedItem.lifespan || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, lifespan: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-20"
               placeholder="Lifespan"
               required
             />
             
 
             
-            <label htmlFor="accPerson" className="ml-24">Quantity:</label> 
+            <label htmlFor="accPerson" className="ml-4">Quantity:</label> 
             <input
               type="text"
               value={selectedItem.quantity || ''} // Provide a fallback value
               onChange={handleQuantityChange}              
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-32"
               placeholder="Quantity"
               required
             />
             
 
             
-            <label htmlFor="accPerson" className="mr-2">Remarks:</label> 
+            <label htmlFor="accPerson" className="ml-3">Remarks:</label> 
             <input
               type="text"
               value={selectedItem.remarks || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, remarks: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-16"
               placeholder="Remarks"
               required
             />
@@ -314,31 +314,31 @@ export default function Items() {
               type="text"
               value={selectedItem.status || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, status: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-24"
               placeholder="Status"
               required
             />
             
 
             
-            <label htmlFor="accPerson" className="ml-28">Supplier:</label> 
+            <label htmlFor="accPerson" className="ml-4">Supplier:</label> 
             <input
               type="text"
               value={selectedItem.supplier || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, supplier: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-32"
               placeholder="Supplier"
               required
             />
             
 
             
-            <label htmlFor="accPerson" className="mr-2">Total Cost:</label> 
+            <label htmlFor="accPerson" className="ml-3">Total Cost:</label> 
             <input
               type="text"
               value={selectedItem.totalCost || ''} // Provide a fallback value
               readOnly
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-14"
               placeholder="Total Cost"
               required
             />
@@ -350,31 +350,30 @@ export default function Items() {
               type="text"
               value={selectedItem.unitCost || ''} // Provide a fallback value
               onChange={handleUnitCostChange}              
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-16"
               placeholder="Unit Cost"
               required
             />
            
-
             
-            <label htmlFor="accPerson" className="pl-2 ml-20">Unit of Measurement:</label> 
+            <label htmlFor="accPerson" className="ml-6">Unit of Measurement:</label> 
             <input
               type="text"
               value={selectedItem.unitOfMeasurement || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, unitOfMeasurement: e.target.value })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-10"
               placeholder="Unit of Measurement"
               required
             />
             
 
             
-            <label htmlFor="accPerson" className="mr-2">Description Name:</label> 
+            <label htmlFor="accPerson" className="ml-3">Description Name:</label> 
             <input
               type="text"
               value={selectedItem.description.name || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, description: { ...selectedItem.description, name: e.target.value } })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-2"
               placeholder="Description Name"
               required
             />
@@ -386,31 +385,31 @@ export default function Items() {
               type="text"
               value={selectedItem.description.model || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, description: { ...selectedItem.description, model: e.target.value } })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-2"
               placeholder="Description Model"
               required
             />
             
 
             
-            <label htmlFor="accPerson" className="ml-6">Description Serial Number:</label> 
+            <label htmlFor="accPerson" className="ml-4">Description Serial Number:</label> 
             <input
               type="text"
               value={selectedItem.description.serialNumber || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, description: { ...selectedItem.description, serialNumber: e.target.value } })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-1"
               placeholder="Description Serial Number"
               required
             />
            
 
             
-            <label htmlFor="accPerson" className="mr-2">Description Type:</label> 
+            <label htmlFor="accPerson" className="ml-3">Description Type:</label> 
             <input
               type="text"
               value={selectedItem.description.type || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, description: { ...selectedItem.description, type: e.target.value } })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-4"
               placeholder="Description Type"
               required
             />
@@ -422,31 +421,31 @@ export default function Items() {
               type="text"
               value={selectedItem.description.other || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, description: { ...selectedItem.description, other: e.target.value } })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-3"
               placeholder="Description Other"
               required
             />
            
 
             
-            <label htmlFor="accPerson" className="ml-7">Location Building:</label> 
+            <label htmlFor="accPerson" className="ml-4">Location Building:</label> 
             <input
               type="text"
               value={selectedItem.location.building || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, location: { ...selectedItem.location, building: e.target.value } })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-16"
               placeholder="Location Building"
               required
             />
             
 
             
-            <label htmlFor="accPerson" className="mr-2">Location Room:</label> 
+            <label htmlFor="accPerson" className="ml-4">Location Room:</label> 
             <input
               type="text"
               value={selectedItem.location.room || ''} // Provide a fallback value
               onChange={(e) => setSelectedItem({ ...selectedItem, location: { ...selectedItem.location, room: e.target.value } })}
-              className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+              className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-7"
               placeholder="Location Room"
               required
             />
