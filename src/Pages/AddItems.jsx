@@ -147,15 +147,19 @@ export default function addItems() {
         className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl">
         <div class="grid gap-6 mb-6 md:grid-cols-3"> 
 
-                <input
+        <div class="relative">
+                <input 
                     type="text"
                     name="accPerson"
                     value={formData.accPerson}
                     onChange={handleChange}
-                    placeholder="Accountable Person"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />       
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="accPerson" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Accountable Person
+                    </label>
+                </div>      
                 <input
                     type="text"
                     name="department"
