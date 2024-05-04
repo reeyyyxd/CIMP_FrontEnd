@@ -325,10 +325,7 @@ try {
 
 const fetchO_sum = () => {
   
-  if (acc_per === "" && department === "" && designation === "" && status === "" && uom === "" && supplier === ""
-        && building === "" && room === "" && name === "" && model === "" && type === "" && invoicedate === "" && lifespan === ""){
-      
-    }else{
+
       axios
       .get("http://localhost:8080/item/sum", {
         params: {
@@ -358,7 +355,7 @@ const fetchO_sum = () => {
 
         setO_sum("")
       })
-    }
+    
 };
 
 const goHome = () => {

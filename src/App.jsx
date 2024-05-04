@@ -7,6 +7,7 @@ import Search from "./Pages/Search"
 import ViewAll from "./Pages/ViewAll"
 import Item from "./Pages/Items"
 import AddItems from "./Pages/AddItems"
+import Logs from "./Pages/Logs"
 
 export default function App() {
   
@@ -38,6 +39,10 @@ export default function App() {
     {
       path: 'additems',
       element: <AddItems />
+    },
+    {
+      path: 'logs',
+      element: <Logs />
     }
   ])
 
