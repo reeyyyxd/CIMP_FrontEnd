@@ -122,7 +122,7 @@ export default function Search() {
             </div>
             <div class="container flex justify-center mx-auto ml-32 mt-2"> 
                         <table class="w-full text-sm text-center rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white hover:bg-red-950">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Property Tag

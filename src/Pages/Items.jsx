@@ -78,7 +78,7 @@ export default function Items() {
         <Home />
         <div class="flex justify-start ml-60 mt-28 md:col-span-2">
                 <button type="button" 
-                    className="bg-red-900 hover:bg-red-950 text-white text-sm font-bold py-2 px-10 rounded-full"
+                    className="bg-maroon hover:bg-red-900 text-white text-sm font-bold py-2 px-10 rounded-full"
                     onClick={() => navigate("/additems")}>
                     Add
                 </button>
@@ -87,7 +87,7 @@ export default function Items() {
             <div class="container flex justify-center">
             <div class="overflow-x-scroll"> 
             <table class="w-full text-sm text-left rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white hover:bg-red-950">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             PROPERTY TAG
