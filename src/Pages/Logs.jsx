@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { TextField, Button } from "@mui/material";
-import TimePicker from 'react-time-picker';
+
+
 
 export default function ViewAll() {
 
@@ -73,6 +74,8 @@ export default function ViewAll() {
 
     const handleFilter = () => {
     
+        console.log(bef,aft)
+
           axios
           .get("http://localhost:8080/item/searchLogs", {
             params: {
@@ -80,12 +83,12 @@ export default function ViewAll() {
               year:year,
               day:day,
               type:type,
-              /*:bef,
-              aft:aft*/
+              bef:bef,
+              aft:aft
             }
           })
           .then(result => {
-            //console.log(result.data)
+            console.log(result.data)
       
             setQueryResults(result.data)
           })
@@ -100,7 +103,7 @@ export default function ViewAll() {
     return (
 
         <><select id="Month" onChange={handleMonth}>
-            <option value="" selected>Month</option>
+            <option value="" >Month</option>
             <option value="January">January</option>
             <option value="February">February</option>
             <option value="March">March</option>
@@ -117,7 +120,7 @@ export default function ViewAll() {
 
 
         <select id="day" onChange={handleDay}>
-            <option value="" selected>Day</option>
+            <option value="" >Day</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -152,7 +155,7 @@ export default function ViewAll() {
         </select>
 
         <select onChange={handleYear}>
-            <option value="" selected>Year</option>
+            <option value="" >Year</option>
             {O_year.map((years, index) => (
               <option key={index} value={years}>
                 {years}
@@ -161,7 +164,7 @@ export default function ViewAll() {
           </select>
         
         <select onChange={handleType}>
-            <option value="" selected>Type</option>
+            <option value="" >Type</option>
             {O_type.map((types, index) => (
               <option key={index} value={types}>
                 {types}
@@ -172,7 +175,8 @@ export default function ViewAll() {
           {/*<input type="time" onChange={handleBef} ></input>
 
 
-        <input type="time" onChnage={handleAft}></input>*/}
+          <input type="time" onChnage={handleAft}></input>*/}
+
 
           <p></p>
           <Button onClick={handleFilter}>Search</Button>
@@ -200,7 +204,7 @@ export default function ViewAll() {
                             </thead>
                             <tbody>
                                 {queryResults.map(res => (
-                                    <tr key={res.item} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
+                                    <tr key={res.item.iid} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
                                         <td>{res.logid}</td>
                                         <td>{res.date}</td>
                                         <td>{res.time}</td>
