@@ -80,8 +80,8 @@ export default function ViewAll() {
               year:year,
               day:day,
               type:type,
-              bef:bef,
-              aft:aft
+              /*:bef,
+              aft:aft*/
             }
           })
           .then(result => {
@@ -169,10 +169,10 @@ export default function ViewAll() {
             ))}
           </select>
 
-          <input type="time" onChange={handleBef} ></input>
+          {/*<input type="time" onChange={handleBef} ></input>
 
 
-          <input type="time" onChnage={handleAft}></input>
+        <input type="time" onChnage={handleAft}></input>*/}
 
           <p></p>
           <Button onClick={handleFilter}>Search</Button>
