@@ -144,13 +144,14 @@ export default function addItems() {
         <Home />
 
         <form onSubmit={handleSubmit} 
-        className="container mx-auto mt-32 ml-96 flex justify-center overflow-x-auto border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl">
+        className="container mt-28 mr-60 flex justify-end overflow-x-auto bg-gray-50 border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl ml-auto">
         <div class="grid gap-6 mb-6 md:grid-cols-3"> 
 
         <div class="relative">
                 <input 
                     type="text"
                     name="accPerson"
+                    id="accPerson"
                     value={formData.accPerson}
                     onChange={handleChange}
                     placeholder="Required*"
