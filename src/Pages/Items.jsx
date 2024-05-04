@@ -144,7 +144,7 @@ export default function Items() {
                 </thead>
                 <tbody>
                     {data.map(item => (
-                    <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
+                    <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950 cursor-pointer">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {item.iid}
                         </th>

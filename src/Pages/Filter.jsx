@@ -8,11 +8,11 @@ import Navbar from "../Extras/navbar";
 import Sidebar from "../Extras/sidebar";
 import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
-
 export default function Filter() 
 {
 
   const navigate = useNavigate();
+  const [selectedItem, setSelectedItem] = useState({});
 
   const [queryResults, setQueryResults] = useState([])
 
@@ -424,8 +424,17 @@ const generatePrintableTable = () => {
           </tbody>
       </table>
   `;
+
   return printableContent;
 }
+
+const handleRowClick = (item) => {
+  setSelectedItem(item);
+  const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
+
+    // Programmatically navigate to the URL
+    window.open(url, '_blank');
+};
 
     return (
         
@@ -639,26 +648,59 @@ const generatePrintableTable = () => {
             </thead>
             <tbody>
               {queryResults.map(item => (
-                <tr key={item.iid} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
-                  <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "><Link onClick={() => {
-                    const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
-                    window.open(url, '_blank');
-                  } }>{item.iid}</Link></td>
-                  <td>{item.accPerson}</td>
-                  <td>{item.department}</td>
-                  <td>{item.designation}</td>
-                  <td>{item.invoiceDate}</td>
-                  <td>{item.invoiceNumber}</td>
-                  <td>{item.issueOrder}</td>
-                  <td>{item.supplier}</td>
-                  <td>{item.lifespan}</td>
-                  <td>{item.unitOfMeasurement}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.unitCost}</td>
-                  <td>{item.totalCost}</td>
-                  <td>{item.status}</td>
-                  <td>{item.remarks}</td>
-                </tr>
+                <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950 cursor-pointer">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {item.iid}
+                        </th>
+                        <td class="px-6 py-4">
+                            {item.accPerson}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.department}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.designation}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.invoiceNumber}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.invoiceDate}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.issueOrder}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.lifespan}
+                        </td>  
+                        <td class="px-6 py-4">
+                            {item.quantity}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.remarks}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.status}
+                        </td>  
+                        <td class="px-6 py-4">
+                            {item.supplier}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.totalCost}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.unitCost}
+                        </td> 
+                        <td class="px-6 py-4">
+                            {item.unitOfMeasurement}
+                        </td> 
+                        <td class="px-6 py-4">
+                            {item.description.did}
+                        </td> 
+                        <td class="px-6 py-4">
+                            {item.location.lid}
+                        </td>              
+                    </tr>
               ))}
             </tbody>
           </table>
