@@ -73,8 +73,6 @@ export default function ViewAll() {
 
 
     const handleFilter = () => {
-    
-        console.log(bef,aft)
 
           axios
           .get("http://localhost:8080/item/searchLogs", {
@@ -172,10 +170,12 @@ export default function ViewAll() {
             ))}
           </select>
 
-          {/*<input type="time" onChange={handleBef} ></input>
+            <p></p>
+          <input type="time" onChange={handleBef} id="before"></input>
 
+            <p></p>
+          <input type="time" onChange={handleAft} id="after"></input>
 
-          <input type="time" onChnage={handleAft}></input>*/}
 
 
           <p></p>
