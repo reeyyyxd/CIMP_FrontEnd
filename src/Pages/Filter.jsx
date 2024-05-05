@@ -557,14 +557,17 @@ const handleRowClick = (item) => {
           </select>
 
           <select onChange={handleInvoice}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Invoice Number</option>
-            {O_invoicedate.map((O_invoicedates, index) => (
-              <option key={index} value={O_invoicedates}>
-                {O_invoicedates}
-              </option>
-            ))}
+              className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+              <option value="" disabled selected>Invoice Date</option>
+              {O_invoicedate
+                  .sort((a, b) => new Date(a) - new Date(b)) // Sort the dates in ascending order
+                  .map((invoicedate, index) => (
+                      <option key={index} value={invoicedate}>
+                          {invoicedate}
+                      </option>
+                  ))}
           </select>
+
 
           <select onChange={handleLifespan}
           className="border border-gray-700 rounded-md ml-2 mt-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
@@ -620,9 +623,9 @@ const handleRowClick = (item) => {
                 <th scope="col" class="px-6 py-3">
                   Designation</th>
                 <th scope="col" class="px-6 py-3">
-                  invoiceDate</th>
+                invoiceNumber</th>
                 <th scope="col" class="px-6 py-3">
-                  invoiceNumber</th>
+                  InvoiceDate</th>
                 <th scope="col" class="px-6 py-3">
                   Issue Order Number</th>
                 <th scope="col" class="px-6 py-3">
@@ -690,13 +693,7 @@ const handleRowClick = (item) => {
                         </td> 
                         <td class="px-6 py-4">
                             {item.unitOfMeasurement}
-                        </td> 
-                        <td class="px-6 py-4">
-                            {item.description.did}
-                        </td> 
-                        <td class="px-6 py-4">
-                            {item.location.lid}
-                        </td>              
+                        </td>               
                     </tr>
               ))}
             </tbody>
