@@ -144,7 +144,7 @@ export default function addItems() {
         <Home />
 
         <form onSubmit={handleSubmit} 
-        className="container mt-28 mr-60 flex justify-end overflow-x-auto bg-gray-50 border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl ml-auto">
+        className="container mt-28 mr-64 flex justify-end overflow-x-auto bg-gray-50 border border-gray-300 rounded-3xl p-6 w-fit shadow-2xl ml-auto">
         <div class="grid gap-6 mb-6 md:grid-cols-3"> 
 
         <div class="relative">
@@ -160,198 +160,318 @@ export default function addItems() {
                     <label for="accPerson" 
                     class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Accountable Person
                     </label>
-                </div>      
-                <input
+                </div>  
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="department"
+                    id="department"
                     value={formData.department}
                     onChange={handleChange}
-                    placeholder="Department"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="department" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Department
+                    </label>
+                </div>        
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="designation"
+                    id="designation"
                     value={formData.designation}
                     onChange={handleChange}
-                    placeholder="Designation"
-                    required       
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    placeholder="Required*"
+                    required
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="designation" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Designation
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="invoiceNumber"
+                    id="invoiceNumber"
                     value={formData.invoiceNumber}
                     onChange={handleChange}
-                    placeholder="Invoice Number"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="invoiceNumber" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Invoice Number
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="invoiceDate"
+                    id="invoiceDate"
                     value={formData.invoiceDate}
                     onChange={handleChange}
-                    placeholder="Invoice Date"
+                    placeholder="Required*"
                     pattern="[0-9]*"
                     title="Please input valid year, e.g., 2024"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="invoiceDate" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Invoice Date
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="issueOrder"
+                    id="issueOrder"
                     value={formData.issueOrder}
                     onChange={handleChange}
-                    placeholder="Issue Order"
-                    required
+                    placeholder="Required*"
                     pattern="[0-9]*"
                     title="Please enter a numerical character (1-9)"
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    required
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="issueOrder" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Issue Order
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="lifespan"
+                    id="lifespan"
                     value={formData.lifespan}
                     onChange={handleChange}
-                    placeholder="Lifespan"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="lifespan" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Lifespan
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="quantity"
+                    id="quantity"
                     value={formData.quantity}
                     onChange={handleChange}
-                    placeholder="Quantity"
+                    placeholder="Required*"
                     pattern="[0-9]*"
                     title="Please enter a numerical character (1-9)"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="quantity" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Quantity
+                    </label>
+                </div>
+    
+        <div class="relative">
+                <input 
                     type="text"
                     name="remarks"
+                    id="remarks"
                     value={formData.remarks}
                     onChange={handleChange}
-                    placeholder="Remarks"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="remarks" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Remarks
+                    </label>
+                </div>
+                
+        <div class="relative">
+                <input 
                     type="text"
                     name="status"
+                    id="status"
                     value={formData.status}
                     onChange={handleChange}
-                    placeholder="Status"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="status" 
+                    class="absolute text-sm text-gray-500 text-left dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-4 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Status
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="supplier"
+                    id="supplier"
                     value={formData.supplier}
                     onChange={handleChange}
-                    placeholder="Supplier"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="supplier" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Supplier
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="totalCost"
+                    id="totalCost"
                     value={formData.totalCost}
                     onChange={handleChange}
-                    placeholder="Total Cost"
+                    placeholder="Required*"
                     pattern="[0-9]+([.][0-9]+)?"
                     title="Please enter a valid number, e.g., 12.34"
                     required
                     readOnly
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="totalCost" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total Cost
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="unitCost"
+                    id="unitCost"
                     value={formData.unitCost}
                     onChange={handleChange}
-                    placeholder="Unit Cost"
+                    placeholder="Required*"
                     pattern="[0-9]+([.][0-9]+)?"
                     title="Please enter a valid number, e.g., 12.34"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="unitCost" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Unit Cost
+                    </label>
+                </div>                
+            
+        <div class="relative">
+                <input 
                     type="text"
                     name="unitOfMeasurement"
+                    id="unitOfMeasurement"
                     value={formData.unitOfMeasurement}
                     onChange={handleChange}
-                    placeholder="Unit of Measurement"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="unitOfMeasurement" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Unit of Measurement
+                    </label>
+                </div>
+                
+        <div class="relative">
+                <input 
                     type="text"
                     name="description.name"
+                    id="description.name"
                     value={formData.description.name}
                     onChange={handleChange}
-                    placeholder="Description Name"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="description.name" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Description Name
+                    </label>
+                </div>
+               
+        <div class="relative">
+                <input 
                     type="text"
                     name="description.model"
+                    id="description.model"
                     value={formData.description.model}
                     onChange={handleChange}
-                    placeholder="Description Model"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="description.model" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Description Model
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="description.serialNumber"
+                    id="description.serialNumber"
                     value={formData.description.serialNumber}
                     onChange={handleChange}
-                    placeholder="Description Serial Number"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="description.serialNumber" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Serial Number
+                    </label>
+                </div>
+               
+        <div class="relative">
+                <input 
                     type="text"
                     name="description.type"
+                    id="description.type"
                     value={formData.description.type}
                     onChange={handleChange}
-                    placeholder="Description Type"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="description.type" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Description Type
+                    </label>
+                </div>
+                
+        <div class="relative">
+                <input 
                     type="text"
                     name="description.other"
+                    id="description.other"
                     value={formData.description.other}
                     onChange={handleChange}
-                    placeholder="Description Other"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="description.other" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Description Other
+                    </label>
+                </div>
+                
+        <div class="relative">
+                <input 
                     type="text"
                     name="location.building"
+                    id="location.building"
                     value={formData.location.building}
                     onChange={handleChange}
-                    placeholder="Location Building"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
-                <input
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="location.building" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Location Building
+                    </label>
+                </div>
+
+        <div class="relative">
+                <input 
                     type="text"
                     name="location.room"
+                    id="location.room"
                     value={formData.location.room}
                     onChange={handleChange}
-                    placeholder="Location Room"
+                    placeholder="Required*"
                     required
-                    className="mr-2 border border-gray-300 rounded-md px-3 py-2"
-                />
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"/>
+                    <label for="location.room" 
+                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Location Room
+                    </label>
+                </div>
                 <div class="flex justify-center ml-56 md:col-span-3">
                 <button type="submit" 
                     className="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-20 rounded-full">

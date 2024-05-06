@@ -448,7 +448,7 @@ const handleRowClick = (item) => {
         <div class="ml-60 mt-28">
         <select onChange={handleaccPer}
         className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-          <option value="" disabled selected>Accountable Person</option>
+          <option value="">Accountable Person</option>
           {O_accPer.map((O_accPers, index) => (
             <option key={index} value={O_accPers}>
               {O_accPers}
@@ -458,7 +458,7 @@ const handleRowClick = (item) => {
         
         <select onChange={handleDep}
         className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">  
-          <option value="" disabled selected>Deparment</option>
+          <option value="">Deparment</option>
           {O_dep.map((O_deps, index) => (
             <option key={index} value={O_deps}>
               {O_deps}
@@ -468,7 +468,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleDes}
           className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Designation</option>
+            <option value="">Designation</option>
             {O_des.map((O_dess, index) => (
               <option key={index} value={O_dess}>
                 {O_dess}
@@ -478,7 +478,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleUom}
           className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Uom</option>
+            <option value="">Uom</option>
             {O_uom.map((O_uoms, index) => (
               <option key={index} value={O_uoms}>
                 {O_uoms}
@@ -488,7 +488,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleStat}
           className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Status</option>
+            <option value="">Status</option>
             {O_status.map((O_statuss, index) => (
               <option key={index} value={O_statuss}>
                 {O_statuss}
@@ -498,7 +498,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleSupp}
           className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Supplier</option>
+            <option value="">Supplier</option>
             {O_supp.map((O_supps, index) => (
               <option key={index} value={O_supps}>
                 {O_supps}
@@ -508,7 +508,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleBuilding}
           className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Location Building</option>
+            <option value="">Location Building</option>
             {O_building.map((O_buildings, index) => (
               <option key={index} value={O_buildings}>
                 {O_buildings}
@@ -518,7 +518,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleRoom}
           className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Location Room</option>
+            <option value="">Location Room</option>
             {O_room.map((O_rooms, index) => (
               <option key={index} value={O_rooms}>
                 {O_rooms}
@@ -528,7 +528,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleName}
           className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Description Name</option>
+            <option value="">Description Name</option>
             {O_name.map((O_names, index) => (
               <option key={index} value={O_names}>
                 {O_names}
@@ -538,7 +538,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleModel}
           className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Description Model</option>
+            <option value="">Description Model</option>
             {O_model.map((O_models, index) => (
               <option key={index} value={O_models}>
                 {O_models}
@@ -548,7 +548,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleType}
           className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Description Type</option>
+            <option value="">Description Type</option>
             {O_type.map((O_types, index) => (
               <option key={index} value={O_types}>
                 {O_types}
@@ -558,7 +558,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleInvoice}
               className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-              <option value="" disabled selected>Invoice Date</option>
+              <option value="">Invoice Date</option>
               {O_invoicedate
                   .sort((a, b) => new Date(a) - new Date(b)) // Sort the dates in ascending order
                   .map((invoicedate, index) => (
@@ -571,7 +571,7 @@ const handleRowClick = (item) => {
 
           <select onChange={handleLifespan}
           className="border border-gray-700 rounded-md ml-2 mt-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-            <option value="" disabled selected>Lifespan</option>
+            <option value="">Lifespan</option>
             {O_lifespan.map((O_lifespans, index) => (
               <option key={index} value={O_lifespans}>
                 {O_lifespans}
