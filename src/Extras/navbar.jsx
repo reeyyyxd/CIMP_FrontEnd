@@ -21,7 +21,7 @@ const Logo = styled.img`
 const Title = styled.span`
 	color: #8c383e;
 	font-size: 1.4rem;
-	font-weight: 500;
+	font-weight: 700;
 	font-family: Poppins;
 	margin-left: 5px;
 `;

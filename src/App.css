@@ -1,13 +1,4 @@
 
-
-body {
-  background-color: #ffffff;
-  background-image: url('../src/assets/images/citlogo.png');
-  background-size: 60%;
-  background-repeat: no-repeat;
-  background-position: 400px 1px;
-}
-
 body::after {
   content: "";
   display: block;
