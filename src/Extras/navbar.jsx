@@ -20,8 +20,8 @@ const Logo = styled.img`
 
 const Title = styled.span`
 	color: #8c383e;
-	font-size: 1.5rem;
-	font-weight: bold;
+	font-size: 1.4rem;
+	font-weight: 500;
 	font-family: Poppins;
 	margin-left: 5px;
 `;
