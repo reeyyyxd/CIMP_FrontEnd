@@ -348,9 +348,9 @@ const fetchO_sum = () => {
     })
     .then(result => {
       //console.log(result.data)
-      if (!item.deleted){
+      
       setO_sum(result.data)
-      }
+      
     })
     .catch(error => {
       console.log(error)
