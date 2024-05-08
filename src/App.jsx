@@ -8,6 +8,7 @@ import ViewAll from "./Pages/ViewAll"
 import Item from "./Pages/Items"
 import AddItems from "./Pages/AddItems"
 import Logs from "./Pages/Logs"
+import Request from "./Pages/Request"
 
 export default function App() {
   
@@ -43,6 +44,10 @@ export default function App() {
     {
       path: 'logs',
       element: <Logs />
+    },
+    {
+      path: 'request',
+      element: <Request />
     }
   ])
 
