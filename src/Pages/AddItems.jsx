@@ -565,6 +565,7 @@ export default function AddItems({ setModalOpen }) {
 							<button
 								type="submit"
 								className="bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-20 rounded-full border-none"
+								
                                 
 							>
 								Add

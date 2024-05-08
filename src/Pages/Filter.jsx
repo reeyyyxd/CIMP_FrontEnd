@@ -325,36 +325,41 @@ try {
 
 const fetchO_sum = () => {
   
-
-      axios
-      .get("http://localhost:8080/item/sum", {
-        params: {
-          acc_per: acc_per,
-          department: department,
-          designation: designation,
-          status: status,
-          uom: uom,
-          supplier: supplier,
-          building: building,
-          room: room,
-          name: name,
-          model: model,
-          type: type,
-          invoice_date: invoicedate,
-          lifespan: lifespan
-        }
-      })
-      .then(result => {
-        //console.log(result.data)
   
-        setO_sum(result.data)
-      })
-      .catch(error => {
-        console.log(error)
-        alert("No Data Found!")
 
-        setO_sum("")
-      })
+  
+    axios
+    .get("http://localhost:8080/item/sum", {
+      params: {
+        acc_per: acc_per,
+        department: department,
+        designation: designation,
+        status: status,
+        uom: uom,
+        supplier: supplier,
+        building: building,
+        room: room,
+        name: name,
+        model: model,
+        type: type,
+        invoice_date: invoicedate,
+        lifespan: lifespan
+      }
+    })
+    .then(result => {
+      //console.log(result.data)
+      if (!item.deleted){
+      setO_sum(result.data)
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      alert("No Data Found!")
+
+      setO_sum("")
+    })
+  
+      
     
 };
 
@@ -648,7 +653,8 @@ const handleRowClick = (item) => {
               </tr>
             </thead>
             <tbody>
-              {queryResults.map(item => (
+              {queryResults.map(item => 
+              !item.deleted && (
                 <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950 cursor-pointer">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {item.iid}

@@ -47,13 +47,39 @@ export default function Items() {
 		setShowOverlay(true); // Show overlay after clicking on a row
 	};
 
+    const handleDelete = () => {
+		const itemId = selectedItem.iid;
+	
+		if (!itemId) {
+		  console.error('No item ID found to delete');
+		  return;
+		}
+	
+		const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+	
+		if (confirmDelete) {
+		  axios.delete(`http://localhost:8080/item/deleteItem/${itemId}`)
+			.then(response => {
+			  if (response.status === 200) {
+				console.log('Item deleted successfully');
+				// Additional logic like refreshing data or closing modal can be implemented here
+			  } else {
+				console.error('Failed to delete item');
+			  }
+			})
+			.catch(error => {
+			  console.error('Error occurred during deletion:', error);
+			});
+		}
+	  };
+
+
 	const handleUpdate = async () => {
 		try {
 			if (selectedItem) {
 				const url = `http://localhost:8080/item/updateItem/${selectedItem.iid}`; // Use selectedItem.iid as propertyTag
 				await axios.put(url, selectedItem);
 				console.log("Item updated successfully");
-				window.alert("Item updated!");
 				setShowOverlay(false);
 				const response = await axios.get(
 					"http://localhost:8080/item/getAllItems"
@@ -162,7 +188,12 @@ export default function Items() {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{data.map((item) => (
+							{data.map((item) => {
+								if (item.deleted) {
+								return null; // Skip rendering this row if item.deleted is true
+								}
+
+								return (
 								<TableRow
 									key={item.iid}
 									onClick={() => handleRowClick(item)}
@@ -187,8 +218,10 @@ export default function Items() {
 									<StyledTableCell>{item.description.did}</StyledTableCell>
 									<StyledTableCell>{item.location.lid}</StyledTableCell>
 								</TableRow>
-							))}
+								);
+							})}
 						</TableBody>
+
 					</Table>
 				</TableContainer>
 			</div>
@@ -199,7 +232,7 @@ export default function Items() {
 						<h2 className="text-lg text-center font-semibold mb-4">
 							Edit Item
 						</h2>
-						<form onSubmit={handleUpdate}>
+						<form onSubmit={handleUpdate} >
 							<div className="mb-2">
 								<label htmlFor="accPerson" className="mr-2">
 									Accountable Person:
@@ -582,10 +615,18 @@ export default function Items() {
 							</button>
 							<button
 								onClick={handleCloseOverlay}
-								className="bg-gray-400 text-white px-4 py-2 rounded-md"
+								className="bg-gray-400 text-white px-4 py-2 mr-2 rounded-md"
 							>
 								Cancel
 							</button>
+							
+							<button
+								onClick={handleDelete}
+								className="bg-red-400 text-white px-4 py-2 rounded-md"
+							>
+								Delete
+							</button>
+	
 						</form>
 					</div>
 				</div>
