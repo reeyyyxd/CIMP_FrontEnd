@@ -22,7 +22,19 @@ export default function ViewAll() {
     const [bef, setBef] = useState("");
     const [aft, setAft] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+    const handleBef = event => {
+        setBef(event.target.value);
+    }
+
+    const handleAft = event => {
+        setAft(event.target.value);
+    }
     
+    const handleSpecific = event => {
+        setSpecific(event.target.value);
+    }
+
 
     useEffect(() => {
         fetchType();
@@ -72,9 +84,12 @@ export default function ViewAll() {
     };
 
     const handleSearch = () => {
-        if (specific === "") {
+
+        console.log(specific)
+
+        /*if (specific === "") {  
             alert("Empty textfield");
-        } else {
+        } else {*/
             axios
                 .get("http://localhost:8080/item/logsSpeci", {
                     params: { num: specific }
@@ -86,7 +101,7 @@ export default function ViewAll() {
                     console.log(error);
                     alert("No Data found!");
                 });
-        }   
+       /* }   */
     };
     const toggleFilter = () => {
         setIsFilterOpen(prevState => !prevState);
@@ -118,8 +133,10 @@ export default function ViewAll() {
                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                    </svg>
                 </div>
-                        <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Property ID" required onChange={(event) => setSpecific(event.target.value)} />
-        <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-maroon hover:bg-maroon focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleSearch}>Search</button>
+                        {/*<input type="text"  className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Property ID" onChange={handleSpecific} />*/}
+                        <TextField onChange={handleSpecific}></TextField>
+                        <Button onClick={handleSearch}>Search</Button>
+                        {/*<button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-maroon hover:bg-maroon focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleSearch}>Search</button>*/}
                         </div>
                 </form>   
              </Box>
@@ -138,18 +155,55 @@ export default function ViewAll() {
                             {/* Filter options */}
                             <div>
                                 <select id="data" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(event) => setMonth(event.target.value)}>
-                                    <option selected>Choose Month</option>
-                                    {Array.from({ length: 12 }, (_, i) => (
-                                        <option key={i} value={i + 1}>{new Date(0, i).toLocaleString('en', { month: 'long' })}</option>
-                                    ))}
+                                    <option value="" selected>Choose Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
                                 </select>
                             </div>
                             <div>
                                 <select id="days" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(event) => setDay(event.target.value)}>
                                     <option value="">Choose Day</option>
-                                    {Array.from({ length: 31 }, (_, i) => (
-                                        <option key={i} value={i + 1}>{i + 1}</option>
-                                    ))}
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="eleven">11</option>
+                                    <option value="twelve">12</option>
+                                    <option value="thirteen">13</option>
+                                    <option value="fourteen">14</option>
+                                    <option value="fifteen">15</option>
+                                    <option value="sixteen">16</option>
+                                    <option value="seventeen">17</option>
+                                    <option value="eighteen">18</option>
+                                    <option value="nineteen">19</option>
+                                    <option value="twenties">20</option>
+                                    <option value="twenty one">21</option>
+                                    <option value="twenty two">22</option>
+                                    <option value="twenty three">23</option>
+                                    <option value="twenty four">24</option>
+                                    <option value="twenty five">25</option>
+                                    <option value="twenty six">26</option>
+                                    <option value="twenty seven">27</option>
+                                    <option value="twenty eight">28</option>
+                                    <option value="twenty nine">29</option>
+                                    <option value="thirties">30</option>
+                                    <option value="thirty one">31</option>
                                 </select>
                             </div>
                             <div>
@@ -167,6 +221,10 @@ export default function ViewAll() {
                                         <option key={index} value={type}>{type}</option>
                                     ))}
                                 </select>
+
+
+                                <input type="time" onChange={handleBef} id="before"></input>
+                                <input type="time" onChange={handleAft} id="after"></input>
                             </div>
                             <Button onClick={handleFilter} variant="contained" color="primary">
                                 Filter

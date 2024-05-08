@@ -420,6 +420,7 @@ const generatePrintableTable = () => {
   printableContent += `
           </tbody>
       </table>
+      <p>Total Cost: ${O_sum}</p>
   `;
 
   return printableContent;
