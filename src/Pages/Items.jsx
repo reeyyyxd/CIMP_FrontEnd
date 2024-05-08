@@ -15,8 +15,8 @@ import axios from "axios";
 import AddItems from "./AddItems";
 import Navbar from "../Extras/navbar";
 import Sidebar from "../Extras/sidebar";
-import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
+import ProfileDropdown from "../Extras/dropdown";
 import { styled } from "@mui/material/styles";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -98,15 +98,14 @@ export default function Items() {
 			<Sidebar />
 			<ProfileDropdown />
 			<Home />
-			<div className="flex justify-start" style={{ margin: "8% 0 0 14.6rem" }}>
+			<div  style={{ margin: "10% 20px 0 0", display:"flex", justifyContent:"flex-end" }}>
 				<button
 					type="button"
 					className="bg-maroon hover:bg-red-900 text-white text-sm py-2 px-7"
 					style={{
-						borderRadius: "60px",
+						borderRadius: "5px",
 						fontFamily: "Poppins",
 						fontWeight: 500,
-						position: "relative",
 					}}
 					onClick={() => setShowAddItemModal(true)}
 				>

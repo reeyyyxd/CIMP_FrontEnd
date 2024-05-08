@@ -148,7 +148,7 @@ export default function AddItems({ setModalOpen }) {
 				onSubmit={handleSubmit}
 				className="fixed inset-0 flex items-center justify-center mt-10"
 			>
-				<div className="container bg-gray-50 border border-gray-200 rounded-3xl p-6 w-fit shadow-2xl">
+				<div className="container bg-white border border-gray-200 rounded-3xl p-6 w-fit shadow-2xl">
 					<div class="grid gap-6 mb-6 md:grid-cols-3" style={{fontFamily:"Poppins"}}>
 						<div class="relative">
 							<input
@@ -564,8 +564,7 @@ export default function AddItems({ setModalOpen }) {
 						<div class="flex justify-center ml-72 md:col-span-3 ">
 							<button
 								type="submit"
-                                
-								className="bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-20 rounded-full"
+								className="bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-20 rounded-full border-none"
                                 
 							>
 								Add
