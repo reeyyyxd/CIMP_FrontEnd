@@ -228,13 +228,16 @@ export default function Items() {
 
 			{showOverlay && selectedItem && (
 				<div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
-					<div className="bg-white bg-opacity-95 p-6 rounded-md shadow-md">
-						<h2 className="text-lg text-center font-semibold mb-4">
+					<div className="bg-white bg-opacity-95 rounded-md shadow-md">
+					<h2 className="font-mono text-lg text-center font-semibold text-maroon bg-yellow-400 mb-4 py-3 px-4 rounded-none border border-yellow-400 m-0">
 							Edit Item
 						</h2>
 						<form onSubmit={handleUpdate} >
-							<div className="mb-2">
-								<label htmlFor="accPerson" className="mr-2">
+
+						<div className="p-6 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-5">
+							<div className="sm:col-span-1">
+								<label htmlFor="accPerson" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Accountable Person:
 								</label>
 								<input
@@ -246,12 +249,15 @@ export default function Items() {
 											accPerson: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Accountable Person"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+						<div className="sm:col-span-1">
+								<label htmlFor="department" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Department:
 								</label>
 								<input
@@ -263,12 +269,15 @@ export default function Items() {
 											department: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-24"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Department"
-									requiredz
+									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+						<div className="sm:col-span-1">
+								<label htmlFor="designation" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Designation:
 								</label>
 								<input
@@ -280,14 +289,15 @@ export default function Items() {
 											designation: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-10"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Designation"
 									required
 								/>
 							</div>
-
-							<div className="mb-2">
-								<label htmlFor="accPerson" className="mr-2">
+								
+					<div className="sm:col-span-1">
+								<label htmlFor="invoiceNumber" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Invoice Number:
 								</label>
 								<input
@@ -299,12 +309,15 @@ export default function Items() {
 											invoiceNumber: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-7"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Invoice Number"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+						<div className="sm:col-span-1">
+								<label htmlFor="invoiceDate" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Invoice Date:
 								</label>
 								<input
@@ -316,12 +329,15 @@ export default function Items() {
 											invoiceDate: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 ml-24 mb-2"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Invoice Date"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="mr-2 ml-3">
+						<div className="sm:col-span-1">
+								<label htmlFor="issueOrder" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Issue Order:
 								</label>
 								<input
@@ -333,14 +349,15 @@ export default function Items() {
 											issueOrder: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-9"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Issue Order"
 									required
 								/>
 							</div>
 
-							<div className="mb-2">
-								<label htmlFor="accPerson" className="mr-2">
+							<div className="sm:col-span-1">
+								<label htmlFor="lifespan" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Lifespan:
 								</label>
 								<input
@@ -352,24 +369,30 @@ export default function Items() {
 											lifespan: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-20"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Lifespan"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+						<div className="sm:col-span-1">
+								<label htmlFor="Quantity" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Quantity:
 								</label>
 								<input
 									type="text"
 									value={selectedItem.quantity || ""} // Provide a fallback value
 									onChange={handleQuantityChange}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-32"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Quantity"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-3">
+							<div className="sm:col-span-1">
+								<label htmlFor="remarks" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Remarks:
 								</label>
 								<input
@@ -381,14 +404,15 @@ export default function Items() {
 											remarks: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-16"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Remarks"
 									required
 								/>
 							</div>
 
-							<div className="mb-2">
-								<label htmlFor="accPerson" className="mr-2">
+							<div className="sm:col-span-1">
+								<label htmlFor="status" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Status:
 								</label>
 								<input
@@ -397,12 +421,15 @@ export default function Items() {
 									onChange={(e) =>
 										setSelectedItem({ ...selectedItem, status: e.target.value })
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-24"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Status"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+								<div className="sm:col-span-1">
+								<label htmlFor="supplier" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Supplier:
 								</label>
 								<input
@@ -414,38 +441,45 @@ export default function Items() {
 											supplier: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-32"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Supplier"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-3">
+						<div className="sm:col-span-1">
+								<label htmlFor="totalCost" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Total Cost:
 								</label>
 								<input
 									type="text"
 									value={selectedItem.totalCost || ""} // Provide a fallback value
 									readOnly
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-14"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Total Cost"
 									required
 								/>
 							</div>
 
-							<div className="mb-2">
-								<label htmlFor="accPerson" className="mr-2">
+							<div className="sm:col-span-1">
+								<label htmlFor="unitCost" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Unit Cost:
 								</label>
 								<input
 									type="text"
 									value={selectedItem.unitCost || ""} // Provide a fallback value
 									onChange={handleUnitCostChange}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-16"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Unit Cost"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-6">
+						<div className="sm:col-span-1">
+								<label htmlFor="unitOfMeasurement" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Unit of Measurement:
 								</label>
 								<input
@@ -457,12 +491,15 @@ export default function Items() {
 											unitOfMeasurement: e.target.value,
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-10"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Unit of Measurement"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-3">
+						<div className="sm:col-span-1">
+								<label htmlFor="description.name" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Description Name:
 								</label>
 								<input
@@ -477,14 +514,15 @@ export default function Items() {
 											},
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-2"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Description Name"
 									required
 								/>
 							</div>
 
-							<div className="mb-2">
-								<label htmlFor="accPerson" className="mr-2">
+							<div className="sm:col-span-1">
+								<label htmlFor="description.model" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Description Model:
 								</label>
 								<input
@@ -499,12 +537,15 @@ export default function Items() {
 											},
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-2"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Description Model"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+								<div className="sm:col-span-1">
+								<label htmlFor="description.serialNumber" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Description Serial Number:
 								</label>
 								<input
@@ -519,12 +560,15 @@ export default function Items() {
 											},
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-1"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Description Serial Number"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-3">
+								<div className="sm:col-span-1">
+								<label htmlFor="description.type" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Description Type:
 								</label>
 								<input
@@ -539,14 +583,15 @@ export default function Items() {
 											},
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-4"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Description Type"
 									required
 								/>
 							</div>
 
-							<div className="mb-2">
-								<label htmlFor="accPerson" className="mr-2">
+							<div className="sm:col-span-1">
+								<label htmlFor="description.other" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Description Other:
 								</label>
 								<input
@@ -561,12 +606,15 @@ export default function Items() {
 											},
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-3"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Description Other"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+								<div className="sm:col-span-1">
+								<label htmlFor="accPerson" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Location Building:
 								</label>
 								<input
@@ -581,12 +629,15 @@ export default function Items() {
 											},
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-16"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Location Building"
 									required
 								/>
+								</div>
 
-								<label htmlFor="accPerson" className="ml-4">
+						<div className="sm:col-span-1">
+								<label htmlFor="location.room" 
+								className="block text-sm font-medium leading-6 text-gray-900">
 									Location Room:
 								</label>
 								<input
@@ -601,31 +652,35 @@ export default function Items() {
 											},
 										})
 									}
-									className="border border-gray-300 rounded-md px-3 py-2 mb-2 ml-7"
+									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Location Room"
 									required
 								/>
 							</div>
-
-							<button
-								type="submit"
-								className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
-							>
-								Update
-							</button>
-							<button
-								onClick={handleCloseOverlay}
-								className="bg-gray-400 text-white px-4 py-2 mr-2 rounded-md"
-							>
-								Cancel
-							</button>
+							</div>
 							
+							<div className="flex justify-between p-6"> 
+							<div> 
+								<button
+									type="submit"
+									className="bg-blue-500 text-white px-4 py-2 rounded-md mt-1 mr-2"
+								>
+									Update
+								</button>
+								<button
+									onClick={handleCloseOverlay}
+									className="bg-gray-400 text-white px-4 py-2 mr-2 rounded-md"
+								>
+									Cancel
+								</button>
+							</div>
 							<button
 								onClick={handleDelete}
-								className="bg-red-400 text-white px-4 py-2 rounded-md"
+								className="bg-red-400 text-white px-4 py-2 rounded-md mt-1 mr-2"
 							>
 								Delete
 							</button>
+						</div>
 	
 						</form>
 					</div>
