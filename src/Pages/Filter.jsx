@@ -440,17 +440,12 @@ const handleRowClick = (item) => {
 };
 
     return (
-        
-        <><><><>
-        {/* <h4 className="text-center">Welcome to the Filter Page!</h4> */}
         <>
         <Navbar/>
         <Sidebar />
         <ProfileDropdown />
         <Home />
 
-
-        <p></p>
         <div class="ml-60 mt-28">
         <select onChange={handleaccPer}
         className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
@@ -585,8 +580,7 @@ const handleRowClick = (item) => {
             ))}
           </select>
           </div>
-          </>
-          </>
+         
           <h1><p></p> 
           <div class="flex justify-start ml-60 mt-5 md:col-span-2">
             <Button 
@@ -613,22 +607,21 @@ const handleRowClick = (item) => {
             </Button>&nbsp;&nbsp;&nbsp;&nbsp;
               <label id="sumLabel" onChange={handleSum}>Total Cost: {O_sum}</label>
           </div>
-          </h1>       
-          <div class="mx-auto ml-32 mt-2">
-    <div class="container flex justify-center">
-    <div class="overflow-x-auto"> 
-    <table class="w-full text-sm text-center rtl:text-right ml-28 mr-28 text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+          </h1>   
+
+          <div class="ml-60 mr-10 mt-2 relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table class="h-1 text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-500">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-1">
                   property tag</th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-1">
                   Accountable Person</th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-1">
                   Department</th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-1">
                   Designation</th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-1">
                 invoiceNumber</th>
                 <th scope="col" class="px-6 py-3">
                   InvoiceDate</th>
@@ -655,10 +648,10 @@ const handleRowClick = (item) => {
             <tbody>
               {queryResults.map(item => 
               !item.deleted && (
-                <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950 cursor-pointer">
+                <tr key={item.iid} onClick={() => handleRowClick(item)} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {item.iid}
-                        </th>
+                        </th> 
                         <td class="px-6 py-4">
                             {item.accPerson}
                         </td>
@@ -706,9 +699,6 @@ const handleRowClick = (item) => {
             </tbody>
           </table>
           </div>
-          </div>
-          </div>    
-          </></>
           </>
     )
 }
