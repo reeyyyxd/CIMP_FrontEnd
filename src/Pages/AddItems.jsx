@@ -71,40 +71,109 @@ export default function AddItems({ setModalOpen }) {
 		}
 	};
 
-	const handleSubmit = async (event) => {
+
+	// const handleSubmit = async (event) => {
+	// 	event.preventDefault();
+	// 	const totalCost =
+	// 		parseFloat(formData.quantity) * parseFloat(formData.unitCost);
+	// 	try {
+	// 		await axios.post("http://localhost:8080/item/insertItem", {
+	// 			accPerson: formData.accPerson,
+	// 			department: formData.department,
+	// 			designation: formData.designation,
+	// 			invoiceNumber: formData.invoiceNumber,
+	// 			invoiceDate: formData.invoiceDate,
+	// 			issueOrder: formData.issueOrder,
+	// 			lifespan: formData.lifespan,
+	// 			quantity: formData.quantity,
+	// 			remarks: formData.remarks,
+	// 			status: formData.status,
+	// 			supplier: formData.supplier,
+	// 			totalCost: totalCost,
+	// 			unitCost: formData.unitCost,
+	// 			unitOfMeasurement: formData.unitOfMeasurement,
+	// 			description: {
+	// 				name: formData.description.name,
+	// 				model: formData.description.model,
+	// 				serialNumber: formData.description.serialNumber,
+	// 				type: formData.description.type,
+	// 				other: formData.description.other,
+	// 			},
+	// 			location: {
+	// 				building: formData.location.building,
+	// 				room: formData.location.room,
+	// 			},
+	// 		});
+	// 		window.alert("Data added!");
+	// 		console.log("Data added!");
+	// 		setFormData({
+	// 			accPerson: "",
+	// 			department: "",
+	// 			designation: "",
+	// 			invoiceNumber: "",
+	// 			invoiceDate: "",
+	// 			issueOrder: "",
+	// 			lifespan: "",
+	// 			quantity: "",
+	// 			remarks: "",
+	// 			status: "",
+	// 			supplier: "",
+	// 			totalCost: "",
+	// 			unitCost: "",
+	// 			unitOfMeasurement: "",
+	// 			description: {
+	// 				name: "",
+	// 				model: "",
+	// 				serialNumber: "",
+	// 				type: "",
+	// 				other: "",
+	// 			},
+	// 			location: {
+	// 				building: "",
+	// 				room: "",
+	// 			},
+	// 		});
+	// 	} catch (error) {
+	// 		console.error("Error inserting data:", error);
+	// 	}
+	// };
+
+	const handleSubmit = (event) => {
 		event.preventDefault();
 		const totalCost =
 			parseFloat(formData.quantity) * parseFloat(formData.unitCost);
-		try {
-			await axios.post("http://localhost:8080/item/insertItem", {
-				accPerson: formData.accPerson,
-				department: formData.department,
-				designation: formData.designation,
-				invoiceNumber: formData.invoiceNumber,
-				invoiceDate: formData.invoiceDate,
-				issueOrder: formData.issueOrder,
-				lifespan: formData.lifespan,
-				quantity: formData.quantity,
-				remarks: formData.remarks,
-				status: formData.status,
-				supplier: formData.supplier,
-				totalCost: totalCost,
-				unitCost: formData.unitCost,
-				unitOfMeasurement: formData.unitOfMeasurement,
-				description: {
-					name: formData.description.name,
-					model: formData.description.model,
-					serialNumber: formData.description.serialNumber,
-					type: formData.description.type,
-					other: formData.description.other,
-				},
-				location: {
-					building: formData.location.building,
-					room: formData.location.room,
-				},
-			});
+	
+		axios.post("http://localhost:8080/item/insertItem", {
+			accPerson: formData.accPerson,
+			department: formData.department,
+			designation: formData.designation,
+			invoiceNumber: formData.invoiceNumber,
+			invoiceDate: formData.invoiceDate,
+			issueOrder: formData.issueOrder,
+			lifespan: formData.lifespan,
+			quantity: formData.quantity,
+			remarks: formData.remarks,
+			status: formData.status,
+			supplier: formData.supplier,
+			totalCost: totalCost,
+			unitCost: formData.unitCost,
+			unitOfMeasurement: formData.unitOfMeasurement,
+			description: {
+				name: formData.description.name,
+				model: formData.description.model,
+				serialNumber: formData.description.serialNumber,
+				type: formData.description.type,
+				other: formData.description.other,
+			},
+			location: {
+				building: formData.location.building,
+				room: formData.location.room,
+			},
+		})
+		.then(results => {
 			window.alert("Data added!");
 			console.log("Data added!");
+			console.log(results.data);
 			setFormData({
 				accPerson: "",
 				department: "",
@@ -132,9 +201,10 @@ export default function AddItems({ setModalOpen }) {
 					room: "",
 				},
 			});
-		} catch (error) {
+		})
+		.catch(error => {
 			console.error("Error inserting data:", error);
-		}
+		});
 	};
 
 	return (
