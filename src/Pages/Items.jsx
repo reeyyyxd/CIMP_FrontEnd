@@ -47,7 +47,8 @@ export default function Items() {
 		setShowOverlay(true); // Show overlay after clicking on a row
 	};
 
-    const handleDelete = () => {
+    const handleDelete = (event) => {
+		event.preventDefault();
 		const itemId = selectedItem.iid;
 	
 		if (!itemId) {
@@ -61,8 +62,29 @@ export default function Items() {
 		  axios.delete(`http://localhost:8080/item/deleteItem/${itemId}`)
 			.then(response => {
 			  if (response.status === 200) {
+
+				axios.post("http://localhost:8080/addLog", {
+					type: "DELETE",
+					description: "Deleted an Item"
+				}, {
+					params: {
+						uid: 1,
+						iid: itemId // Using newId instead of id
+					}
+				})
+				.then(response => {
+					console.log(response.data);
+				})
+				.catch(error => {
+					console.error("Error adding log:", error);
+				});
+				
 				console.log('Item deleted successfully');
-				// Additional logic like refreshing data or closing modal can be implemented here
+				alert("Item Deleted");
+				handleCloseOverlay();
+				
+
+				
 			  } else {
 				console.error('Failed to delete item');
 			  }
@@ -74,22 +96,63 @@ export default function Items() {
 	  };
 
 
-	const handleUpdate = async () => {
+	  const [updated, setUpdated] = useState(null); 
+
+	  const handleUpdate = async (event) => {
+		event.preventDefault();
+	
 		try {
 			if (selectedItem) {
-				const url = `http://localhost:8080/item/updateItem/${selectedItem.iid}`; // Use selectedItem.iid as propertyTag
+				const url = `http://localhost:8080/item/updateItem/${selectedItem.iid}`;
 				await axios.put(url, selectedItem);
+				alert("Data updated");
 				console.log("Item updated successfully");
+	
+				// Get the original item from the data or wherever it is stored
+				const originalItem = data.find(item => item.iid === selectedItem.iid);
+	
+				// Compare each property to find changes
+				const changedProperties = [];
+				for (const key in selectedItem) {
+					if (selectedItem.hasOwnProperty(key) && selectedItem[key] !== originalItem[key]) {
+						changedProperties.push(key);
+					}
+				}
+	
+				// Construct description based on changed properties
+				const description = "Updated " + changedProperties.join(", ");
+	
+				await axios.post("http://localhost:8080/addLog", {
+					type: "UPDATED",
+					description: description
+				}, {
+					params: {
+						uid: 1,
+						iid: selectedItem.iid
+					}
+				})
+				.then(response => {
+					console.log("Log added successfully:", response.data);
+				})
+				.catch(error => {
+					console.error("Error adding log:", error);
+				});
+	
 				setShowOverlay(false);
 				const response = await axios.get(
 					"http://localhost:8080/item/getAllItems"
 				);
 				setData(response.data);
+	
+				setUpdated(selectedItem);
 			}
 		} catch (error) {
 			console.error("Error updating item:", error);
 		}
 	};
+	
+	
+	  
 
 	const handleCloseOverlay = () => {
 		setShowOverlay(false);

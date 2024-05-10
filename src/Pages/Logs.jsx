@@ -252,6 +252,7 @@ export default function ViewAll() {
                                 <th scope="col" className="px-6 py-3">Property Tag</th>
                                 <th scope="col" className="px-6 py-3">Type</th>
                                 <th scope="col" className="px-6 py-3">User</th>
+                                <th scope="col" className="px-6 py-3">Description</th>
                             </tr>
                         </thead>
                         <tbody style={{ paddingBottom: "100px" }}>
@@ -263,6 +264,7 @@ export default function ViewAll() {
                                     <td>{res.item ? (<p>{res.item.iid}</p>) : (<div>None</div>)}</td>
                                     <td>{res.type}</td>
                                     <td>{res.user ? (<p>{res.user.user_id}</p>) : (<div>None</div>)}</td>
+                                    <td>{res.description}</td>
                                 </tr>
                             ))}
                         </tbody>

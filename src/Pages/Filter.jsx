@@ -13,7 +13,7 @@ export default function Filter()
 
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState({});
-
+  
   const [queryResults, setQueryResults] = useState([])
 
 

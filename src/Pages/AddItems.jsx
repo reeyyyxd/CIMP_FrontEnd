@@ -8,6 +8,12 @@ import Home from "./Home";
 
 export default function AddItems({ setModalOpen }) {
 	const navigate = useNavigate();
+
+	const [id, setId] = useState("");
+	const [queryResults, setQueryResults] = useState([]);
+	const [LqueryResults, setLQueryResults] = useState([]);
+
+
 	const [formData, setFormData] = useState({
 		accPerson: "",
 		department: "",
@@ -71,77 +77,8 @@ export default function AddItems({ setModalOpen }) {
 		}
 	};
 
-
-	// const handleSubmit = async (event) => {
-	// 	event.preventDefault();
-	// 	const totalCost =
-	// 		parseFloat(formData.quantity) * parseFloat(formData.unitCost);
-	// 	try {
-	// 		await axios.post("http://localhost:8080/item/insertItem", {
-	// 			accPerson: formData.accPerson,
-	// 			department: formData.department,
-	// 			designation: formData.designation,
-	// 			invoiceNumber: formData.invoiceNumber,
-	// 			invoiceDate: formData.invoiceDate,
-	// 			issueOrder: formData.issueOrder,
-	// 			lifespan: formData.lifespan,
-	// 			quantity: formData.quantity,
-	// 			remarks: formData.remarks,
-	// 			status: formData.status,
-	// 			supplier: formData.supplier,
-	// 			totalCost: totalCost,
-	// 			unitCost: formData.unitCost,
-	// 			unitOfMeasurement: formData.unitOfMeasurement,
-	// 			description: {
-	// 				name: formData.description.name,
-	// 				model: formData.description.model,
-	// 				serialNumber: formData.description.serialNumber,
-	// 				type: formData.description.type,
-	// 				other: formData.description.other,
-	// 			},
-	// 			location: {
-	// 				building: formData.location.building,
-	// 				room: formData.location.room,
-	// 			},
-	// 		});
-	// 		window.alert("Data added!");
-	// 		console.log("Data added!");
-	// 		setFormData({
-	// 			accPerson: "",
-	// 			department: "",
-	// 			designation: "",
-	// 			invoiceNumber: "",
-	// 			invoiceDate: "",
-	// 			issueOrder: "",
-	// 			lifespan: "",
-	// 			quantity: "",
-	// 			remarks: "",
-	// 			status: "",
-	// 			supplier: "",
-	// 			totalCost: "",
-	// 			unitCost: "",
-	// 			unitOfMeasurement: "",
-	// 			description: {
-	// 				name: "",
-	// 				model: "",
-	// 				serialNumber: "",
-	// 				type: "",
-	// 				other: "",
-	// 			},
-	// 			location: {
-	// 				building: "",
-	// 				room: "",
-	// 			},
-	// 		});
-	// 	} catch (error) {
-	// 		console.error("Error inserting data:", error);
-	// 	}
-	// };
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const totalCost =
-			parseFloat(formData.quantity) * parseFloat(formData.unitCost);
+	const handleSubmit = () => {
+		const totalCost = parseFloat(formData.quantity) * parseFloat(formData.unitCost);
 	
 		axios.post("http://localhost:8080/item/insertItem", {
 			accPerson: formData.accPerson,
@@ -170,11 +107,34 @@ export default function AddItems({ setModalOpen }) {
 				room: formData.location.room,
 			},
 		})
-		.then(results => {
+		.then(response => {
+			const newId = response.data.iid; // Assuming 'iid' is returned from server
+			setQueryResults(response.data);
+			setId(newId);
 			window.alert("Data added!");
 			console.log("Data added!");
-			console.log(results.data);
-			setFormData({
+			console.log("New item ID:", newId); // Log the new item ID
+			console.log(response.data);
+	
+			
+			axios.post("http://localhost:8080/addLog", {
+				type: "POST",
+				description: "Added an Item"
+			}, {
+				params: {
+					uid: 1,
+					iid: newId // Using newId instead of id
+				}
+			})
+			.then(response => {
+				setLQueryResults(response.data);
+				console.log(response.data);
+			})
+			.catch(error => {
+				console.error("Error adding log:", error);
+			});
+
+			/*setFormData({
 				accPerson: "",
 				department: "",
 				designation: "",
@@ -200,12 +160,25 @@ export default function AddItems({ setModalOpen }) {
 					building: "",
 					room: "",
 				},
-			});
+			});*/
 		})
 		.catch(error => {
 			console.error("Error inserting data:", error);
 		});
 	};
+	
+
+
+	const combinedSubmit = (event) => {
+		event.preventDefault(); // Prevent default form submission
+	  
+		// Call handleSubmit
+		handleSubmit();
+	  
+		
+	  }
+	
+
 
 	return (
 		<>
@@ -215,7 +188,7 @@ export default function AddItems({ setModalOpen }) {
 			<Home />
 
 			<form
-				onSubmit={handleSubmit}
+				onSubmit={combinedSubmit}
 				className="fixed inset-0 flex items-center justify-center mt-10"
 			>
 				<div className="container bg-white border border-gray-200 rounded-3xl p-6 w-fit shadow-2xl">
