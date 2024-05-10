@@ -447,6 +447,8 @@ const handleRowClick = (item) => {
         <Home />
 
         <div class="ml-60 mt-28">
+        <div className="p-6 mt-4 grid grid-cols-1 gap-x-3 gap-y-5 sm:grid-cols-7">
+      <div className="sm:col-span-1">
         <select onChange={handleaccPer}
         className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
           <option value="">Accountable Person</option>
@@ -456,9 +458,11 @@ const handleRowClick = (item) => {
             </option>
           ))}
         </select>
-        
+        </div>
+
+      <div className="sm:col-span-1">  
         <select onChange={handleDep}
-        className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">  
+        className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">  
           <option value="">Deparment</option>
           {O_dep.map((O_deps, index) => (
             <option key={index} value={O_deps}>
@@ -466,9 +470,11 @@ const handleRowClick = (item) => {
             </option>
           ))}
         </select>
+        </div>
 
+        <div className="sm:col-span-1">
           <select onChange={handleDes}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Designation</option>
             {O_des.map((O_dess, index) => (
               <option key={index} value={O_dess}>
@@ -476,9 +482,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+        <div className="sm:col-span-1">
           <select onChange={handleUom}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Uom</option>
             {O_uom.map((O_uoms, index) => (
               <option key={index} value={O_uoms}>
@@ -486,9 +494,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+          <div className="sm:col-span-1">
           <select onChange={handleStat}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Status</option>
             {O_status.map((O_statuss, index) => (
               <option key={index} value={O_statuss}>
@@ -496,9 +506,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+          <div className="sm:col-span-1">
           <select onChange={handleSupp}
-          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Supplier</option>
             {O_supp.map((O_supps, index) => (
               <option key={index} value={O_supps}>
@@ -506,9 +518,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+          <div className="sm:col-span-1">
           <select onChange={handleBuilding}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Location Building</option>
             {O_building.map((O_buildings, index) => (
               <option key={index} value={O_buildings}>
@@ -516,7 +530,9 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+        <div className="sm:col-span-1">
           <select onChange={handleRoom}
           className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Location Room</option>
@@ -526,9 +542,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+        <div className="sm:col-span-1">
           <select onChange={handleName}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Description Name</option>
             {O_name.map((O_names, index) => (
               <option key={index} value={O_names}>
@@ -536,9 +554,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+        <div className="sm:col-span-1">
           <select onChange={handleModel}
-          className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Description Model</option>
             {O_model.map((O_models, index) => (
               <option key={index} value={O_models}>
@@ -546,9 +566,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+        <div className="sm:col-span-1">
           <select onChange={handleType}
-          className="border border-gray-700 rounded-md ml-2 p-2 mt-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Description Type</option>
             {O_type.map((O_types, index) => (
               <option key={index} value={O_types}>
@@ -556,9 +578,11 @@ const handleRowClick = (item) => {
               </option>
             ))}
           </select>
+          </div>
 
+          <div className="sm:col-span-1">
           <select onChange={handleInvoice}
-              className="border border-gray-700 rounded-md ml-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+              className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
               <option value="">Invoice Date</option>
               {O_invoicedate
                   .sort((a, b) => new Date(a) - new Date(b)) // Sort the dates in ascending order
@@ -568,10 +592,11 @@ const handleRowClick = (item) => {
                       </option>
                   ))}
           </select>
-
-
+          </div>
+          
+          <div className="sm:col-span-1">
           <select onChange={handleLifespan}
-          className="border border-gray-700 rounded-md ml-2 mt-2 p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
+          className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
             <option value="">Lifespan</option>
             {O_lifespan.map((O_lifespans, index) => (
               <option key={index} value={O_lifespans}>
@@ -580,9 +605,11 @@ const handleRowClick = (item) => {
             ))}
           </select>
           </div>
+          </div>
+          </div>
          
           <h1><p></p> 
-          <div class="flex justify-start ml-60 mt-5 md:col-span-2">
+          <div class="flex justify-start ml-64 mt-5 md:col-span-2">
             <Button 
               variant="outlined" 
               onClick={function(){ handleFilter(); fetchO_sum()}}
@@ -609,7 +636,7 @@ const handleRowClick = (item) => {
           </div>
           </h1>   
 
-          <div class="ml-60 mr-10 mt-2 relative overflow-x-auto shadow-md sm:rounded-lg">
+          <div class="ml-64 mr-5 mt-2 relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="h-1 text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
               <tr>
