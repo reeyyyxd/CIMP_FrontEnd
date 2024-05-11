@@ -134,7 +134,7 @@ export default function AddItems({ setModalOpen }) {
 				console.error("Error adding log:", error);
 			});
 
-			/*setFormData({
+			setFormData({
 				accPerson: "",
 				department: "",
 				designation: "",
@@ -160,7 +160,7 @@ export default function AddItems({ setModalOpen }) {
 					building: "",
 					room: "",
 				},
-			});*/
+			});
 		})
 		.catch(error => {
 			console.error("Error inserting data:", error);

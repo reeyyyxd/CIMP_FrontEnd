@@ -9,6 +9,7 @@ import Item from "./Pages/Items"
 import AddItems from "./Pages/AddItems"
 import Logs from "./Pages/Logs"
 import Request from "./Pages/Request"
+import Receive from "./Pages/Receive"
 
 export default function App() {
   
@@ -48,6 +49,10 @@ export default function App() {
     {
       path: 'request',
       element: <Request />
+    },
+    {
+      path: 'receive',
+      element: <Receive />
     }
   ])
 

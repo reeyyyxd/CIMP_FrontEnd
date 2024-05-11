@@ -118,9 +118,14 @@ export default function Items() {
 						changedProperties.push(key);
 					}
 				}
-	
+
 				// Construct description based on changed properties
-				const description = "Updated " + changedProperties.join(", ");
+				let description;
+				if (changedProperties.length > 0) {
+					description = "Updated " + changedProperties.join(", ");
+				} else {
+					description = "Updated nothing";
+				}
 	
 				await axios.post("http://localhost:8080/addLog", {
 					type: "UPDATED",
