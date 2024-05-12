@@ -24,25 +24,7 @@ export default function Request() {
    
     const [queryResults, setQueryResults] = useState([]);
 
-    const DemoPaper = styled(Paper)(({ theme }) => ({
-        width: 450,
-        height: 550,
-        padding: theme.spacing(2),
-        ...theme.typography.body2,
-        textAlign: 'center',
-        position: 'absolute',
-        top: '55%',
-        left: '50%',
-        bottom: '10%',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }));
-
-    
+       
     const handleOther = (event) => {
         setOther(event.target.value)
     }
@@ -196,78 +178,95 @@ export default function Request() {
         <>
 
            <Navbar/>
-            <Sidebar />
             <ProfileDropdown />
             <Home />
-                
-                {/*<DemoPaper variant="elevation"></DemoPaper>*/}
             
-            <Container>
-    <Box mt={5} textAlign="center">
-        <div className="max-w-sm mx-auto">
-            <label htmlFor="requestType" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Type of Request</label>
-            <select onChange={handleType}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto" >
+
+            <div class="flex justify-center">
+                <div class="w-full mt-32 max-w-xs">
+                <div className=" bg-maroon py-2 px-7 rounded-t-md border border-maroon"></div>
+                    <div class="bg-white shadow-2xl px-8 pt-1 pb-8 mb-0"> 
+                    <div className="p-6 mt-1 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1"> 
+
+            <div className="sm:col-span-1">
+            <select onChange={handleType}  
+            className="border border-gray-700 rounded-md p-2 w-52 bg-gray-800 text-white text-sm hover:bg-gray-950">
                 <option value="">Type of Request</option>
                 <option value="REQUEST">Request</option>
                 <option value="BORROW">Borrow items</option>
                 <option value="REPAIR">Out for Repair</option>
                 <option value="DISPOSAL">Out for disposal</option>
             </select>
+
+            </div>
+        
+            <div className="sm:col-span-1"> 
+          <div class="relative">
+            <input
+                type="text"
+                name="propertyTag"
+                id="propertyTag"
+                onChange={handleId}
+                placeholder=""
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+        />
+        <label
+			for="propertyTag"
+		    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+		>
+			Enter Property Tag
+		    </label>
         </div>
-    </Box>
-</Container>
+        </div>
+       
 
-
-<Container>
-    <Box mt={5} textAlign="center">
-        <div className="max-w-sm mx-auto">
-            <label htmlFor="propertyTag" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Enter Property Tag:</label>
-            <input type="text" id="propertyTag" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto" onChange={handleId} />
+        <div className="sm:col-span-1"> 
+          <div class="relative">
+            <input
+                type="text"
+                name="request"
+                id="request"
+                onChange={handleRemark}
+                placeholder=""
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+        />
+        <label
+			for="request"
+		    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+		>
+			Requested by:
+		    </label>
+        </div>
+        </div>
             
+
+        <div className="sm:col-span-1"> 
+          <div class="relative">
+            <input
+                type="text"
+                name="quantity"
+                id="quantity"
+                onChange={handleNumber}
+                placeholder=""
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+        />
+        <label
+			for="quantity"
+		    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+			Enter Quantity
+		    </label>
         </div>
-    </Box>
-</Container>
-
-<Container>
-    <Box mt={5} textAlign="center">
-        <div className="max-w-sm mx-auto">
-            <label htmlFor="requestedBy" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Requested by:</label>
-            <input onChange={handleRemark}type="text" id="requestedBy" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto" />
-            
         </div>
-    </Box>
-</Container>
+                
+    <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
+    onClick={handleRequest}>Request</button>
+    </div>
+    </div>
+    <div className=" bg-maroon py-2 px-7 rounded-b-md border border-maroon"></div>
+    </div>   
+    
+    </div>
 
-<Container>
-    <Box mt={5} textAlign="center">
-        <div className="max-w-sm mx-auto">
-            <label htmlFor="quantity" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Enter Quantity:</label>
-        <input type="text" id="quantity" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto" onChange={handleNumber} />
-            
-        </div>
-    </Box>
-</Container>
-
-
-
-<Container>
-    <Box mt={5} textAlign="center">
-    <Button onClick={handleRequest} variant="contained" sx={{ backgroundColor: 'maroon', color: 'white' }}>Request</Button>
-    </Box>
-</Container>
-
-
-            {/*<select onChange={handleType}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-auto" >
-                <option value="">Type of Request</option>
-                <option value="Request">Request</option>
-                <option value="Borrow">Borrow items</option>
-                <option value="Repair">Out for Repair</option>
-                <option value="Disposal">Out for disposal</option>
-            </select>
-
-            <TextField onChange={handleId}></TextField>
-            <TextField onChange={handleNumber}></TextField>
-<Button onClick={handleRequest} variant="contained" sx={{ backgroundColor: 'maroon', color: 'white' }}>Request</Button>*/}
         </>
     )
 }
