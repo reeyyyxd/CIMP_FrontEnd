@@ -108,12 +108,12 @@ export default function AddItems({ setModalOpen }) {
 			},
 		})
 		.then(response => {
-			const newId = response.data.iid; // Assuming 'iid' is returned from server
+			const newId = response.data.iid; 
 			setQueryResults(response.data);
 			setId(newId);
 			window.alert("Data added!");
 			console.log("Data added!");
-			console.log("New item ID:", newId); // Log the new item ID
+			console.log("New item ID:", newId); 
 			console.log(response.data);
 	
 			
@@ -123,7 +123,7 @@ export default function AddItems({ setModalOpen }) {
 			}, {
 				params: {
 					uid: 1,
-					iid: newId // Using newId instead of id
+					iid: newId 
 				}
 			})
 			.then(response => {
