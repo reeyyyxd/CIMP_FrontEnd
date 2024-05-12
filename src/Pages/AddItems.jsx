@@ -24,7 +24,7 @@ export default function AddItems({ setModalOpen }) {
 		lifespan: "",
 		quantity: "",
 		remarks: "",
-		status: "",
+		status: "AVAILABLE",
 		supplier: "",
 		totalCost: "",
 		unitCost: "",
@@ -372,7 +372,7 @@ export default function AddItems({ setModalOpen }) {
 							</label>
 						</div>
 
-						<div class="relative">
+						{/* <div class="relative">
 							<input
 								type="text"
 								name="status"
@@ -389,7 +389,7 @@ export default function AddItems({ setModalOpen }) {
 							>
 								Status
 							</label>
-						</div>
+						</div> */}
 
 						<div class="relative">
 							<input

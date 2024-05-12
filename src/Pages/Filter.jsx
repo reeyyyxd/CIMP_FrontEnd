@@ -433,6 +433,7 @@ const generatePrintableTable = () => {
 
 const handleRowClick = (item) => {
   setSelectedItem(item);
+  //setQueryResults(item);
   const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
 
     // Programmatically navigate to the URL
