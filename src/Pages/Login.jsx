@@ -5,31 +5,21 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import backgroundImage from "../assets/images/cat.jpg";
 import cit from "../assets/images/cit.png";
+import axios from "axios";
 
-export default function Login() {
+export default function Login( {user, setUser} ) {
 	const navigate = useNavigate();
 
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [loginData, setLoginData] = useState({
+		username: '',
+		password: ''
+	})
 
-	const handleUsernameChange = (event) => {
-		setUsername(event.target.value);
-	};
-
-	const handlePasswordChange = (event) => {
-		setPassword(event.target.value);
-	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		//logic here mga pre
-		console.log("Username:", username);
-		console.log("Password:", password);
-		// Reset the form after submission
-		setUsername("");
-		setPassword("");
-
-		navigate("/home");
+		
+		login();
 	};
 
 	const StyledButton = styled(Button)({
@@ -44,6 +34,39 @@ export default function Login() {
 			backgroundColor: "#F2C202",
 		},
 	});
+
+	async function login() {
+		return axios.post('http://localhost:8080/login', {
+			username: loginData.username,
+			password: loginData.password
+		  }, {
+			headers: {
+			  'Content-Type': 'application/json'
+			}
+		  }).then(response => {
+			if (!(response.status === 200)) {
+			  throw new Error('There is a problem with the request');
+			}
+			
+			if(response.data === "Login successful") {
+				setUser(1);
+			}
+
+			setLoginData({
+				username: '',
+				password: ''
+			});
+
+			navigate("/home");
+		  }).catch(error => {
+			console.log('There was a problem with the fetch operation:', error)
+		  })
+	  };
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		setLoginData((prevData) => ({ ...prevData, [name]: value }));
+	  };
 
 	return (
 		<div
@@ -146,10 +169,11 @@ export default function Login() {
 								InputLabelProps={{
 									style: { fontFamily: "Poppins", fontSize: "15px" },
 								}}
+								name="username"
 								label="Username"
 								variant="outlined"
-								value={username}
-								onChange={handleUsernameChange}
+								// value={username}
+								onChange={handleChange}
 								style={{ marginBottom: "10px" }}
 								required
 								size="small"
@@ -158,12 +182,13 @@ export default function Login() {
 								InputLabelProps={{
 									style: { fontFamily: "Poppins", fontSize: "15px" },
 								}}
+								name="password"
 								label="Password"
 								variant="outlined"
 								type="password"
 								size="small"
-								value={password}
-								onChange={handlePasswordChange}
+								// value={password}
+								onChange={handleChange}
 								style={{ marginBottom: "10px" }}
 								required
 							/>

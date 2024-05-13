@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 
-export default function Request() {
+export default function Request( {user, setUser} ) {
     const [type, setType] = useState("");
     const [number, setNumber] = useState("");
     const [id, setId] = useState("");
@@ -179,7 +179,7 @@ export default function Request() {
 
            <Navbar/>
             <ProfileDropdown />
-            <Home />
+            <Home user={user} setUser={setUser} />
             
 
             <div class="flex justify-center">

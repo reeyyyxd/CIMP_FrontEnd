@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 
 
 
-export default function ViewAll() {
+export default function ViewAll( {user, setUser} ) {
     const [queryResults, setQueryResults] = useState([]);
     const [specific, setSpecific] = useState("");
     const [month, setMonth] = useState("");
@@ -107,21 +107,12 @@ export default function ViewAll() {
         setIsFilterOpen(prevState => !prevState);
     };
 
-
-
-
-
-
-
-
-
-
     return (
         <>
             <Navbar/>
             <Sidebar />
             <ProfileDropdown />
-            <Home />
+            <Home user={user} setUser={setUser}/>
 
             <Container>
                 <Box mt={10} textAlign="center">
@@ -142,8 +133,6 @@ export default function ViewAll() {
              </Box>
             </Container>
 
-
-        
             <Container>
             <Box mt={5} textAlign="center">
                 <div className="flex justify-center items-center space-x-4">
@@ -235,9 +224,6 @@ export default function ViewAll() {
             </Box>
         </Container>
     
-
-
-
                 <Container>
                 <Box mt={5} textAlign="center">
             <div className="container mx-1 mt-4">
@@ -275,13 +261,6 @@ export default function ViewAll() {
         
             </Box>
     </Container>
-
-
-
-            
-            
-        
-    
         </>
     );
 }

@@ -20,7 +20,7 @@ import ProfileDropdown from "../Extras/dropdown";
 import { styled } from "@mui/material/styles";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-export default function Items() {
+export default function Items( {user, setUser} ) {
 	const navigate = useNavigate();
 	const [data, setData] = useState([]);
 	const [selectedItem, setSelectedItem] = useState({}); // Initialize with an empty object
@@ -156,9 +156,6 @@ export default function Items() {
 		}
 	};
 	
-	
-	  
-
 	const handleCloseOverlay = () => {
 		setShowOverlay(false);
 		setSelectedItem({}); // Reset selectedItem to an empty object
@@ -191,7 +188,7 @@ export default function Items() {
 			<Navbar />
 			<Sidebar />
 			<ProfileDropdown />
-			<Home />
+			<Home user={user} setUser={setUser} />
 			<div  style={{ margin: "10% 20px 0 0", display:"flex", justifyContent:"flex-end" }}>
 				<button
 					type="button"

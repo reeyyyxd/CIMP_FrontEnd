@@ -6,7 +6,7 @@ import Navbar from "../Extras/navbar";
 import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
 
-export default function Receive(){
+export default function Receive( {user, setUser} ){
 
     const [id, setId] = useState("");
     const [remarks, setRemarks] = useState("");
@@ -67,7 +67,7 @@ export default function Receive(){
         <>
         <Navbar />
 		<ProfileDropdown />
-		<Home />
+		<Home user={user} setUser={setUser} />
 
 <div class="flex justify-center">
     <div class="w-full mt-40 max-w-xs">

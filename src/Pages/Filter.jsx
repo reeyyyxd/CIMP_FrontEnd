@@ -8,7 +8,7 @@ import Navbar from "../Extras/navbar";
 import Sidebar from "../Extras/sidebar";
 import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
-export default function Filter() 
+export default function Filter( {user, setUser} ) 
 {
 
   const navigate = useNavigate();
@@ -445,7 +445,7 @@ const handleRowClick = (item) => {
         <Navbar/>
         <Sidebar />
         <ProfileDropdown />
-        <Home />
+        <Home user={user} setUser={setUser} />
 
         <div class="ml-60 mt-28">
         <div className="p-6 mt-4 grid grid-cols-1 gap-x-3 gap-y-5 sm:grid-cols-7">

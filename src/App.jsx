@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { useState } from "react"
 
 import Login from "./Pages/Login"
 import Home from "./Pages/Home"
@@ -11,24 +12,26 @@ import Logs from "./Pages/Logs"
 import Request from "./Pages/Request"
 import Receive from "./Pages/Receive"
 
+
 export default function App() {
-  
+  const [user, setUser] = useState(null);
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Login />,
+      element: <Login user={user} setUser={setUser}/>,
     },
     {
       path: 'home',
-      element: <Home />
+      element: <Home user={user} setUser={setUser} />
     },
     {
       path: 'filter',
-      element: <Filter />
+      element: <Filter user={user} setUser={setUser} />
     },
     {
       path: 'search',
-      element: <Search />
+      element: <Search user={user} setUser={setUser} />
     },
     {
       path: 'viewAll',
@@ -36,7 +39,7 @@ export default function App() {
     },
     {
       path: 'items',
-      element: <Item />
+      element: <Item user={user} setUser={setUser} />
     },
     {
       path: 'additems',
@@ -44,15 +47,15 @@ export default function App() {
     },
     {
       path: 'logs',
-      element: <Logs />
+      element: <Logs user={user} setUser={setUser} />
     },
     {
       path: 'request',
-      element: <Request />
+      element: <Request user={user} setUser={setUser} />
     },
     {
       path: 'receive',
-      element: <Receive />
+      element: <Receive user={user} setUser={setUser} />
     }
   ])
 

@@ -8,7 +8,7 @@ import Sidebar from "../Extras/sidebar";
 import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
 
-export default function Search() {
+export default function Search( {user, setUser} ) {
 
     const [search, setSearch] = useState("");
     const [queryResults, setQueryResults] = useState([])
@@ -89,7 +89,7 @@ export default function Search() {
          <Navbar/>
         <Sidebar />
         <ProfileDropdown />
-        <Home />
+        <Home user={user} setUser={setUser} />
             <div class="flex justify-start ml-60 mt-28 relative text-white">
             <input 
             type="search" 
