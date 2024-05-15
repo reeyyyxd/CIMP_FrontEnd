@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -14,7 +14,6 @@ export default function Login( {user, setUser} ) {
 		username: '',
 		password: ''
 	})
-
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -36,7 +35,7 @@ export default function Login( {user, setUser} ) {
 	});
 
 	async function login() {
-		return axios.post('http://localhost:8080/login', {
+		return axios.post('http://localhost:8080/loginTest', {
 			username: loginData.username,
 			password: loginData.password
 		  }, {
@@ -47,10 +46,14 @@ export default function Login( {user, setUser} ) {
 			if (!(response.status === 200)) {
 			  throw new Error('There is a problem with the request');
 			}
-			
-			if(response.data === "Login successful") {
-				setUser(1);
-			}
+
+			setUser({
+				uid: response.data.uid,
+				fname: response.data.fname,
+				lname: response.data.lname,
+				username: response.data.username,
+				type: response.data.type
+			});
 
 			setLoginData({
 				username: '',

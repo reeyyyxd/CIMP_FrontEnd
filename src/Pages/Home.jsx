@@ -57,8 +57,8 @@ export default function Home( {user, setUser} ) {
 				<ProfileContainer>
 					<Image src="../src/assets/images/MasterBaiter.jpg" alt="Profile" />
 					<ProfileText>
-						<p style={{ marginTop: "10px" }}>Jobeth Cala</p>
-						<p style={{ fontSize: "10px", marginTop: "12px",}}>PCO-Staff</p>
+						<p style={{ marginTop: "10px" }}>{user.fname} {user.lname}</p>
+						<p style={{ fontSize: "10px", marginTop: "12px",}}>{user.type}</p>
 				  </ProfileText>
 					<DropdownContainer onClick={toggleDropdown}>
 						<FontAwesomeIcon
