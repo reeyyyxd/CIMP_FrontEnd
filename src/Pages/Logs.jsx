@@ -114,36 +114,11 @@ export default function ViewAll( {user, setUser} ) {
             <ProfileDropdown />
             <Home user={user} setUser={setUser}/>
 
-            <Container>
-                <Box mt={10} textAlign="center">
-                <form className="max-w-md mx-auto">
-                <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search Property Tag:</label>
-                <div className="relative">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                   <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                   </svg>
-                </div>
-                        {/*<input type="text"  className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Property ID" onChange={handleSpecific} />*/}
-                        <TextField onChange={handleSpecific}></TextField>
-                        <Button onClick={handleSearch}>Search</Button>
-                        {/*<button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-maroon hover:bg-maroon focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleSearch}>Search</button>*/}
-                        </div>
-                </form>   
-             </Box>
-            </Container>
-
-            <Container>
-            <Box mt={5} textAlign="center">
-                <div className="flex justify-center items-center space-x-4">
-                    <Button onClick={toggleFilter} variant="contained" color="primary">
-                        {isFilterOpen ? "Hide Filter" : "Show Filter"}
-                    </Button>
-                    {isFilterOpen && (
-                        <div className="max-w-[4rem] flex space-x-2">
-                            {/* Filter options */}
-                            <div>
-                                <select id="data" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(event) => setMonth(event.target.value)}>
+                    <div class="ml-60 mt-28">
+                <div className="p-6 mt-4 grid grid-cols-1 gap-x-3 gap-y-5 sm:grid-cols-7">
+                      <div className="sm:col-span-1">
+                                <select id="data" onChange={(event) => setMonth(event.target.value)}
+                                 className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
                                     <option value="" selected>Choose Month</option>
                                     <option value="1">January</option>
                                     <option value="2">February</option>
@@ -158,9 +133,11 @@ export default function ViewAll( {user, setUser} ) {
                                     <option value="eleven">November</option>
                                     <option value="twelve">December</option>
                                 </select>
-                            </div>
-                            <div>
-                                <select id="days" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(event) => setDay(event.target.value)}>
+                                </div>
+                          
+                            <div className="sm:col-span-1">
+                                <select id="days" onChange={(event) => setDay(event.target.value)}
+                                className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
                                     <option value="">Choose Day</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -194,46 +171,96 @@ export default function ViewAll( {user, setUser} ) {
                                     <option value="thirties">30</option>
                                     <option value="thirty one">31</option>
                                 </select>
-                            </div>
-                            <div>
-                                <select id="years" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(event) => setYear(event.target.value)}>
+                                </div>
+
+                            <div className="sm:col-span-1">
+                                <select id="years" onChange={(event) => setYear(event.target.value)}
+                                className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
                                     <option value="">Choose Year</option>
                                     {O_year.map((year, index) => (
                                         <option key={index} value={year}>{year}</option>
                                     ))}
                                 </select>
-                            </div>
-                            <div>
-                                <select id="types" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(event) => setType(event.target.value)}>
+                                </div>
+                          
+                            <div className="sm:col-span-1">
+                                <select id="types" onChange={(event) => setType(event.target.value)}
+                                className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
                                     <option value="">Choose Type</option>
                                     {O_type.map((type, index) => (
                                         <option key={index} value={type}>{type}</option>
                                     ))}
                                 </select>
+                                </div>
+                                </div>
+                                </div>
 
-
-                                <input type="time" onChange={handleBef} id="before"></input>
-                                <input type="time" onChange={handleAft} id="after"></input>
-                            </div>
-                            <Button onClick={handleFilter} variant="contained" color="primary">
+                    <div class="flex justify-start ml-64 mt-11 relative text-white">
+                        <input 
+                        type="SearchPropertyTag" 
+                        name="SearchPropertyTag" 
+                        placeholder="Search Property Tag" 
+                        class="bg-gray-600 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+                        onChange={handleSpecific} 
+                        />
+                        <button 
+                        type="submit" 
+                        class="absolute center-0 top-0 mt-3 ml-48"
+                        onClick={handleSearch}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                            <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
+                            </svg>
+                            </button>
+                    &
+                    <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold mb-7 py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
+                            onClick={handleFilter}>
                                 Filter
-                            </Button>
+                </button>
+                           
+                    <div class="ml-4 -mt-7">
+                        <div class="max-w-[16rem] mx-auto grid grid-cols-2 gap-4">
+                        <div>
+                    <label for="start-time" 
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Start time:</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                            </svg>
                         </div>
-                    )}
+                        <input 
+                        type="time" 
+                        id="before" 
+                        onChange={handleBef}
+                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                    </div>
                 </div>
-            </Box>
-        </Container>
-    
-                <Container>
-                <Box mt={5} textAlign="center">
-            <div className="container mx-1 mt-4">
-                <div className="flex justify-center">
-                <div className="ml-1 mr-1   ">  
-                    <table className="w-full text-sm text-left rtl:text-right ml-28 mr-40 text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-white hover:bg-red-950">
+                <div>
+                    <label for="end-time" 
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">End time:</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <input 
+                        type="time" 
+                        id="after" 
+                        onChange={handleAft}
+                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+        <div class="mx-auto -mt-4 overflow-y-auto flex justify-center ml-52">    
+                    <table className="w-full text-sm text-center rtl:text-right ml-12 mr-40 text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
                             <tr>
                                 <th scope="col" className="px-6 py-3">Log Id</th>
-                                <th scope="col" className="px-6 py-3">Date</th>
+                                <th scope="col" className="px-6 py-3">Date</th> 
                                 <th scope="col" className="px-6 py-3">Time</th>
                                 <th scope="col" className="px-6 py-3">Property Tag</th>
                                 <th scope="col" className="px-6 py-3">Type</th>
@@ -256,11 +283,8 @@ export default function ViewAll( {user, setUser} ) {
                         </tbody>
                     </table>
                     </div>
-                </div>
-            </div>
-        
-            </Box>
-    </Container>
+            
+ 
         </>
     );
 }
