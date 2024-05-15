@@ -35,7 +35,7 @@ export default function Login( {user, setUser} ) {
 	});
 
 	async function login() {
-		return axios.post('http://localhost:8080/loginTest', {
+		return axios.post('http://localhost:8080/login', {
 			username: loginData.username,
 			password: loginData.password
 		  }, {
