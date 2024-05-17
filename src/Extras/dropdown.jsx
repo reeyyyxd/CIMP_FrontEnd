@@ -2,9 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
 
 const DropdownContent = styled.div`
 	position: absolute;
@@ -33,23 +30,9 @@ const Tab = styled.div`
 `;
 
 const ProfileDropdown = ({ isOpen, handleTabClick, user, setUser }) => {
-	const navigate = useNavigate();
-
-	const [loader, setLoader] = useState(null);
-
-	useEffect(() => {
-		redirect();
-	}, [loader])
-
-	function redirect() {
-		if(user === null) {
-			navigate('/');
-		}
-	}
 
 	const logout = () => {
 		setUser(null);
-		setLoader(Math.random()*1000);
 	}
 
 	return (
@@ -59,11 +42,7 @@ const ProfileDropdown = ({ isOpen, handleTabClick, user, setUser }) => {
 					<FontAwesomeIcon icon={faUser} style={{ color: "#8C383E", fontSize: "15px" }} />
 					<span style={{ marginLeft: "15px", fontSize: "13px", fontWeight: "500" }}>Profile</span>
 				</Tab>
-				{/* <Tab onClick={() => handleTabClick("logout")}>
-					<FontAwesomeIcon icon={faSignOutAlt} style={{ color: "#8C383E", fontSize: "15px" }} />
-					<span style={{ marginLeft: "15px", fontSize: "13px", fontWeight: "500" }}>Log Out</span>
-				</Tab> */}
-				<Tab onClick={logout}>
+				<Tab onClick={ logout }>
 					<FontAwesomeIcon icon={faSignOutAlt} style={{ color: "#8C383E", fontSize: "15px" }} />
 					<span style={{ marginLeft: "15px", fontSize: "13px", fontWeight: "500" }}>Log Out</span>
 				</Tab>

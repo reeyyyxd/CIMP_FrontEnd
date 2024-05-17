@@ -7,7 +7,6 @@ import ProfileDropdown from "../Extras/dropdown";
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
 
-
 const ProfileContainer = styled.div`
 	display: flex;
 	align-items: center;
@@ -51,7 +50,6 @@ export default function Home( {user, setUser} ) {
 		// Handle tab click
 	};
 	
-
 	return (
 		<div>
 			<Navbar />

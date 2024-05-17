@@ -86,9 +86,6 @@ export default function Search( {user, setUser} ) {
 
     return(
         <>
-         <Navbar/>
-        <Sidebar />
-        <ProfileDropdown />
         <Home user={user} setUser={setUser} />
             <div class="flex justify-start ml-60 mt-28 relative text-white">
             <input 

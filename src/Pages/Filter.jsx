@@ -449,9 +449,6 @@ const handleCloseOverlay = () => {
 
     return (
         <>
-        <Navbar/>
-        <Sidebar />
-        <ProfileDropdown />
         <Home user={user} setUser={setUser} />
 
         <div class="ml-60 mt-28">

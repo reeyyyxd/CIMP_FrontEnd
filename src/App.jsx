@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
 import { useState } from "react"
 
 import Login from "./Pages/Login"
@@ -16,22 +16,26 @@ import Receive from "./Pages/Receive"
 export default function App() {
   const [user, setUser] = useState(null);
 
+  function RequireAuth({ children }) {
+    return user !== null ? (children) : (<Navigate to="/" replace />);
+  }
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Login user={user} setUser={setUser}/>,
+      element: <Login user={user} setUser={setUser}/>
     },
     {
       path: 'home',
-      element: <Home user={user} setUser={setUser} />
+      element: <RequireAuth> <Home user={user} setUser={setUser} /> </RequireAuth> 
     },
     {
       path: 'filter',
-      element: <Filter user={user} setUser={setUser} />
+      element: <RequireAuth> <Filter user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'search',
-      element: <Search user={user} setUser={setUser} />
+      element: <RequireAuth> <Search user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'viewAll',
@@ -39,7 +43,7 @@ export default function App() {
     },
     {
       path: 'items',
-      element: <Item user={user} setUser={setUser} />
+      element: <RequireAuth> <Item user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'additems',
@@ -47,15 +51,15 @@ export default function App() {
     },
     {
       path: 'logs',
-      element: <Logs user={user} setUser={setUser} />
+      element: <RequireAuth> <Logs user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'request',
-      element: <Request user={user} setUser={setUser} />
+      element: <RequireAuth> <Request user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'receive',
-      element: <Receive user={user} setUser={setUser} />
+      element: <RequireAuth> <Receive user={user} setUser={setUser} /> </RequireAuth>
     }
   ])
 

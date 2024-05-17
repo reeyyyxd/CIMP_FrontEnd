@@ -178,9 +178,6 @@ export default function Request( {user, setUser} ) {
 
     return (
         <>
-
-           <Navbar/>
-            <ProfileDropdown />
             <Home user={user} setUser={setUser} />
             
 

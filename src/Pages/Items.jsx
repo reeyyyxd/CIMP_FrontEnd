@@ -185,9 +185,6 @@ export default function Items( {user, setUser} ) {
 
 	return (
 		<>
-			<Navbar />
-			<Sidebar />
-			<ProfileDropdown />
 			<Home user={user} setUser={setUser} />
 			<div  style={{ margin: "10% 20px 0 0", display:"flex", justifyContent:"flex-end" }}>
 				<button

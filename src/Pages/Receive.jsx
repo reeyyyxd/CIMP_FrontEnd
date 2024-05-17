@@ -65,8 +65,6 @@ export default function Receive( {user, setUser} ){
 
     return( 
         <>
-        <Navbar />
-		<ProfileDropdown />
 		<Home user={user} setUser={setUser} />
 
 <div class="flex justify-center">
