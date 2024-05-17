@@ -13,7 +13,7 @@ export default function Filter( {user, setUser} )
 
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState({});
-  
+  const [showOverlay, setShowOverlay] = useState(false);
   const [queryResults, setQueryResults] = useState([])
 
 
@@ -433,11 +433,18 @@ const generatePrintableTable = () => {
 
 const handleRowClick = (item) => {
   setSelectedItem(item);
+  setShowOverlay(true);
   //setQueryResults(item);
-  const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
+  //const url = `/viewAll?${createSearchParams({ id: item.iid }).toString()}`;
 
     // Programmatically navigate to the URL
-    window.open(url, '_blank');
+    //window.open(url, '_blank');
+};
+
+
+const handleCloseOverlay = () => {
+  setShowOverlay(false);
+  setSelectedItem({}); // Reset selectedItem to an empty object
 };
 
     return (
@@ -726,6 +733,54 @@ const handleRowClick = (item) => {
               ))}
             </tbody>
           </table>
+
+          {showOverlay && selectedItem &&(
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg">
+            
+            <div className="text-center">
+              <h2 className="text-xl font-bold mb-4">FULL INFORMATION</h2>
+              <p>{selectedItem.iid}</p>
+              <p>{selectedItem.accPerson}</p>
+              <p>{selectedItem.department}</p>
+              <p>{selectedItem.designation}</p>
+              <p>{selectedItem.invoiceDate}</p>
+              <p>{selectedItem.invoiceNumber}</p>
+              <p>{selectedItem.issueOrder}</p>
+              <p>{selectedItem.supplier}</p>
+              <p>{selectedItem.lifespan}</p>
+              <p>{selectedItem.unitOfMeasurement}</p>
+              <p>{selectedItem.quantity}</p>
+              <p>{selectedItem.unitCost}</p>
+              <p>{selectedItem.totalCost}</p>
+              <p>{selectedItem.status}</p>
+              <p>{selectedItem.remarks}</p>
+              {selectedItem.location ? (
+                <div>
+                  Building: {selectedItem.location.building}, Room: {selectedItem.location.room}
+                </div>
+              ) : (
+                <div>No location data available</div>
+              )}
+              {selectedItem.description ? (
+                <div>
+                  Name: {selectedItem.description.name}, Model: {selectedItem.description.model}, Type: {selectedItem.description.type}
+                  <p>Serial Number: {selectedItem.description.serialNumber}</p>
+                  <p>Other: {selectedItem.description.other}</p>
+                </div>
+              ) : (
+                <div>No description data available</div>
+              )}
+            </div>
+            <button
+									onClick={handleCloseOverlay}
+									className="bg-gray-400 text-white px-4 py-2 mr-2 rounded-md"
+								>
+									Cancel
+								</button>
+          </div>
+        </div>
+      )}
           </div>
           </>
     )
