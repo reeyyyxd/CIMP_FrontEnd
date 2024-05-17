@@ -98,7 +98,7 @@ export default function ViewAll( {user, setUser} ) {
                     setQueryResults(result.data);
                 })
                 .catch(error => {
-                    console.log(error);
+                        console.log(error);
                     alert("No Data found!");
                 });
        /* }   */
@@ -276,7 +276,7 @@ export default function ViewAll( {user, setUser} ) {
                                     <td>{convertTo12HourFormat(res.time)}</td>
                                     <td>{res.item ? (<p>{res.item.iid}</p>) : (<div>None</div>)}</td>
                                     <td>{res.type}</td>
-                                    <td>{res.user ? (<p>{res.user.user_id}</p>) : (<div>None</div>)}</td>
+                                    <td>{res.user ? (<p>{res.user.lname}, {res.user.fname}</p>) : (<div>None</div>)}</td>
                                     <td>{res.description}</td>
                                 </tr>
                             ))}

@@ -172,9 +172,10 @@ export default function AddItems({ setModalOpen }) {
 	const combinedSubmit = (event) => {
 		event.preventDefault(); // Prevent default form submission
 	  
-		// Call handleSubmit
 		handleSubmit();
 	  
+		
+
 		
 	  }
 	

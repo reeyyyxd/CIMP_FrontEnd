@@ -52,7 +52,7 @@ export default function Request( {user, setUser} ) {
             description: remarks + " | Quantity: " + number
         }, {
             params: {
-                uid: 1,
+                uid: user.uid,
                 iid: id 
             }
 			})
@@ -143,6 +143,8 @@ export default function Request( {user, setUser} ) {
                     console.log(result.data);
                     setQueryResults(result.data);
                     handleLog();
+                    
+
                 })
                 .catch(error => {
                     console.log(error);
