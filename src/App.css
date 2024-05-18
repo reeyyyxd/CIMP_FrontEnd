@@ -1,3 +1,11 @@
+body {
+  background-color: #ffffff;
+  background-image: url('../src/assets/images/citlogo.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: 400px 1px;
+  background-attachment: fixed; 
+}
 
 body::after {
   content: "";
@@ -10,7 +18,6 @@ body::after {
   background: rgba(255, 255, 255, 0.7); 
   z-index: -1;
 }
-
 
 
 

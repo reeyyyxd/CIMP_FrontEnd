@@ -78,7 +78,7 @@ export default function Login( {user, setUser} ) {
 				background: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${cit}) no-repeat center center fixed`,
 				backgroundSize: "contain",
 				width:"100vw",
-				height:"100vh",
+				backgroundColor: "white",
 			}}
 		>
 			<div

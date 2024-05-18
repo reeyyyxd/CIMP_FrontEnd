@@ -68,8 +68,8 @@ export default function Receive( {user, setUser} ){
 		<Home user={user} setUser={setUser} />
 
 <div class="flex justify-center">
-    <div class="w-full mt-40 max-w-xs">
-    <div className=" bg-maroon mb-2 py-2 px-4 rounded-t-md border border-maroon m-0"></div>
+    <div class="w-full mt-40 ml-52 max-w-xs">
+    <div className=" bg-maroon py-2 px-4 rounded-t-md border border-maroon"></div>
         <div class="bg-white shadow-2xl px-8 pt-6 pb-8 mb-0">
         <div className="p-6 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1">
 
@@ -140,7 +140,6 @@ export default function Receive( {user, setUser} ){
         </div>
          
         </>
-
     
     )
 }

@@ -209,8 +209,8 @@ export default function ViewAll( {user, setUser} ) {
                             <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
                             </svg>
                             </button>
-                    &
-                    <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold mb-7 py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
+                    
+                    <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold mb-7 ml-2 py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
                             onClick={handleFilter}>
                                 Filter
                 </button>

@@ -182,7 +182,7 @@ export default function Request( {user, setUser} ) {
             
 
             <div class="flex justify-center">
-                <div class="w-full mt-32 max-w-xs">
+                <div class="w-full mt-32 ml-52 max-w-xs">
                 <div className=" bg-maroon py-2 px-7 rounded-t-md border border-maroon"></div>
                     <div class="bg-white shadow-2xl px-8 pt-1 pb-8 mb-0"> 
                     <div className="p-6 mt-1 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1"> 
