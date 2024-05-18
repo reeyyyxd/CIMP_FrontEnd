@@ -87,7 +87,7 @@ export default function Search( {user, setUser} ) {
     return(
         <>
         <Home user={user} setUser={setUser} />
-            <div class="flex justify-start ml-60 mt-28 relative text-white">
+            <div class="flex justify-start ml-60 mt-36 relative text-white">
             <input 
             type="search" 
             name="search" 

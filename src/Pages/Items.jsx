@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Paper,
-	Modal,
-} from "@mui/material";
+import {Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Modal,} from "@mui/material";
 import axios from "axios";
 import AddItems from "./AddItems";
-import Navbar from "../Extras/navbar";
-import Sidebar from "../Extras/sidebar";
 import Home from "./Home";
-import ProfileDropdown from "../Extras/dropdown";
 import { styled } from "@mui/material/styles";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
