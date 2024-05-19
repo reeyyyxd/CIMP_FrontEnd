@@ -49,7 +49,7 @@ export default function Receive( {user, setUser} ){
             description: remarks + ", " + other
         }, {
             params: {
-                uid: 1,
+                uid: user.uid,
                 iid: id
             }
         })

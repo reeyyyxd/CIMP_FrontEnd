@@ -122,7 +122,7 @@ export default function AddItems({ setModalOpen }) {
 				description: "Added an Item"
 			}, {
 				params: {
-					uid: 1,
+					uid: user.uid,
 					iid: newId 
 				}
 			})
