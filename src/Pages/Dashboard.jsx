@@ -84,10 +84,6 @@ export default function Dashboard( {user, setUser}) {
 						</TableHead>
 						<TableBody>
 							{data.map((item) => {
-								if (item.deleted) {
-								return null; // Skip rendering this row if item.deleted is true
-								}
-
 								return (
 								<TableRow
 									key={item.iid}
