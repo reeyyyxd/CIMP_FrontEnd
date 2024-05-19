@@ -60,7 +60,7 @@ export default function Login( {user, setUser} ) {
 				password: ''
 			});
 
-			navigate("/home");
+			navigate("/dashboard");
 		  }).catch(error => {
 			console.log('There was a problem with the fetch operation:', error)
 		  })
