@@ -47,7 +47,7 @@ export default function App() {
     },
     {
       path: 'additems',
-      element: <AddItems />
+      element: <RequireAuth> <AddItems user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'logs',

@@ -8,7 +8,7 @@ import Home from "./Home";
 
 export default function AddItems({ setModalOpen }) {
 	const navigate = useNavigate();
-
+	const [user, setUser] = useState([]);
 	const [id, setId] = useState("");
 	const [queryResults, setQueryResults] = useState([]);
 	const [LqueryResults, setLQueryResults] = useState([]);
@@ -186,7 +186,7 @@ export default function AddItems({ setModalOpen }) {
 			<Navbar />
 			<Sidebar />
 			<ProfileDropdown />
-			<Home />
+			<Home user={user} setUser={setUser} />
 
 			<form
 				onSubmit={combinedSubmit}
