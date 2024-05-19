@@ -75,7 +75,7 @@ export default function Home( {user, setUser} ) {
 				</ProfileContainer>			
 				<ul class="space-y-2 mt-10 text-sm">
              <li>
-                <NavLink to="/home">
+                <NavLink to="/dashboard">
 					<a class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-150">
 						<span class="text-white">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

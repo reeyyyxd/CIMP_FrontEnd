@@ -11,7 +11,7 @@ import AddItems from "./Pages/AddItems"
 import Logs from "./Pages/Logs"
 import Request from "./Pages/Request"
 import Receive from "./Pages/Receive"
-
+import Dashboard from "./Pages/Dashboard"
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -32,6 +32,10 @@ export default function App() {
     {
       path: 'filter',
       element: <RequireAuth> <Filter user={user} setUser={setUser} /> </RequireAuth>
+    },
+    {
+      path: 'dashboard',
+      element: <RequireAuth> <Dashboard user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'search',
