@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function Login( {user, setUser} ) {
 	const navigate = useNavigate();
-
+	const address = getIpAddress();
 	const [loginData, setLoginData] = useState({
 		username: '',
 		password: ''
@@ -17,9 +17,21 @@ export default function Login( {user, setUser} ) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		
-		login();
+
+		event.preventDefault();
+    	const data = new FormData(event.currentTarget);
+
+		setLoginData({
+			username: data.get('username'),
+			password: data.get('password'),
+		});
 	};
+
+	useEffect(() => {
+		if (loginData.username !== '' || loginData.password !== '') {
+		  login();
+		}
+	  }, [loginData]);
 
 	const StyledButton = styled(Button)({
 		backgroundColor: "#F8C702",
@@ -34,8 +46,20 @@ export default function Login( {user, setUser} ) {
 		},
 	});
 
+	function getIpAddress() {
+		const hostname = window.location.hostname;
+
+		const indexOfColon = hostname.indexOf(':');
+
+		if(indexOfColon !== -1) {
+			return hostname.substring(0, indexOfColon);
+		}
+
+		return hostname;
+	}
+
 	async function login() {
-		return axios.post('http://localhost:8080/login', {
+		return axios.post(`http://${address}:8080/login`, {
 			username: loginData.username,
 			password: loginData.password
 		  }, {
@@ -64,11 +88,6 @@ export default function Login( {user, setUser} ) {
 		  }).catch(error => {
 			console.log('There was a problem with the fetch operation:', error)
 		  })
-	  };
-
-	const handleChange = (event) => {
-		const { name, value } = event.target;
-		setLoginData((prevData) => ({ ...prevData, [name]: value }));
 	  };
 
 	return (
@@ -175,8 +194,6 @@ export default function Login( {user, setUser} ) {
 								name="username"
 								label="Username"
 								variant="outlined"
-								// value={username}
-								onChange={handleChange}
 								style={{ marginBottom: "10px" }}
 								required
 								size="small"
@@ -190,8 +207,6 @@ export default function Login( {user, setUser} ) {
 								variant="outlined"
 								type="password"
 								size="small"
-								// value={password}
-								onChange={handleChange}
 								style={{ marginBottom: "10px" }}
 								required
 							/>

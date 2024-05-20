@@ -7,7 +7,6 @@ import Filter from "./Pages/Filter"
 import Search from "./Pages/Search"
 import ViewAll from "./Pages/ViewAll"
 import Item from "./Pages/Items"
-import AddItems from "./Pages/AddItems"
 import Logs from "./Pages/Logs"
 import Request from "./Pages/Request"
 import Receive from "./Pages/Receive"
@@ -48,10 +47,6 @@ export default function App() {
     {
       path: 'items',
       element: <RequireAuth> <Item user={user} setUser={setUser} /> </RequireAuth>
-    },
-    {
-      path: 'additems',
-      element: <RequireAuth> <AddItems user={user} setUser={setUser} /> </RequireAuth>
     },
     {
       path: 'logs',

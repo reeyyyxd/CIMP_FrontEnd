@@ -1,25 +1,196 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
-import {Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Modal,} from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Modal } from "@mui/material";
 import axios from "axios";
-import AddItems from "./AddItems";
 import Home from "./Home";
 import { styled } from "@mui/material/styles";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Items( {user, setUser} ) {
-	const navigate = useNavigate();
+	const [id, setId] = useState("");
+	const [queryResults, setQueryResults] = useState([]);
+	const [LqueryResults, setLQueryResults] = useState([]);
+
+	const [formData, setFormData] = useState({
+		accPerson: "",
+		department: "",
+		designation: "",
+		invoiceNumber: "",
+		invoiceDate: "",
+		issueOrder: "",
+		lifespan: "",
+		quantity: "",
+		remarks: "",
+		status: "AVAILABLE",
+		supplier: "",
+		totalCost: "",
+		unitCost: "",
+		unitOfMeasurement: "",
+		description: {
+			name: "",
+			model: "",
+			serialNumber: "",
+			type: "",
+			other: "",
+		},
+		location: {
+			building: "",
+			room: "",
+		},
+	});
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+
+		if (name === "quantity" || name === "unitCost") {
+			const quantity = name === "quantity" ? value : formData.quantity;
+			const unitCost = name === "unitCost" ? value : formData.unitCost;
+			const totalCost = parseFloat(quantity) * parseFloat(unitCost);
+
+			setFormData((prevState) => ({
+				...prevState,
+				[name]: value,
+				totalCost: totalCost.toString(),
+			}));
+		} else if (name.includes(".")) {
+			const [parentKey, childKey] = name.split(".");
+			setFormData((prevState) => ({
+				...prevState,
+				[parentKey]: {
+					...prevState[parentKey],
+					[childKey]: value,
+				},
+			}));
+		} else {
+			setFormData((prevState) => ({
+				...prevState,
+				[name]: value,
+			}));
+		}
+	};
+
+	const handleSubmit = () => {
+		const totalCost = parseFloat(formData.quantity) * parseFloat(formData.unitCost);
+	
+		axios.post(`http://${address}:8080/item/insertItem`, {
+			accPerson: formData.accPerson,
+			department: formData.department,
+			designation: formData.designation,
+			invoiceNumber: formData.invoiceNumber,
+			invoiceDate: formData.invoiceDate,
+			issueOrder: formData.issueOrder,
+			lifespan: formData.lifespan,
+			quantity: formData.quantity,
+			remarks: formData.remarks,
+			status: formData.status,
+			supplier: formData.supplier,
+			totalCost: totalCost,
+			unitCost: formData.unitCost,
+			unitOfMeasurement: formData.unitOfMeasurement,
+			description: {
+				name: formData.description.name,
+				model: formData.description.model,
+				serialNumber: formData.description.serialNumber,
+				type: formData.description.type,
+				other: formData.description.other,
+			},
+			location: {
+				building: formData.location.building,
+				room: formData.location.room,
+			},
+		})
+		.then(response => {
+			const newId = response.data.iid; 
+			setQueryResults(response.data);
+			setId(newId);
+			window.alert("Data added!");
+			console.log("Data added!");
+			console.log("New item ID:", newId); 
+			console.log(response.data);
+	
+			
+			axios.post(`http://${address}:8080/addLog`, {
+				description: "Added an Item",
+				type: "ADD"
+			}, {
+				params: {
+					uid: user.uid,
+					iid: newId 
+				}
+			})
+			.then(response => {
+				setLQueryResults(response.data);
+				setShowAddItemModal(false);
+			})
+			.catch(error => {
+				console.error("Error adding log:", error);
+			});
+
+			setFormData({
+				accPerson: "",
+				department: "",
+				designation: "",
+				invoiceNumber: "",
+				invoiceDate: "",
+				issueOrder: "",
+				lifespan: "",
+				quantity: "",
+				remarks: "",
+				status: "",
+				supplier: "",
+				totalCost: "",
+				unitCost: "",
+				unitOfMeasurement: "",
+				description: {
+					name: "",
+					model: "",
+					serialNumber: "",
+					type: "",
+					other: "",
+				},
+				location: {
+					building: "",
+					room: "",
+				},
+			});
+		})
+		.catch(error => {
+			console.error("Error inserting data:", error);
+		});
+	};
+
+	const combinedSubmit = (event) => {
+		event.preventDefault(); // Prevent default form submission
+		handleSubmit();
+	}
+
 	const [data, setData] = useState([]);
 	const [selectedItem, setSelectedItem] = useState({}); // Initialize with an empty object
 	const [showOverlay, setShowOverlay] = useState(false);
 	const [showAddItemModal, setShowAddItemModal] = useState(false);
+	const [loader, setLoader] = useState(null);
+	const address = getIpAddress();
+	
+	function getIpAddress() {
+		const hostname = window.location.hostname;
+
+		const indexOfColon = hostname.indexOf(':');
+
+		if(indexOfColon !== -1) {
+			return hostname.substring(0, indexOfColon);
+		}
+
+		return hostname;
+	}
+
+	const handleOpenModal = () => setShowAddItemModal(true);
+	const handleCloseModal = () => setShowAddItemModal(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(
-					"http://localhost:8080/item/getAllItems"
+					`http://${address}:8080/item/getAllItems`
 				);
 				setData(response.data);
 			} catch (error) {
@@ -28,7 +199,7 @@ export default function Items( {user, setUser} ) {
 		};
 
 		fetchData();
-	}, []);
+	}, [loader]);
 
 	const handleRowClick = (item) => {
 		setSelectedItem(item);
@@ -47,21 +218,22 @@ export default function Items( {user, setUser} ) {
 		const confirmDelete = window.confirm('Are you sure you want to delete this item?');
 	
 		if (confirmDelete) {
-		  axios.delete(`http://localhost:8080/item/deleteItem/${itemId}`)
+		  axios.delete(`http://${address}:8080/item/deleteItem/${itemId}`)
 			.then(response => {
 			  if (response.status === 200) {
 
-				axios.post("http://localhost:8080/addLog", {
+				axios.post(`http://${address}:8080/addLog`, {
 					type: "DELETE",
 					description: "Deleted an Item"
 				}, {
 					params: {
 						uid: 1,
-						iid: itemId // Using newId instead of id
+						iid: itemId
 					}
 				})
 				.then(response => {
 					console.log(response.data);
+					
 				})
 				.catch(error => {
 					console.error("Error adding log:", error);
@@ -69,9 +241,8 @@ export default function Items( {user, setUser} ) {
 				
 				console.log('Item deleted successfully');
 				alert("Item Deleted");
+				setLoader(Math.random()*1000);
 				handleCloseOverlay();
-				
-
 				
 			  } else {
 				console.error('Failed to delete item');
@@ -91,7 +262,7 @@ export default function Items( {user, setUser} ) {
 	
 		try {
 			if (selectedItem) {
-				const url = `http://localhost:8080/item/updateItem/${selectedItem.iid}`;
+				const url = `http://${address}:8080/item/updateItem/${selectedItem.iid}`;
 				await axios.put(url, selectedItem);
 				alert("Data updated");
 				console.log("Item updated successfully");
@@ -115,7 +286,7 @@ export default function Items( {user, setUser} ) {
 					description = "Updated nothing";
 				}
 	
-				await axios.post("http://localhost:8080/addLog", {
+				await axios.post(`http://${address}:8080/addLog`, {
 					type: "UPDATED",
 					description: description
 				}, {
@@ -133,7 +304,7 @@ export default function Items( {user, setUser} ) {
 	
 				setShowOverlay(false);
 				const response = await axios.get(
-					"http://localhost:8080/item/getAllItems"
+					`http://${address}:8080/item/getAllItems`
 				);
 				setData(response.data);
 	
@@ -183,7 +354,7 @@ export default function Items( {user, setUser} ) {
 						fontFamily: "Poppins",
 						fontWeight: 500,
 					}}
-					onClick={() => setShowAddItemModal(true)}
+					onClick={handleOpenModal}
 				>
 					<span
 						style={{
@@ -738,11 +909,428 @@ export default function Items( {user, setUser} ) {
 			)}
 			<Modal
 				open={showAddItemModal}
-				onClose={() => setShowAddItemModal(false)}
+				onClose={handleCloseModal}
 				aria-labelledby="add-item-modal"
 				aria-describedby="add-item-modal-description"
 			>
-				<AddItems setModalOpen={setShowAddItemModal} />
+				<form
+					onSubmit={combinedSubmit}
+					className="fixed inset-0 flex items-center justify-center mt-10"
+				>
+					<div className="container bg-white border border-gray-200 rounded-3xl p-6 w-fit shadow-2xl">
+						<div className="grid gap-6 mb-6 md:grid-cols-3" style={{fontFamily:"Poppins"}}>
+							<div className="relative">
+								<input
+									type="text"
+									name="accPerson"
+									id="accPerson"
+									value={formData.accPerson}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="accPerson"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Accountable Person
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="department"
+									id="department"
+									value={formData.department}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="department"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Department
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="designation"
+									id="designation"
+									value={formData.designation}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+							
+								/>
+								<label
+									htmlFor="designation"
+								
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Designation
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="invoiceNumber"
+									id="invoiceNumber"
+									value={formData.invoiceNumber}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="invoiceNumber"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Invoice Number
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="invoiceDate"
+									id="invoiceDate"
+									value={formData.invoiceDate}
+									onChange={handleChange}
+									placeholder="Required*"
+									pattern="[0-9]*"
+									title="Please input valid year, e.g., 2024"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="invoiceDate"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Invoice Date
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="issueOrder"
+									id="issueOrder"
+									value={formData.issueOrder}
+									onChange={handleChange}
+									placeholder="Required*"
+									pattern="[0-9]*"
+									title="Please enter a numerical character (1-9)"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="issueOrder"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Issue Order
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="lifespan"
+									id="lifespan"
+									value={formData.lifespan}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="lifespan"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Lifespan
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="quantity"
+									id="quantity"
+									value={formData.quantity}
+									onChange={handleChange}
+									placeholder="Required*"
+									pattern="[0-9]*"
+									title="Please enter a numerical character (1-9)"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="quantity"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Quantity
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="remarks"
+									id="remarks"
+									value={formData.remarks}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="remarks"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Remarks
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="supplier"
+									id="supplier"
+									value={formData.supplier}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="supplier"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Supplier
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="totalCost"
+									id="totalCost"
+									value={formData.totalCost}
+									onChange={handleChange}
+									placeholder="Required*"
+									pattern="[0-9]+([.][0-9]+)?"
+									title="Please enter a valid number, e.g., 12.34"
+									required
+									readOnly
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="totalCost"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Total Cost
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="unitCost"
+									id="unitCost"
+									value={formData.unitCost}
+									onChange={handleChange}
+									placeholder="Required*"
+									pattern="[0-9]+([.][0-9]+)?"
+									title="Please enter a valid number, e.g., 12.34"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="unitCost"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Unit Cost
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="unitOfMeasurement"
+									id="unitOfMeasurement"
+									value={formData.unitOfMeasurement}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="unitOfMeasurement"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Unit of Measurement
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="description.name"
+									id="description.name"
+									value={formData.description.name}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="description.name"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Description Name
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="description.model"
+									id="description.model"
+									value={formData.description.model}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="description.model"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Description Model
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="description.serialNumber"
+									id="description.serialNumber"
+									value={formData.description.serialNumber}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="description.serialNumber"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Serial Number
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="description.type"
+									id="description.type"
+									value={formData.description.type}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="description.type"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Description Type
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="description.other"
+									id="description.other"
+									value={formData.description.other}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="description.other"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Description Other
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="location.building"
+									id="location.building"
+									value={formData.location.building}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="location.building"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Location Building
+								</label>
+							</div>
+
+							<div className="relative">
+								<input
+									type="text"
+									name="location.room"
+									id="location.room"
+									value={formData.location.room}
+									onChange={handleChange}
+									placeholder="Required*"
+									required
+									className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+								/>
+								<label
+									htmlFor="location.room"
+									className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+								>
+									Location Room
+								</label>
+							</div>
+							<div className="flex justify-center ml-72 md:col-span-3 ">
+								<button
+									type="submit"
+									className="bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-20 rounded-full border-none"
+								>
+									Add
+								</button>
+								<div style={{marginLeft:"10px"}}>
+									<button
+										type="button"
+										className="bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-20 rounded-full"
+										onClick={handleCloseModal}
+									>
+										Back
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
 			</Modal>
 		</>
 	);

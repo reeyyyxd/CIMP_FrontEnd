@@ -1,16 +1,6 @@
-import { TextField, Button } from "@mui/material";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../Extras/navbar";
-import Sidebar from "../Extras/sidebar";
-import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-
+import { useState } from "react";
 
 export default function Request( {user, setUser} ) {
     const [type, setType] = useState("");
@@ -19,10 +9,21 @@ export default function Request( {user, setUser} ) {
     const [remarks, setRemarks] = useState("");
     const [stat, setStat] = useState("");
     const [other, setOther] =useState("");
-
     const [LqueryResults, setLQueryResults] = useState([]);
-   
     const [queryResults, setQueryResults] = useState([]);
+    const address = getIpAddress();
+	
+	function getIpAddress() {
+		const hostname = window.location.hostname;
+
+		const indexOfColon = hostname.indexOf(':');
+
+		if(indexOfColon !== -1) {
+			return hostname.substring(0, indexOfColon);
+		}
+
+		return hostname;
+	}
 
        
     const handleOther = (event) => {
@@ -47,7 +48,7 @@ export default function Request( {user, setUser} ) {
 
     const handleLog = () =>{
         if(type === "REQUEST"){
-            axios.post("http://localhost:8080/addLog", {
+            axios.post(`http://${address}:8080/addLog`, {
             type: type,
             description: remarks + " | Quantity: " + number
         }, {
@@ -65,7 +66,7 @@ export default function Request( {user, setUser} ) {
 				console.error("Error adding log:", error);
 			});
         }else{
-            axios.post("http://localhost:8080/addLog", {
+            axios.post(`http://${address}:8080/addLog`, {
             type: type,
             description: remarks 
         }, {
@@ -87,7 +88,7 @@ export default function Request( {user, setUser} ) {
     }
 
     const handleQuanti = () =>{
-        axios.get("http://localhost:8080/item/quantiLog",{
+        axios.get(`http://${address}:8080/item/quantiLog`,{
             params: {
                 num: id
             }
@@ -96,7 +97,7 @@ export default function Request( {user, setUser} ) {
             console.log(result.data);
 
                 if(result.data >= parseInt(number)){
-                    axios.put("http://localhost:8080/item/requestItem", null, {
+                    axios.put(`http://${address}:8080/item/requestItem`, null, {
                         params: {
                             number: parseInt(number),
                             itemId: id
@@ -121,7 +122,7 @@ export default function Request( {user, setUser} ) {
     }
 
     const handleStatus = () =>{
-        axios.get("http://localhost:8080/item/statusLog", {
+        axios.get(`http://${address}:8080/item/statusLog`, {
             params: {
                 type: id
             }
@@ -132,7 +133,7 @@ export default function Request( {user, setUser} ) {
     
             
             if(result.data === "AVAILABLE"){
-                axios.put("http://localhost:8080/item/updateStatus", null, {
+                axios.put(`http://${address}:8080/item/updateStatus`, null, {
                     params: {
                         iid: id,
                         status: type
@@ -180,11 +181,10 @@ export default function Request( {user, setUser} ) {
         <>
             <Home user={user} setUser={setUser} />
             
-
-            <div class="flex justify-center">
-                <div class="w-full mt-32 ml-52 max-w-xs">
+            <div className="flex justify-center">
+                <div className="w-full mt-32 ml-52 max-w-xs">
                 <div className=" bg-maroon py-2 px-7 rounded-t-md border border-maroon"></div>
-                    <div class="bg-white shadow-2xl px-8 pt-1 pb-8 mb-0"> 
+                    <div className="bg-white shadow-2xl px-8 pt-1 pb-8 mb-0"> 
                     <div className="p-6 mt-1 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1"> 
 
             <div className="sm:col-span-1">
@@ -200,7 +200,7 @@ export default function Request( {user, setUser} ) {
             </div>
         
             <div className="sm:col-span-1"> 
-          <div class="relative">
+          <div className="relative">
             <input
                 type="text"
                 name="propertyTag"
@@ -210,8 +210,8 @@ export default function Request( {user, setUser} ) {
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
         />
         <label
-			for="propertyTag"
-		    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+			htmlFor="propertyTag"
+		    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
 		>
 			Enter Property Tag
 		    </label>
@@ -220,7 +220,7 @@ export default function Request( {user, setUser} ) {
        
 
         <div className="sm:col-span-1"> 
-          <div class="relative">
+          <div className="relative">
             <input
                 type="text"
                 name="request"
@@ -230,8 +230,8 @@ export default function Request( {user, setUser} ) {
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
         />
         <label
-			for="request"
-		    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+			htmlFor="request"
+		    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
 		>
 			Requested by:
 		    </label>
@@ -240,7 +240,7 @@ export default function Request( {user, setUser} ) {
             
 
         <div className="sm:col-span-1"> 
-          <div class="relative">
+          <div className="relative">
             <input
                 type="text"
                 name="quantity"
@@ -250,8 +250,8 @@ export default function Request( {user, setUser} ) {
                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
         />
         <label
-			for="quantity"
-		    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+			htmlFor="quantity"
+		    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
 			Enter Quantity
 		    </label>
         </div>

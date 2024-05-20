@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
 import {Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Modal,} from "@mui/material";
 import axios from "axios";
-import AddItems from "./AddItems";
 import Home from "./Home";
 import { styled } from "@mui/material/styles";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-
 
 export default function Dashboard( {user, setUser}) {
     const [data, setData] = useState([]);
+	const address = getIpAddress();
+	
+	function getIpAddress() {
+		const hostname = window.location.hostname;
 
-    
+		const indexOfColon = hostname.indexOf(':');
+
+		if(indexOfColon !== -1) {
+		return hostname.substring(0, indexOfColon);
+		}
+
+		return hostname;
+	}
 
     useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(
-					"http://localhost:8080/item/itemDash"
+					`http://${address}:8080/item/itemDash`
 				);
 				setData(response.data);
 			} catch (error) {
@@ -87,7 +93,6 @@ export default function Dashboard( {user, setUser}) {
 								return (
 								<TableRow
 									key={item.iid}
-									onClick={() => handleRowClick(item)}
 									hover
 									style={{ cursor: "pointer" }}
 								>

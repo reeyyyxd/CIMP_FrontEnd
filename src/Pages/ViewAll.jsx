@@ -1,15 +1,26 @@
 import { useSearchParams } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { TextField, Button, Paper, Typography } from "@mui/material";
-
+import { Button, Paper, Typography } from "@mui/material";
 
 export default function ViewAll() {
 
     const [searchparams] = useSearchParams();
     const [queryResults, setQueryResults] = useState([])
+    const address = getIpAddress();
+	
+    function getIpAddress() {
+      const hostname = window.location.hostname;
+
+      const indexOfColon = hostname.indexOf(':');
+
+      if(indexOfColon !== -1) {
+        return hostname.substring(0, indexOfColon);
+      }
+
+      return hostname;
+    }
     
-  
     let id = searchparams.get("id");
     console.log(searchparams.get("id"));
     
@@ -20,7 +31,7 @@ export default function ViewAll() {
     const handleFetchSearch = () => {
       console.log(id);
   
-      axios.get("http://localhost:8080/item/fullInfo", {
+      axios.get(`http://${address}:8080/item/fullInfo`, {
           params: {
               info: id
           }

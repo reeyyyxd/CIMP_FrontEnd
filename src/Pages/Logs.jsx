@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { TextField, Button } from "@mui/material";
-import Navbar from "../Extras/navbar";
-import Sidebar from "../Extras/sidebar";
-import ProfileDropdown from "../Extras/dropdown";
 import Home from "./Home";
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-
-
 
 export default function ViewAll( {user, setUser} ) {
     const [queryResults, setQueryResults] = useState([]);
@@ -22,6 +14,19 @@ export default function ViewAll( {user, setUser} ) {
     const [bef, setBef] = useState("");
     const [aft, setAft] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const address = getIpAddress();
+	
+	function getIpAddress() {
+		const hostname = window.location.hostname;
+
+		const indexOfColon = hostname.indexOf(':');
+
+		if(indexOfColon !== -1) {
+			return hostname.substring(0, indexOfColon);
+		}
+
+		return hostname;
+	}
 
     const handleBef = event => {
         setBef(event.target.value);
@@ -35,6 +40,17 @@ export default function ViewAll( {user, setUser} ) {
         setSpecific(event.target.value);
     }
 
+    function getIpAddress() {
+		const hostname = window.location.hostname;
+
+		const indexOfColon = hostname.indexOf(':');
+
+		if(indexOfColon !== -1) {
+			return hostname.substring(0, indexOfColon);
+		}
+
+		return hostname;
+	}
 
     useEffect(() => {
         fetchType();
@@ -43,7 +59,7 @@ export default function ViewAll( {user, setUser} ) {
 
     const fetchType = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/item/logstype");
+            const response = await axios.get(`http://${address}:8080/item/logstype`);
             const uniqueOptions_type = [...new Set(response.data)]; 
             O_setType(uniqueOptions_type);
         } catch (error) {
@@ -53,7 +69,7 @@ export default function ViewAll( {user, setUser} ) {
 
     const fetchYear = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/item/logsyear");
+            const response = await axios.get(`http://${address}:8080/item/logsyear`);
             const uniqueOptions_year = [...new Set(response.data)]; 
             O_setYear(uniqueOptions_year);
         } catch (error) {
@@ -71,7 +87,7 @@ export default function ViewAll( {user, setUser} ) {
 
     const handleFilter = () => {
         axios
-            .get("http://localhost:8080/item/searchLogs", {
+            .get(`http://${address}:8080/item/searchLogs`, {
                 params: { month, year, day, type, bef, aft }
             })
             .then(result => {
@@ -91,7 +107,7 @@ export default function ViewAll( {user, setUser} ) {
             alert("Empty textfield");
         } else {*/
             axios
-                .get("http://localhost:8080/item/logsSpeci", {
+                .get(`http://${address}:8080/item/logsSpeci`, {
                     params: { num: specific }
                 })
                 .then(result => {
@@ -111,12 +127,12 @@ export default function ViewAll( {user, setUser} ) {
         <>
             <Home user={user} setUser={setUser}/>
 
-                    <div class="ml-60 mt-28">
+                    <div className="ml-60 mt-28">
                 <div className="p-6 mt-4 grid grid-cols-1 gap-x-3 gap-y-5 sm:grid-cols-7">
                       <div className="sm:col-span-1">
                                 <select id="data" onChange={(event) => setMonth(event.target.value)}
                                  className="border border-gray-700 rounded-md p-2 w-40 bg-gray-800 text-white text-sm hover:bg-gray-950">
-                                    <option value="" selected>Choose Month</option>
+                                    <option value="">Choose Month</option>
                                     <option value="1">January</option>
                                     <option value="2">February</option>
                                     <option value="3">March</option>
@@ -192,21 +208,21 @@ export default function ViewAll( {user, setUser} ) {
                                 </div>
                                 </div>
 
-                    <div class="flex justify-start ml-64 mt-11 relative text-white">
+                    <div className="flex justify-start ml-64 mt-11 relative text-white">
                         <input 
                         type="SearchPropertyTag" 
                         name="SearchPropertyTag" 
                         placeholder="Search Property Tag" 
-                        class="bg-gray-600 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+                        className="bg-gray-600 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
                         onChange={handleSpecific} 
                         />
                         <button 
                         type="submit" 
-                        class="absolute center-0 top-0 mt-3 ml-48"
+                        className="absolute center-0 top-0 mt-3 ml-48"
                         onClick={handleSearch}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                            <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
+                            <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
                             </svg>
                             </button>
                     
@@ -215,44 +231,44 @@ export default function ViewAll( {user, setUser} ) {
                                 Filter
                 </button>
                            
-                    <div class="ml-4 -mt-7">
-                        <div class="max-w-[16rem] mx-auto grid grid-cols-2 gap-4">
+                    <div className="ml-4 -mt-7">
+                        <div className="max-w-[16rem] mx-auto grid grid-cols-2 gap-4">
                         <div>
-                    <label for="start-time" 
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Start time:</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                    <label htmlFor="start-time" 
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Start time:</label>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fillRule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clipRule="evenodd"/>
                             </svg>
                         </div>
                         <input 
                         type="time" 
                         id="before" 
                         onChange={handleBef}
-                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                        className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                     </div>
                 </div>
                 <div>
-                    <label for="end-time" 
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">End time:</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                    <label htmlFor="end-time" 
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">End time:</label>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fillRule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clipRule="evenodd"/>
                             </svg>
                         </div>
                         <input 
                         type="time" 
                         id="after" 
                         onChange={handleAft}
-                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                        className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>  
-        <div class="mx-auto -mt-4 overflow-y-auto flex justify-center ml-52">    
+        <div className="mx-auto -mt-4 overflow-y-auto flex justify-center ml-52">    
                     <table className="w-full text-sm text-center rtl:text-right ml-12 mr-40 text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
                             <tr>
