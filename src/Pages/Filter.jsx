@@ -705,83 +705,297 @@ const handleCloseOverlay = () => {
                             {item.issueOrder}
                         </td>
                         <td class="px-6 py-4">
-                            {item.lifespan}
+                            {item.supplier}
                         </td>  
+                        <td class="px-6 py-4">
+                            {item.lifespan}
+                        </td>
+                        <td class="px-6 py-4">
+                            {item.unitOfMeasurement}
+                        </td>
                         <td class="px-6 py-4">
                             {item.quantity}
-                        </td>
-                        <td class="px-6 py-4">
-                            {item.remarks}
-                        </td>
-                        <td class="px-6 py-4">
-                            {item.status}
                         </td>  
                         <td class="px-6 py-4">
-                            {item.supplier}
+                            {item.unitCost}
                         </td>
                         <td class="px-6 py-4">
                             {item.totalCost}
                         </td>
                         <td class="px-6 py-4">
-                            {item.unitCost}
+                            {item.status}
                         </td> 
                         <td class="px-6 py-4">
-                            {item.unitOfMeasurement}
+                            {item.remarks}
                         </td>               
                     </tr>
               ))}
             </tbody>
           </table>
 
-          {showOverlay && selectedItem &&(
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg">
+            {showOverlay && selectedItem &&(
+          <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+            <div className="bg-white bg-opacity-95 rounded-md shadow-md">
+            <h2 className="font-mono text-lg text-center font-semibold text-maroon bg-yellow-400 mb-4 py-3 px-4 rounded-none border border-yellow-400 m-0">
+                FULL INFORMATION 
+              </h2>
+              
+          <div className="p-6 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-7">
             
-            <div className="text-center">
-              <h2 className="text-xl font-bold mb-4">FULL INFORMATION</h2>
-              <p>{selectedItem.iid}</p>
-              <p>{selectedItem.accPerson}</p>
-              <p>{selectedItem.department}</p>
-              <p>{selectedItem.designation}</p>
-              <p>{selectedItem.invoiceDate}</p>
-              <p>{selectedItem.invoiceNumber}</p>
-              <p>{selectedItem.issueOrder}</p>
-              <p>{selectedItem.supplier}</p>
-              <p>{selectedItem.lifespan}</p>
-              <p>{selectedItem.unitOfMeasurement}</p>
-              <p>{selectedItem.quantity}</p>
-              <p>{selectedItem.unitCost}</p>
-              <p>{selectedItem.totalCost}</p>
-              <p>{selectedItem.status}</p>
-              <p>{selectedItem.remarks}</p>
-              {selectedItem.location ? (
-                <div>
-                  Building: {selectedItem.location.building}, Room: {selectedItem.location.room}
-                </div>
-              ) : (
-                <div>No location data available</div>
-              )}
-              {selectedItem.description ? (
-                <div>
-                  Name: {selectedItem.description.name}, Model: {selectedItem.description.model}, Type: {selectedItem.description.type}
-                  <p>Serial Number: {selectedItem.description.serialNumber}</p>
-                  <p>Other: {selectedItem.description.other}</p>
-                </div>
-              ) : (
-                <div>No description data available</div>
-              )}
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Property Tag:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.iid}
+              </div>
             </div>
-            <button
-									onClick={handleCloseOverlay}
-									className="bg-gray-400 text-white px-4 py-2 mr-2 rounded-md"
-								>
-									Cancel
-								</button>
+
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Accountable Person:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.accPerson}
+              </div>
           </div>
-        </div>
-      )}
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Department:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.department}
+              </div>
           </div>
-          </>
-    )
-}
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Designation:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.designation}
+              </div>
+          </div>   
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Invoice Date:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.invoiceDate}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Invoice Number:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.invoiceNumber}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Issue Order:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.issueOrder}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Supplier:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.supplier}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Lifespan:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.lifespan}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Unit Of Measurement:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.unitOfMeasurement}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Quantity:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.quantity}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Unit Cost:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.unitCost}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Total Cost:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.totalCost}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Status:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.status}
+              </div>
+          </div>
+
+          <div className="sm:col-span-1">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Remarks:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.remarks}
+              </div>
+          </div>
+
+              
+              <div className="sm:col-span-1">
+                {selectedItem.location ? (
+                  <div>
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Building:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.location.building} 
+                    </div>
+                  </div>
+                ) : (
+                  <div>No location data available</div>
+                )}
+                </div>
+                
+                <div className="sm:col-span-1">
+                {selectedItem.location ? ( 
+                  <div>
+                  <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Room:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                  {selectedItem.location.room}
+                  </div>
+                  </div>
+                ) : (
+                  <div>No location data available</div>
+                )}
+                </div>
+
+                <div className="sm:col-span-1">
+                {selectedItem.description ? (
+                  <div>
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Name:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.description.name} 
+                    </div>
+                    </div>
+                ) : (
+                  <div>No description data available</div>
+                )}
+                </div>
+
+                <div className="sm:col-span-1">
+                {selectedItem.description ? (
+                  <div>
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Model:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+              {selectedItem.description.model} 
+                    </div>
+                    </div>
+                ) : (
+                  <div>No description data available</div>
+                )}
+                </div>
+                
+                <div className="sm:col-span-1">
+                {selectedItem.description ? (
+                  <div>
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Type:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                    {selectedItem.description.type} 
+                    </div>
+                    </div>
+                ) : (
+                  <div>No description data available</div>
+                )}
+                </div>
+                
+                <div className="sm:col-span-1">
+                {selectedItem.description ? (
+                  <div>
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Serial Number::
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                      {selectedItem.description.serialNumber}
+                    </div>
+                    </div>
+                ) : (
+                  <div>No description data available</div>
+                )}
+                </div>
+                
+                <div className="sm:col-span-1">
+                {selectedItem.description ? (
+                  <div>
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                    Other:
+              </label>
+              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                      {selectedItem.description.other}
+                    </div>
+                    </div>
+                ) : (
+                  <div>No description data available</div>
+                )}
+                </div>   
+              </div>
+              <div className="flex justify-between p-6"> 
+              <button
+                    onClick={handleCloseOverlay}
+                    className="bg-gray-400 text-white px-4 py-2 rounded-md mt-1 mr-2"
+                  >
+                    Cancel
+                  </button>
+                  </div>
+            </div>
+          </div>
+        )}
+            </div>
+            </>
+      )
+  }
 
