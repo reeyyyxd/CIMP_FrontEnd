@@ -712,151 +712,37 @@ export default function Filter( {user, setUser} ) {
             </tbody>
           </table>
 
-            {showOverlay && selectedItem &&(
+        {showOverlay && selectedItem &&(
           <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
             <div className="bg-white bg-opacity-95 rounded-md shadow-md">
-            <h2 className="font-mono text-lg text-center font-semibold text-maroon bg-yellow-400 mb-4 py-3 px-4 rounded-none border border-yellow-400 m-0">
-                FULL INFORMATION 
-              </h2>
-              
-          <div className="p-6 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-7">
-            
-            <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Property Tag:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.iid}
-              </div>
-            </div>
-
-            <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Accountable Person:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.accPerson}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Department:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.department}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Designation:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.designation}
-              </div>
-          </div>   
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Invoice Date:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.invoiceDate}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Invoice Number:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.invoiceNumber}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Issue Order:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.issueOrder}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Supplier:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                    {selectedItem.supplier}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Lifespan:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                    {selectedItem.lifespan}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Unit Of Measurement:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                    {selectedItem.unitOfMeasurement}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Quantity:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                    {selectedItem.quantity}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Unit Cost:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                    {selectedItem.unitCost}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Total Cost:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                    {selectedItem.totalCost}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Status:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.status}
-              </div>
-          </div>
-
-          <div className="sm:col-span-1">
-              <label className="block text-sm font-medium leading-6 text-gray-900">
-                  Remarks:
-              </label>
-              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
-                  {selectedItem.remarks}
-              </div>
-          </div>
-
-              
+              <h2 className="font-mono text-lg text-center font-semibold text-maroon bg-yellow-400 mb-4 py-3 px-4 rounded-none border border-yellow-400 m-0">
+                FULL INFORMATION
+                  </h2>     
+                    <div className="p-6 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-7">
+                      {[
+                        { label: 'Property Tag ', value: selectedItem.iid },
+                        { label: 'Account Person', value: selectedItem.accPerson },
+                        { label: 'Department', value: selectedItem.department },
+                        { label: 'Designation', value: selectedItem.designation },
+                        { label: 'Invoice Date', value: selectedItem.invoiceDate },
+                        { label: 'Invoice Number', value: selectedItem.invoiceNumber },
+                        { label: 'Issue Order', value: selectedItem.issueOrder },
+                        { label: 'Supplier', value: selectedItem.supplier },
+                        { label: 'Lifespan', value: selectedItem.lifespan },
+                        { label: 'Unit of Measurement', value: selectedItem.unitOfMeasurement },
+                        { label: 'Quantity', value: selectedItem.quantity },
+                        { label: 'Unit Cost', value: selectedItem.unitCost },
+                        { label: 'Total Cost', value: selectedItem.totalCost },
+                        { label: 'Status', value: selectedItem.status },
+                        { label: 'Remarks', value: selectedItem.remarks },
+                        ].map(({ label, value }) => (
+                            <div key={label} className="sm:col-span-1">
+                              <label className="block text-sm font-medium leading-6 text-gray-900">{label}:</label>
+                              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                                {value}
+                              </div>
+                            </div>
+                          ))}  
               <div className="sm:col-span-1">
                 {selectedItem.location ? (
                   <div>

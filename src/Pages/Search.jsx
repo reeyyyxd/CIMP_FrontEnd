@@ -110,32 +110,35 @@ export default function Search( {user, setUser} ) {
       };
 
     return(
-        <>
+        <> 
         <Home user={user} setUser={setUser} />
-            <div className="flex justify-start ml-60 mt-36 relative text-white">
-            <input 
-            type="search" 
-            name="search" 
+          <div className="flex justify-start ml-60 mt-36 relative text-white">
+          <input 
+            type="Search" 
+            name="Search" 
             placeholder="Search" 
             className="bg-gray-600 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
-            onChange={handleSearch} 
+            onChange={handleSearch}
             />
-            <Button 
+            <button 
             type="submit" 
             className="absolute center-0 top-0 mt-3 ml-48"
             onClick={handleFetchSearch}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
-                <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
-                </svg>
-                </Button>
-            & 
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
+            <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
+            </svg>
+                </button>
+               
+            &nbsp;&nbsp;&nbsp;
             <Button 
             variant="outlined" 
             onClick={handlePrintTable}
             style={{ 
                 color: 'black', 
-                borderColor: 'black' 
+                borderColor: '#f8c702', 
+                backgroundColor:'#f8c702' 
+         
                 }}>
                 Print<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
@@ -184,53 +187,150 @@ export default function Search( {user, setUser} ) {
                         </table>
 
                         {showOverlay && selectedItem &&(
-                        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-                        <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg">
-                            
-                            <div className="text-center">
-                            <h2 className="text-xl font-bold mb-4">FULL INFORMATION</h2>
-                            <p>{selectedItem.iid}</p>
-                            <p>{selectedItem.accPerson}</p>
-                            <p>{selectedItem.department}</p>
-                            <p>{selectedItem.designation}</p>
-                            <p>{selectedItem.invoiceDate}</p>
-                            <p>{selectedItem.invoiceNumber}</p>
-                            <p>{selectedItem.issueOrder}</p>
-                            <p>{selectedItem.supplier}</p>
-                            <p>{selectedItem.lifespan}</p>
-                            <p>{selectedItem.unitOfMeasurement}</p>
-                            <p>{selectedItem.quantity}</p>
-                            <p>{selectedItem.unitCost}</p>
-                            <p>{selectedItem.totalCost}</p>
-                            <p>{selectedItem.status}</p>
-                            <p>{selectedItem.remarks}</p>
-                            {selectedItem.location ? (
+                        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+                        <div className="bg-white bg-opacity-95 rounded-md shadow-md">
+                          <h2 className="font-mono text-lg text-center font-semibold text-maroon bg-yellow-400 mb-4 py-3 px-4 rounded-none border border-yellow-400 m-0">
+                            FULL INFORMATION
+                          </h2>     
+                          <div className="p-6 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-7">
+                          {[
+                            { label: 'Property Tag ', value: selectedItem.iid },
+                            { label: 'Account Person', value: selectedItem.accPerson },
+                            { label: 'Department', value: selectedItem.department },
+                            { label: 'Designation', value: selectedItem.designation },
+                            { label: 'Invoice Date', value: selectedItem.invoiceDate },
+                            { label: 'Invoice Number', value: selectedItem.invoiceNumber },
+                            { label: 'Issue Order', value: selectedItem.issueOrder },
+                            { label: 'Supplier', value: selectedItem.supplier },
+                            { label: 'Lifespan', value: selectedItem.lifespan },
+                            { label: 'Unit of Measurement', value: selectedItem.unitOfMeasurement },
+                            { label: 'Quantity', value: selectedItem.quantity },
+                            { label: 'Unit Cost', value: selectedItem.unitCost },
+                            { label: 'Total Cost', value: selectedItem.totalCost },
+                            { label: 'Status', value: selectedItem.status },
+                            { label: 'Remarks', value: selectedItem.remarks },
+                        ].map(({ label, value }) => (
+                            <div key={label} className="sm:col-span-1">
+                              <label className="block text-sm font-medium leading-6 text-gray-900">{label}:</label>
+                              <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                                {value}
+                              </div>
+                            </div>
+                          ))}
+                        <div className="sm:col-span-1">
+                        {selectedItem.location ? (
+                        <div>
+                            <label className="block text-sm font-medium leading-6 text-gray-900">
+                        Building:
+                    </label>
+                    <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                            {selectedItem.location.building} 
+                            </div>
+                        </div>
+                        ) : (
+                        <div>No location data available</div>
+                        )}
+                        </div>
+                        
+                        <div className="sm:col-span-1">
+                        {selectedItem.location ? ( 
+                        <div>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                        Room:
+                    </label>
+                    <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                        {selectedItem.location.room}
+                        </div>
+                        </div>
+                        ) : (
+                        <div>No location data available</div>
+                        )}
+                        </div>
+                        <div className="sm:col-span-1">
+                                {selectedItem.description ? (
                                 <div>
-                                Building: {selectedItem.location.building}, Room: {selectedItem.location.room}
-                                </div>
-                            ) : (
-                                <div>No location data available</div>
-                            )}
-                            {selectedItem.description ? (
-                                <div>
-                                Name: {selectedItem.description.name}, Model: {selectedItem.description.model}, Type: {selectedItem.description.type}
-                                <p>Serial Number: {selectedItem.description.serialNumber}</p>
-                                <p>Other: {selectedItem.description.other}</p>
-                                </div>
-                            ) : (
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                               Description Name:
+                            </label>
+                            <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                                    {selectedItem.description.name} 
+                                    </div>
+                                    </div>
+                                ) : (
                                 <div>No description data available</div>
-                            )}
+                                )}
+                                </div>
+
+                                <div className="sm:col-span-1">
+                                {selectedItem.description ? (
+                                <div>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                Model:
+                            </label>
+                            <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                            {selectedItem.description.model} 
+                                    </div>
+                                    </div>
+                                ) : (
+                                <div>No description data available</div>
+                                )}
+                                </div>
+                                
+                                <div className="sm:col-span-1">
+                                {selectedItem.description ? (
+                                <div>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                Type:
+                            </label>
+                            <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                                    {selectedItem.description.type} 
+                                    </div>
+                                    </div>
+                                ) : (
+                                <div>No description data available</div>
+                                )}
+                                </div>
+                                
+                                <div className="sm:col-span-1">
+                                {selectedItem.description ? (
+                                <div>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                Serial Number::
+                            </label>
+                            <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                                    {selectedItem.description.serialNumber}
+                                    </div>
+                                    </div>
+                                ) : (
+                                <div>No description data available</div>
+                                )}
+                                </div>
+                                
+                                <div className="sm:col-span-1">
+                                {selectedItem.description ? (
+                                <div>
+                                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                                    Other:
+                            </label>
+                            <div className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 pointer-events-none cursor-default">
+                                    {selectedItem.description.other}
+                                    </div>
+                                    </div>
+                                ) : (
+                                <div>No description data available</div>
+                                )}
+                                </div>   
                             </div>
                             <button
                                 onClick={handleCloseOverlay}
-                                className="bg-gray-400 text-white px-4 py-2 mr-2 rounded-md"
+                                className="bg-gray-400 hover:bg-gray-500 text-white px-4 ml-5 mt-7 mb-2 py-2 mr-2 rounded-md"
                             >
                                 Cancel
                             </button>
                         </div>
                         </div>
                         )}
-        </div>
+                    </div>
         </>
     );
 }
