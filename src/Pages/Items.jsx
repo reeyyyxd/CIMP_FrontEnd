@@ -107,7 +107,7 @@ export default function Items( {user, setUser} ) {
 			console.log("Data added!");
 			console.log("New item ID:", newId); 
 			console.log(response.data);
-	
+			
 			
 			axios.post(`http://${address}:8080/addLog`, {
 				description: "Added an Item",
@@ -121,6 +121,7 @@ export default function Items( {user, setUser} ) {
 			.then(response => {
 				setLQueryResults(response.data);
 				setShowAddItemModal(false);
+				setLoader(Math.random()*1000);
 			})
 			.catch(error => {
 				console.error("Error adding log:", error);
