@@ -74,6 +74,8 @@ export default function Login( {user, setUser} ) {
 			if(response.data === "") {
 				document.getElementById("username").value="";
 				document.getElementById("password").value="";
+				document.getElementById("username").blur();
+				document.getElementById("password").blur();
 				alert("Username / Password is incorrect.");
 
 			} else {
