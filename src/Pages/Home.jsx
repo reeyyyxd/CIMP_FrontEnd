@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../Extras/navbar";
@@ -93,14 +93,14 @@ export default function Home( {user, setUser} ) {
                 </NavLink>
             </li>
             <li>
-				<NavLink to="/search" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+				{user.type === "admin" || user.type === "Admin" ? (<NavLink to="/search" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
 					<span className="text-white">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
 					<path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
 					</svg>
 					</span>
 					<span>Search</span>
-				</NavLink>
+				</NavLink>) : (<li className="hidden"></li>)}
             </li>
             <li>
 				<NavLink to="/filter" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
