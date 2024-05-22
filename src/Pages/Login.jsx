@@ -71,20 +71,27 @@ export default function Login( {user, setUser} ) {
 			  throw new Error('There is a problem with the request');
 			}
 
-			setUser({
-				uid: response.data.uid,
-				fname: response.data.fname,
-				lname: response.data.lname,
-				username: response.data.username,
-				type: response.data.type
-			});
+			if(response.data === "") {
+				document.getElementById("username").value="";
+				document.getElementById("password").value="";
+				alert("Username / Password is incorrect.");
 
-			setLoginData({
-				username: '',
-				password: ''
-			});
-
-			navigate("/dashboard");
+			} else {
+				setUser({
+					uid: response.data.uid,
+					fname: response.data.fname,
+					lname: response.data.lname,
+					username: response.data.username,
+					type: response.data.type
+				});
+	
+				setLoginData({
+					username: '',
+					password: ''
+				});
+	
+				navigate("/dashboard");
+			}
 		  }).catch(error => {
 			console.log('There was a problem with the fetch operation:', error)
 		  })
@@ -191,6 +198,7 @@ export default function Login( {user, setUser} ) {
 								InputLabelProps={{
 									style: { fontFamily: "Poppins", fontSize: "15px" },
 								}}
+								id="username"
 								name="username"
 								label="Username"
 								variant="outlined"
@@ -202,6 +210,7 @@ export default function Login( {user, setUser} ) {
 								InputLabelProps={{
 									style: { fontFamily: "Poppins", fontSize: "15px" },
 								}}
+								id="password"
 								name="password"
 								label="Password"
 								variant="outlined"
