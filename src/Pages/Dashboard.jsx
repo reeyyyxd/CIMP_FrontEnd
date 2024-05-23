@@ -44,7 +44,7 @@ export default function Dashboard( {user, setUser}) {
                 <table className="h-1 text-xs text-center rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
 					<tr>
-						{columns.map(column => (
+						{columns.map(column => ( // generate table headers based on a predefined set of column names (almeda gwapo)
 							<th scope="col" className="px-6 py-3" key={column}>
 								{column}
 							</th>
