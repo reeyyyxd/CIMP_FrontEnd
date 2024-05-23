@@ -5,14 +5,15 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; // Import useNavigate hook
 
 const DropdownContent = styled.div`
-    position: absolute;
-    top: 100%;
-    left: 10px;
-    background-color: #e1e1e1;
-    border-radius: 3px;
-    padding: 10px 60px 10px 0;
-    opacity: 90%;
-    width: max-content;
+	position: absolute;
+	top: 100%;
+	left: 10px;
+	background-color: #e1e1e1;
+	border-radius: 3px;
+	padding: 10px 60px 10px 0;
+	opacity: 90%;
+	width: max-content;
+	z-index: 9999;
 `;
 
 const Tab = styled.div`
