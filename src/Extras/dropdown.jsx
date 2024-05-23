@@ -12,6 +12,7 @@ const DropdownContent = styled.div`
 	padding: 10px 60px 10px 0;
 	opacity: 90%;
 	width: max-content;
+	z-index: 9999;
 `;
 
 const Tab = styled.div`
