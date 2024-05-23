@@ -83,43 +83,64 @@ export default function Home( {user, setUser} ) {
 				{user.type === "admin" || user.type === "Admin" ? (
 					<ul className="space-y-2 mt-10 text-sm">
 						<li>
-							<NavLink to="/dashboard" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/dashboard" 
+							className={({ isActive }) => 
+									`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 							<DashboardIcon /> 
 								<span>Dashboard</span>
 							</NavLink>
 						</li>	
 						<li>
-							<NavLink to="/items" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/items" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 								<InventoryIcon />
 								<span>Inventory</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/search" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/search" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 								<SearchIcon />
 								<span>Search</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/filter" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/filter" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 								<FilterAltIcon />
 								<span>Filter</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/logs" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/logs" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 								<HistoryIcon />
 								<span>Logs History</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/request" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/request" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 								<RequestPageIcon />
 								<span>Request</span>
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/receive" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/receive" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200
+							 ${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 								<MarkAsUnreadIcon />
 								<span>Receive</span>
 							</NavLink>
@@ -128,13 +149,19 @@ export default function Home( {user, setUser} ) {
 				) : (
 					<ul className="space-y-2 mt-10 text-sm">
 						<li>
-							<NavLink to="/dashboard" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/dashboard" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 							<DashboardIcon /> 
 								<span>Dashboard</span>
 							</NavLink>
 						</li>	
 						<li>
-							<NavLink to="/items" className="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-800 focus:bg-gray-800 focus:shadow-outline transform hover:-translate-y-1 transition-transform ease-in duration-200">
+							<NavLink to="/items" 
+							className={({ isActive }) => 
+								`flex items-center space-x-3 text-white p-2 rounded-md font-medium transform transition-transform ease-in duration-200 
+							${isActive ? 'bg-gray-800 shadow-outline -translate-y-1' : 'hover:bg-gray-800 hover:-translate-y-1'}`}>
 							<InventoryIcon />
 								<span>Inventory</span>
 							</NavLink>
