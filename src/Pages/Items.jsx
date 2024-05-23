@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Modal } from "@mui/material";
+import { Modal } from "@mui/material";
 import axios from "axios";
 import Home from "./Home";
-import { styled } from "@mui/material/styles";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Items( {user, setUser} ) {
 	const [id, setId] = useState("");
 	const [queryResults, setQueryResults] = useState([]);
 	const [LqueryResults, setLQueryResults] = useState([]);
+	const columns = ["PROPERTY TAG", "ACCOUNTABLE PERSON", "DEPARTMENT", "DESIGNATION", "INVOICE NUMBER", "INVOICE DATE", "ISSUE ORDER NUMBER", "LIFESPAN", "QUANTITY", "REMAKRS", "STATUS", "SUPPLIER", "TOTAL COST", "UNIT COST", "UNIT OF MEASURE"];
 
 	const [formData, setFormData] = useState({
 		accPerson: "",
@@ -335,17 +335,10 @@ export default function Items( {user, setUser} ) {
 		setSelectedItem({ ...selectedItem, unitCost, totalCost });
 	};
 
-	const StyledTableCell = styled(TableCell)({
-		fontSize: "13px",
-		fontFamily: "Poppins",
-		color: "white",
-		textAlign: "center",
-		paddingBottom: "10px",
-	});
-
 	return (
 		<>
 			<Home user={user} setUser={setUser} />
+			
 			<div  style={{ margin: "10% 20px 0 0", display:"flex", justifyContent:"flex-end" }}>
 				<button
 					type="button"
@@ -369,85 +362,76 @@ export default function Items( {user, setUser} ) {
 					Add Item
 				</button>
 			</div>
-			<div
-				style={{
-					overflowX: "auto",
-					display: "flex",
-					justifyContent: "center",
-					maxWidth: "calc(100% - 225px)",
-					marginLeft: "220px",
-				}}
-			>
-				<TableContainer
-					component={Paper}
-					style={{
-						backgroundColor: "#8c383e",
-						borderRadius: "3px 3px",
-						width: "98%",
-						marginTop: "10px",
-					}}
-				>
-					<Table sx={{ minWidth: 650 }} size="medium">
-						<TableHead>
-							<TableRow>
-								<StyledTableCell>Property Tag</StyledTableCell>
-								<StyledTableCell>Accountable Person</StyledTableCell>
-								<StyledTableCell>Department</StyledTableCell>
-								<StyledTableCell>Designation</StyledTableCell>
-								<StyledTableCell>Invoice Number</StyledTableCell>
-								<StyledTableCell>Invoice Date</StyledTableCell>
-								<StyledTableCell>Issue Order #</StyledTableCell>
-								<StyledTableCell>Lifespan</StyledTableCell>
-								<StyledTableCell>Qty</StyledTableCell>
-								<StyledTableCell>Remarks</StyledTableCell>
-								<StyledTableCell>Status</StyledTableCell>
-								<StyledTableCell>Supplier</StyledTableCell>
-								<StyledTableCell>Total Cost</StyledTableCell>
-								<StyledTableCell>Unit Cost</StyledTableCell>
-								<StyledTableCell>Unit of Measure</StyledTableCell>
-								<StyledTableCell>Description ID</StyledTableCell>
-								<StyledTableCell>Location ID</StyledTableCell>
-							</TableRow>
-						</TableHead>
-						<TableBody>
-							{data.map((item) => {
+			<div className="ml-64 mr-5 mt-2 overflow-x-auto shadow-md sm:rounded-lg"> 
+            <table className="h-1 text-xs text-center rtl:text-right text-gray-500 dark:text-gray-400">
+          		<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+				  <tr>
+					{columns.map(column => ( // generate table headers based on a predefined set of column names (almeda gwapo)
+						<th scope="col" className="px-6 py-3" key={column}>
+							{column}
+						</th>
+					))}
+				</tr>
+                </thead>
+                <tbody>
+						{data.map((item) => {
 								if (item.deleted) {
 								return null; // Skip rendering this row if item.deleted is true
 								}
-
 								return (
-								<TableRow
-									key={item.iid}
-									onClick={() => handleRowClick(item)}
-									hover
-									style={{ cursor: "pointer" }}
-								>
-									<StyledTableCell>{item.iid}</StyledTableCell>
-									<StyledTableCell>{item.accPerson}</StyledTableCell>
-									<StyledTableCell>{item.department}</StyledTableCell>
-									<StyledTableCell>{item.designation}</StyledTableCell>
-									<StyledTableCell>{item.invoiceNumber}</StyledTableCell>
-									<StyledTableCell>{item.invoiceDate}</StyledTableCell>
-									<StyledTableCell>{item.issueOrder}</StyledTableCell>
-									<StyledTableCell>{item.lifespan}</StyledTableCell>
-									<StyledTableCell>{item.quantity}</StyledTableCell>
-									<StyledTableCell>{item.remarks}</StyledTableCell>
-									<StyledTableCell>{item.status}</StyledTableCell>
-									<StyledTableCell>{item.supplier}</StyledTableCell>
-									<StyledTableCell>{item.totalCost}</StyledTableCell>
-									<StyledTableCell>{item.unitCost}</StyledTableCell>
-									<StyledTableCell>{item.unitOfMeasurement}</StyledTableCell>
-									<StyledTableCell>{item.description.did}</StyledTableCell>
-									<StyledTableCell>{item.location.lid}</StyledTableCell>
-								</TableRow>
-								);
-							})}
-						</TableBody>
-
-					</Table>
-				</TableContainer>
-			</div>
-
+						<tr key={item.iid} onClick={() => handleRowClick(item)} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {item.iid}
+                        </th>
+                        <td className="px-6 py-4">
+                            {item.accPerson}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.department}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.designation}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.invoiceNumber}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.invoiceDate}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.issueOrder}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.lifespan}
+                        </td>  
+                        <td className="px-6 py-4">
+                            {item.quantity}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.remarks}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.status}
+                        </td>  
+                        <td className="px-6 py-4">
+                            {item.supplier}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.totalCost}
+                        </td>
+                        <td className="px-6 py-4">
+                            {item.unitCost}
+                        </td> 
+                        <td className="px-6 py-4">
+                            {item.unitOfMeasurement}
+                        </td>             
+                    </tr>  
+					);
+				})}
+                </tbody>
+            </table>
+        </div>
+          
 			{showOverlay && selectedItem && (
 				<div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
 					<div className="bg-white bg-opacity-95 rounded-md shadow-md">
@@ -908,6 +892,7 @@ export default function Items( {user, setUser} ) {
 					</div>
 				</div>
 			)}
+			{/* ADD ITEMS */}
 			<Modal
 				open={showAddItemModal}
 				onClose={handleCloseModal}

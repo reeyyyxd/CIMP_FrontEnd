@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Modal,} from "@mui/material";
 import axios from "axios";
 import Home from "./Home";
-import { styled } from "@mui/material/styles";
 
 export default function Dashboard( {user, setUser}) {
     const [data, setData] = useState([]);
 	const address = getIpAddress();
+	const columns = ["PROPERTY TAG", "ACCOUNTABLE PERSON", "UNIT COST", "QUANTITY", "TOTAL COST"];
 	
 	function getIpAddress() {
 		const hostname = window.location.hostname;
@@ -34,93 +33,92 @@ export default function Dashboard( {user, setUser}) {
 
 		fetchData();
 	}, []);
-	const StyledTableCell = styled(TableCell)({
-		fontSize: "13px",
-		fontFamily: "Poppins",
-		color: "white",
-		textAlign: "center",
-		paddingBottom: "10px",
-	});
+	
 
     return (
         <>
-            <Home user={user} setUser={setUser} />
-            <div  style={{ margin: "10% 20px 0 0", display:"flex", justifyContent:"flex-end" }}>
-				
-			</div>
-			<div
-				style={{
-					overflowX: "auto",
-					display: "flex",
-					justifyContent: "center",
-					maxWidth: "calc(100% - 225px)",
-					marginLeft: "220px",
-				}}
-			>
-				<TableContainer
-					component={Paper}
-					style={{
-						backgroundColor: "#8c383e",
-						borderRadius: "3px 3px",
-						width: "98%",
-						marginTop: "10px",
-					}}
-				>
-					<Table sx={{ minWidth: 650 }} size="medium">
-						<TableHead>
-							<TableRow>
-								<StyledTableCell>Property Tag</StyledTableCell>
-								<StyledTableCell>Accountable Person</StyledTableCell>
-								<StyledTableCell>Department</StyledTableCell>
-								<StyledTableCell>Designation</StyledTableCell>
-								<StyledTableCell>Invoice Number</StyledTableCell>
-								<StyledTableCell>Invoice Date</StyledTableCell>
-								<StyledTableCell>Issue Order #</StyledTableCell>
-								<StyledTableCell>Lifespan</StyledTableCell>
-								<StyledTableCell>Qty</StyledTableCell>
-								<StyledTableCell>Remarks</StyledTableCell>
-								<StyledTableCell>Status</StyledTableCell>
-								<StyledTableCell>Supplier</StyledTableCell>
-								<StyledTableCell>Total Cost</StyledTableCell>
-								<StyledTableCell>Unit Cost</StyledTableCell>
-								<StyledTableCell>Unit of Measure</StyledTableCell>
-								<StyledTableCell>Description ID</StyledTableCell>
-								<StyledTableCell>Location ID</StyledTableCell>
-							</TableRow>
-						</TableHead>
-						<TableBody>
-							{data.map((item) => {
-								return (
-								<TableRow
-									key={item.iid}
-									hover
-									style={{ cursor: "pointer" }}
-								>
-									<StyledTableCell>{item.iid}</StyledTableCell>
-									<StyledTableCell>{item.accPerson}</StyledTableCell>
-									<StyledTableCell>{item.department}</StyledTableCell>
-									<StyledTableCell>{item.designation}</StyledTableCell>
-									<StyledTableCell>{item.invoiceNumber}</StyledTableCell>
-									<StyledTableCell>{item.invoiceDate}</StyledTableCell>
-									<StyledTableCell>{item.issueOrder}</StyledTableCell>
-									<StyledTableCell>{item.lifespan}</StyledTableCell>
-									<StyledTableCell>{item.quantity}</StyledTableCell>
-									<StyledTableCell>{item.remarks}</StyledTableCell>
-									<StyledTableCell>{item.status}</StyledTableCell>
-									<StyledTableCell>{item.supplier}</StyledTableCell>
-									<StyledTableCell>{item.totalCost}</StyledTableCell>
-									<StyledTableCell>{item.unitCost}</StyledTableCell>
-									<StyledTableCell>{item.unitOfMeasurement}</StyledTableCell>
-									<StyledTableCell>{item.description.did}</StyledTableCell>
-									<StyledTableCell>{item.location.lid}</StyledTableCell>
-								</TableRow>
-								);
-							})}
-						</TableBody>
-
-					</Table>
-				</TableContainer>
-			</div>
-        </>
-    )
-}
+            <Home user={user} setUser={setUser} />       
+			
+			<div className="flex ml-64 mr-5 mt-32 sm:rounded-lg space-x-10">
+            <div className="flex-1">
+                <table className="h-1 text-xs text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+					<tr>
+						{columns.map(column => (
+							<th scope="col" className="px-6 py-3" key={column}>
+								{column}
+							</th>
+						))}
+					</tr>
+                    </thead>
+                    <tbody>
+                        {data.map(item => (
+                            <tr key={item.iid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {item.iid}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.accPerson}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.unitCost}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.quantity}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.totalCost}
+                                </td>                            
+                            </tr>       
+                        ))}     
+                    </tbody>
+                </table>
+            </div>
+            <div className="flex-1">
+                <table className="h-1 text-xs text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">
+                                PROPERTY TAG
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                USER
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                TYPE
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                DATE
+                            </th> 
+                            <th scope="col" className="px-6 py-3">
+                                TIME
+                            </th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map(item => (
+                            <tr key={item.iid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {item.iid}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.accPerson}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.unitCost}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.quantity}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {item.totalCost}
+                                </td>                            
+                            </tr>       
+                        ))}     
+                    </tbody>
+                </table>
+            </div>
+        </div>          
+    </>
+);
+};
