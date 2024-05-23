@@ -37,6 +37,16 @@ const Button = styled.button`
     }
 `;
 
+const BackButton = styled(Button)`
+    background-color: #ccc;
+    color: #333;
+    margin-right: 10px;
+
+    &:hover {
+        background-color: #999;
+    }
+`;
+
 const EditProfile = ({ user, setUser }) => {
     const [formData, setFormData] = useState({
         username: user.username,
@@ -80,6 +90,10 @@ const EditProfile = ({ user, setUser }) => {
         } catch (error) {
             setErrorMessage('Error updating profile.');
         }
+    };
+
+    const handleBack = () => {
+        navigate('/Dashboard');
     };
 
     return (
@@ -127,6 +141,7 @@ const EditProfile = ({ user, setUser }) => {
                     placeholder="Confirm Password"
                 />
                 <Button type="submit">Save Changes</Button>
+                <BackButton onClick={handleBack}>Back</BackButton>
             </Form>
         </Container>
     );
