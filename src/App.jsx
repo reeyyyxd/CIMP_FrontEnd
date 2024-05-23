@@ -11,6 +11,8 @@ import Logs from "./Pages/Logs"
 import Request from "./Pages/Request"
 import Receive from "./Pages/Receive"
 import Dashboard from "./Pages/Dashboard"
+import EditProfile from "./Pages/EditProfile"
+
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -59,7 +61,12 @@ export default function App() {
     {
       path: 'receive',
       element: <RequireAuth> <Receive user={user} setUser={setUser} /> </RequireAuth>
+    },
+    {
+      path: 'editprofile',
+      element: <RequireAuth> <EditProfile user={user} setUser={setUser} /> </RequireAuth>
     }
+    
   ])
 
   return (
