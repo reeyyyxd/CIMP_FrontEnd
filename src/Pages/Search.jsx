@@ -70,10 +70,10 @@ export default function Search( {user, setUser} ) {
             <table>
                 <thead>
                     <tr>
-                        <th>Property Tag</th>
-                        <th>Invoice Number</th>
-                        <th>Issue Order Number</th>
-                        <th>Serial Number</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Description</th>
+                        <th>Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,10 +81,10 @@ export default function Search( {user, setUser} ) {
         queryResults.forEach(item => {
             printableContent += `
                 <tr>
-                    <td>${item.iid}</td>
-                    <td>${item.invoiceNumber}</td>
-                    <td>${item.issueOrder}</td>
-                    <td>${item.description ? item.description.serialNumber : 'None'}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.unitOfMeasurement}</td>
+                    <td>${item.description ? item.description.name : 'None'}</td>
+                    <td>${item.remarks}</td>
                 </tr>
             `;
         });
