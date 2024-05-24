@@ -55,6 +55,14 @@ export default function Dashboard({ user, setUser }) {
         return `${hours12}:${minutesStr} ${period}`;
     };
 
+    const getRecentLogs = () => {
+        // Sort logData by logid in descending order and get the most recent 10 logs
+        return logData
+            .slice()
+            .sort((a, b) => b.logid - a.logid)
+            .slice(0, 10);
+    };
+
     return (
         <>
             <Home user={user} setUser={setUser} />       
@@ -114,7 +122,7 @@ export default function Dashboard({ user, setUser }) {
                         </thead>
                         <tbody style={{ paddingBottom: "100px" }}>
                             {logData.length > 0 ? (
-                                logData.map(res => (
+                                getRecentLogs().map(res => (
                                     <tr key={res.logid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
                                         <td>{res.logid}</td>
                                         <td>{res.date}</td>
