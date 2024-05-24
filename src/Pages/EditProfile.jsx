@@ -58,6 +58,16 @@ const EditProfile = ({ user, setUser }) => {
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+    const address = getIpAddress();
+
+    function getIpAddress() {
+        const hostname = window.location.hostname;
+        const indexOfColon = hostname.indexOf(':');
+        if (indexOfColon !== -1) {
+            return hostname.substring(0, indexOfColon);
+        }
+        return hostname;
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -83,7 +93,7 @@ const EditProfile = ({ user, setUser }) => {
                 password: formData.newPassword, // Only send new password if it's provided
             };
 
-            const response = await axios.put(`http://localhost:8080/updateUser/${user.uid}`, updateData);
+            const response = await axios.put(`http://${address}:8080/updateUser/${user.uid}`, updateData);
             setUser(response.data);
             setSuccessMessage('Profile updated successfully!');
             navigate('/Dashboard');
