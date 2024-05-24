@@ -86,12 +86,15 @@ const EditProfile = ({ user, setUser }) => {
             const confirmUpdate = window.confirm('Are you sure you want to save changes?');
             if (!confirmUpdate) return;
 
-            const updateData = {
+            const updateData = formData.newPassword !== "" || formData.confirmPassword !== "" ? ({
                 fname: formData.fname,
                 lname: formData.lname,
                 username: formData.username,
-                password: formData.newPassword, // Only send new password if it's provided
-            };
+                password: formData.newPassword,}) : ({
+                fname: formData.fname,
+                lname: formData.lname,
+                username: formData.username,
+            });
 
             const response = await axios.put(`http://${address}:8080/updateUser/${user.uid}`, updateData);
             setUser(response.data);
