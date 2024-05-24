@@ -72,7 +72,7 @@ export default function Dashboard({ user, setUser }) {
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
                             <tr>
                                 {columns.map(column => (
-                                    <th scope="col" className="px-6 py-3" key={column}>
+                                    <th scope="col" className="px-7 py-3" key={column}>
                                         {column}
                                     </th>
                                 ))}
@@ -81,7 +81,7 @@ export default function Dashboard({ user, setUser }) {
                         <tbody>
                             {data.length > 0 ? (
                                 data.map(item => (
-                                    <tr key={item.iid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
+                                    <tr key={item.iid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {item.iid}
                                         </td>
@@ -108,34 +108,31 @@ export default function Dashboard({ user, setUser }) {
                     </table>
                 </div>
                 <div className="flex-1">
-                    <table className="w-full text-sm text-center rtl:text-right ml-12 mr-40 text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+                <table className="h-1 text-xs text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
                             <tr>
-                                <th scope="col" className="px-6 py-3">Log Id</th>
-                                <th scope="col" className="px-6 py-3">Date</th> 
-                                <th scope="col" className="px-6 py-3">Time</th>
-                                <th scope="col" className="px-6 py-3">Property Tag</th>
-                                <th scope="col" className="px-6 py-3">Type</th>
-                                <th scope="col" className="px-6 py-3">User</th>
-                                <th scope="col" className="px-6 py-3">Description</th>
+                                <th scope="col" className="px-10 py-3">Log<br></br> ID</th>
+                                <th scope="col" className="px-10 py-3">User</th> 
+                                <th scope="col" className="px-10 py-3">Type</th>
+                                <th scope="col" className="px-10 py-3">Date</th>
+                                <th scope="col" className="px-10 py-3">Time</th>
                             </tr>
                         </thead>
                         <tbody style={{ paddingBottom: "100px" }}>
                             {logData.length > 0 ? (
                                 getRecentLogs().map(res => (
-                                    <tr key={res.logid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
-                                        <td>{res.logid}</td>
+                                    <tr key={res.logid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                            {res.logid}</td>
+                                        <td>{res.user ? (<p>{res.user.lname}, {res.user.fname}</p>) : (<div>None</div>)}</td>
+                                        <td>{res.type}</td>
                                         <td>{res.date}</td>
                                         <td>{convertTo12HourFormat(res.time)}</td>
-                                        <td>{res.item ? (<p>{res.item.iid}</p>) : (<div>None</div>)}</td>
-                                        <td>{res.type}</td>
-                                        <td>{res.user ? (<p>{res.user.lname}, {res.user.fname}</p>) : (<div>None</div>)}</td>
-                                        <td>{res.description}</td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="7" className="px-6 py-4">No logs available</td>
+                                    <td colSpan="7" className="px-6 py-3">No logs available</td>
                                 </tr>
                             )}
                         </tbody>

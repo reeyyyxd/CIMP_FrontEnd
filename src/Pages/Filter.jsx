@@ -842,7 +842,7 @@ export default function Filter( {user, setUser} ) {
               <div className="flex justify-between p-6"> 
               <button
                     onClick={handleCloseOverlay}
-                    className="bg-gray-400 text-white px-4 py-2 rounded-md mt-1 mr-2"
+                    className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-md mt-1 mr-2"
                   >
                     Cancel
                   </button>
