@@ -283,7 +283,7 @@ export default function ViewAll( {user, setUser} ) {
                         </thead>
                         <tbody style={{ paddingBottom: "100px" }}>
                             {queryResults.map(res => (
-                                <tr key={res.item.iid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
+                                <tr key={res.logid} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-950">
                                     <td>{res.logid}</td>
                                     <td>{res.date}</td>
                                     <td>{convertTo12HourFormat(res.time)}</td>
