@@ -607,15 +607,15 @@ export default function Filter( {user, setUser} ) {
                 }}>
                   Print<PrintIcon/>
             </Button>&nbsp;&nbsp;&nbsp;&nbsp;
-              <label id="sumLabel" onChange={handleSum} style={{ fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>
-                Total Cost: ₱{Number(O_sum).toLocaleString()}
-                </label>
+            <label id="sumLabel" onChange={handleSum} style={{ fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>
+            Total Cost: ₱{Number(O_sum).toLocaleString()}
+          </label>
           </div>
           </h1>   
 
           <div className="ml-64 mr-5 mt-2 overflow-x-auto overflow-y-auto max-h-[500px] shadow-md sm:rounded-lg">
           <table className="h-1 text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900 sticky top-0">
               <tr>
                 <th scope="col" className="px-6 py-1">
                   property tag</th>

@@ -364,7 +364,7 @@ export default function Items( {user, setUser} ) {
 			</div>
 			<div className="ml-64 mr-5 mt-2 overflow-x-auto overflow-y-auto max-h-[550px] shadow-md sm:rounded-lg"> 
             <table className="h-1 text-xs text-center rtl:text-right text-gray-500 dark:text-gray-400">
-          		<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+          		<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900 sticky top-0">
 				  <tr>
 					{columns.map(column => ( // generate table headers based on a predefined set of column names (almeda gwapo)
 						<th scope="col" className="px-6 py-3" key={column}>

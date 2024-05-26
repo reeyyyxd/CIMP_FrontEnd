@@ -146,7 +146,7 @@ export default function Search( {user, setUser} ) {
             </div>
             <div className="container flex justify-center mx-auto ml-32 mt-2 overflow-y-auto max-h-[500px]"> 
                         <table className="w-full text-sm text-center rtl:text-right ml-28 mr-1 text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900 sticky top-0">
                                 <tr>
                                     <th scope="col" className="px-6 py-3">
                                         Property Tag
