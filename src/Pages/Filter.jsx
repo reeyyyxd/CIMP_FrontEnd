@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import PrintIcon from '@mui/icons-material/Print';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 import '../App.css';
 import Home from "./Home";
@@ -421,7 +423,7 @@ export default function Filter( {user, setUser} ) {
         <>
         <Home user={user} setUser={setUser} />
 
-        <div className="ml-60 mt-28">
+        <div className="ml-60 mt-20">
         <div className="p-6 mt-4 grid grid-cols-1 gap-x-3 gap-y-5 sm:grid-cols-7">
       <div className="sm:col-span-1">
         <select onChange={handleaccPer}
@@ -593,9 +595,7 @@ export default function Filter( {user, setUser} ) {
                 borderColor: '#f8c702',
                 backgroundColor:'#f8c702'
               }}>
-                Filter<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
-            </svg>
+                Filter<FilterAltIcon />
             </Button> &nbsp;
             <Button 
               variant="outlined" 
@@ -605,15 +605,15 @@ export default function Filter( {user, setUser} ) {
                 borderColor: '#f8c702', 
                 backgroundColor:'#f8c702'
                 }}>
-                  Print<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
-              </svg>  
+                  Print<PrintIcon/>
             </Button>&nbsp;&nbsp;&nbsp;&nbsp;
-              <label id="sumLabel" onChange={handleSum}>Total Cost: {O_sum}</label>
+              <label id="sumLabel" onChange={handleSum} style={{ fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>
+                Total Cost: ₱{Number(O_sum).toLocaleString()}
+                </label>
           </div>
           </h1>   
 
-          <div className="ml-64 mr-5 mt-2 overflow-x-auto shadow-md sm:rounded-lg">
+          <div className="ml-64 mr-5 mt-2 overflow-x-auto overflow-y-auto max-h-[500px] shadow-md sm:rounded-lg">
           <table className="h-1 text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
               <tr>
@@ -687,10 +687,10 @@ export default function Filter( {user, setUser} ) {
                             {item.quantity}
                         </td>  
                         <td className="px-6 py-4">
-                            {item.unitCost}
+                        ₱{item.unitCost.toLocaleString()}
                         </td>
                         <td className="px-6 py-4">
-                            {item.totalCost}
+                        ₱{item.totalCost.toLocaleString()}
                         </td>
                         <td className="px-6 py-4">
                             {item.status}
@@ -722,8 +722,8 @@ export default function Filter( {user, setUser} ) {
                         { label: 'Lifespan', value: selectedItem.lifespan },
                         { label: 'Unit of Measurement', value: selectedItem.unitOfMeasurement },
                         { label: 'Quantity', value: selectedItem.quantity },
-                        { label: 'Unit Cost', value: selectedItem.unitCost },
-                        { label: 'Total Cost', value: selectedItem.totalCost },
+                        { label: 'Unit Cost', value: `₱ ${selectedItem.unitCost.toLocaleString()}`},
+                        { label: 'Total Cost', value: `₱ ${selectedItem.totalCost.toLocaleString()}`},
                         { label: 'Status', value: selectedItem.status },
                         { label: 'Remarks', value: selectedItem.remarks },
                         ].map(({ label, value }) => (

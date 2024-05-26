@@ -362,7 +362,7 @@ export default function Items( {user, setUser} ) {
 					Add Item
 				</button>
 			</div>
-			<div className="ml-64 mr-5 mt-2 overflow-x-auto shadow-md sm:rounded-lg"> 
+			<div className="ml-64 mr-5 mt-2 overflow-x-auto overflow-y-auto max-h-[550px] shadow-md sm:rounded-lg"> 
             <table className="h-1 text-xs text-center rtl:text-right text-gray-500 dark:text-gray-400">
           		<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
 				  <tr>
@@ -417,10 +417,10 @@ export default function Items( {user, setUser} ) {
                             {item.supplier}
                         </td>
                         <td className="px-6 py-4">
-                            {item.totalCost}
+						₱{item.totalCost.toLocaleString()}
                         </td>
                         <td className="px-6 py-4">
-                            {item.unitCost}
+						₱{item.unitCost.toLocaleString()}
                         </td> 
                         <td className="px-6 py-4">
                             {item.unitOfMeasurement}
@@ -660,7 +660,7 @@ export default function Items( {user, setUser} ) {
 								</label>
 								<input
 									type="text"
-									value={selectedItem.totalCost || ""} // Provide a fallback value
+									value={`₱ ${selectedItem.totalCost ? selectedItem.totalCost.toLocaleString() : ""}`} // Provide a fallback value
 									readOnly
 									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Total Cost"
@@ -675,7 +675,7 @@ export default function Items( {user, setUser} ) {
 								</label>
 								<input
 									type="text"
-									value={selectedItem.unitCost || ""} // Provide a fallback value
+									value={selectedItem.unitCost ? `₱ ${selectedItem.unitCost.toLocaleString()}` : ""} // Provide a fallback value
 									onChange={handleUnitCostChange}
 									className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
 									placeholder="Unit Cost"
@@ -1108,7 +1108,7 @@ export default function Items( {user, setUser} ) {
 									type="text"
 									name="totalCost"
 									id="totalCost"
-									value={formData.totalCost}
+									value={formData.totalCost ? `₱ ${formData.totalCost.toLocaleString()}` : ""}
 									onChange={handleChange}
 									placeholder="Required*"
 									pattern="[0-9]+([.][0-9]+)?"

@@ -72,7 +72,7 @@ export default function Dashboard({ user, setUser }) {
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900">
                             <tr>
                                 {columns.map(column => (
-                                    <th scope="col" className="px-7 py-3" key={column}>
+                                    <th scope="col" className="px-7 py-3" key={column}> 
                                         {column}
                                     </th>
                                 ))}
@@ -89,13 +89,13 @@ export default function Dashboard({ user, setUser }) {
                                             {item.accPerson}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {item.unitCost}
+                                        ₱{item.unitCost.toLocaleString()}
                                         </td>
                                         <td className="px-6 py-4">
                                             {item.quantity}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {item.totalCost}
+                                            ₱{item.totalCost.toLocaleString()}
                                         </td>                            
                                     </tr>       
                                 ))
