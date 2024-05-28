@@ -10,6 +10,7 @@ import axios from "axios";
 export default function Login( {user, setUser} ) {
 	const navigate = useNavigate();
 	const address = getIpAddress();
+	const [errorMessage, setErrorMessage] = useState('');
 	const [loginData, setLoginData] = useState({
 		username: '',
 		password: ''
@@ -74,18 +75,11 @@ export default function Login( {user, setUser} ) {
 			if(response.data === "") {
 				document.getElementById("username").value="";
 				document.getElementById("password").value="";
-				document.getElementById("username").blur();
-				document.getElementById("password").blur();
-				alert("Username / Password is incorrect.");
+				document.getElementById("username").focus();
+				setErrorMessage("Username / Password is incorrect.");
 
 			} else {
-				setUser({
-					uid: response.data.uid,
-					fname: response.data.fname,
-					lname: response.data.lname,
-					username: response.data.username,
-					type: response.data.type
-				});
+				setUser(response.data);
 	
 				setLoginData({
 					username: '',
@@ -179,7 +173,7 @@ export default function Login( {user, setUser} ) {
 								style={{
 									display: "flex",
 									justifyContent: "center",
-									margin: "0 0 25px 0",
+									margin: "0 0 10px 0",
 									background: "linear-gradient(to bottom, maroon 40%, gold)",
 									WebkitBackgroundClip: "text",
 									WebkitTextFillColor: "transparent",
@@ -196,6 +190,7 @@ export default function Login( {user, setUser} ) {
 									Welcome Back!
 								</h2>
 							</div>
+							{errorMessage && <p style={{ color: 'red', margin:"0 auto" }}>{errorMessage}</p>}
 							<TextField
 								InputLabelProps={{
 									style: { fontFamily: "Poppins", fontSize: "15px" },
@@ -207,6 +202,7 @@ export default function Login( {user, setUser} ) {
 								style={{ marginBottom: "10px" }}
 								required
 								size="small"
+								sx={{mt: 4}}
 							/>
 							<TextField
 								InputLabelProps={{

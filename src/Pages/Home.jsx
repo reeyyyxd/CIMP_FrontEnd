@@ -78,8 +78,7 @@ export default function Home( {user, setUser} ) {
 							setUser={setUser}
 						/>		
 					</DropdownContainer>
-				</ProfileContainer>			
-
+				</ProfileContainer>
 				{user.type === "admin" || user.type === "Admin" ? (
 					<ul className="space-y-2 mt-10 text-sm">
 						<li>
