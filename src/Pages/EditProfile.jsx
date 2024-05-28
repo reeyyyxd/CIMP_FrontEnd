@@ -85,15 +85,14 @@ export default function EditProfile ({ user, setUser }) {
         <>
             <Home user={user} setUser={setUser} />
             <div className="flex justify-center">
-                <div className="w-full mt-20 ml-52 max-w-xs">
+                <div className="w-full mt-32 ml-52 max-w-xl">
                     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
                     <div className="bg-maroon py-2 px-4 rounded-t-md border border-maroon"></div>
                     <div className="bg-white shadow-2xl px-8 pt-6 pb-8 mb-0">
-                        <div className="p-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1">
-                            {errorMessage && <p style={{ color: 'red', margin:"0 auto"}}>{errorMessage}</p>}
-                            <p className="m-auto">Update Profile</p>
+                    {errorMessage && <p style={{color: 'red', marginLeft: "180px"}}>{errorMessage}</p>}
+                    <div className="p-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
+                            <p className="m-auto sm:col-span-2 text-xl font-bold font-sans">Update Profile</p>
                                 
-                                <div className="sm:col-span-1"> 
                                     <div className="relative">
                                         <input
                                             type="text"
@@ -111,9 +110,7 @@ export default function EditProfile ({ user, setUser }) {
                                             Username
                                         </label>
                                     </div>
-                                </div>
-
-                                <div className="sm:col-span-1"> 
+             
                                     <div className="relative">
                                         <input
                                             type="text"
@@ -131,9 +128,7 @@ export default function EditProfile ({ user, setUser }) {
                                             First Name
                                         </label>
                                     </div>
-                                </div>
-
-                                <div className="sm:col-span-1"> 
+             
                                     <div className="relative">
                                         <input
                                             type="text"
@@ -151,9 +146,7 @@ export default function EditProfile ({ user, setUser }) {
                                             Last Name
                                         </label>
                                     </div>
-                                </div>
-
-                                <div className="sm:col-span-1"> 
+           
                                     <div className="relative">
                                         <input
                                             type="password"
@@ -172,9 +165,7 @@ export default function EditProfile ({ user, setUser }) {
                                             Old Password
                                         </label>
                                     </div>
-                                </div>
-
-                                <div className="sm:col-span-1"> 
+            
                                     <div className="relative">
                                         <input
                                             type="password"
@@ -192,9 +183,7 @@ export default function EditProfile ({ user, setUser }) {
                                             New Password
                                         </label>
                                     </div>
-                                </div>
-
-                                <div className="sm:col-span-1"> 
+          
                                     <div className="relative">
                                         <input
                                             type="password"
@@ -212,14 +201,13 @@ export default function EditProfile ({ user, setUser }) {
                                             Confirm New Password
                                         </label>
                                     </div>
-                                </div>
+                                
         
                                 <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
                                 type="submit">CONFIRM</button>
                                 <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
                                 onClick={handleBack}>BACK</button> 
                         </div>
-    
                     </div>
                     </form>
                     <div className=" bg-maroon py-2 px-7 rounded-b-md border border-maroon"></div>

@@ -75,10 +75,11 @@ export default function Receive( {user, setUser} ) {
         <>
 		<Home user={user} setUser={setUser} />
         <div className="flex justify-center">
-            <div className="w-full mt-40 ml-52 max-w-xs">
+            <div className="w-full mt-40 ml-52 max-w-md">
                 <div className="bg-maroon py-2 px-4 rounded-t-md border border-maroon"></div>
                 <div className="bg-white shadow-2xl px-8 pt-6 pb-8 mb-0">
                     <div className="p-6 mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1">
+                    <p className="m-auto sm:col-span-1 text-xl font-bold font-sans">Receive</p>  
                         <div className="sm:col-span-1"> 
                             <div className="relative">
                                 <input

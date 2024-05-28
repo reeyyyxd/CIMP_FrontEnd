@@ -176,91 +176,97 @@ export default function Request( {user, setUser} ) {
         
     }
     
+
     return (
         <>
             <Home user={user} setUser={setUser} />
+            
             <div className="flex justify-center">
-                <div className="w-full mt-32 ml-52 max-w-xs">
-                    <div className="bg-maroon py-2 px-7 rounded-t-md border border-maroon"></div>
+                <div className="w-full mt-32 ml-52 max-w-md">
+                <div className=" bg-maroon py-2 px-7 rounded-t-md border border-maroon"></div>
                     <div className="bg-white shadow-2xl px-8 pt-1 pb-8 mb-0"> 
-                        <div className="p-6 mt-1 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1"> 
+                    <div className="p-6 mt-1 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1"> 
+                    <p className="m-auto sm:col-span-1 text-xl font-bold font-sans">Request</p>  
 
-                        <div className="sm:col-span-1">
-                            <select onChange={handleType}  
-                            className="border border-gray-700 rounded-md p-2 w-52 bg-gray-800 text-white text-sm hover:bg-gray-950">
-                                <option value="">Type of Request</option>
-                                <option value="REQUEST">Request</option>
-                                <option value="BORROW">Borrow items</option>
-                                <option value="REPAIR">Out for Repair</option>
-                                <option value="DISPOSAL">Out for disposal</option>
-                            </select>
-                        </div>
+            <div className="sm:col-span-1">
+            <select onChange={handleType}  
+            className="border border-gray-700 rounded-md ml-2 p-2 w-80 bg-gray-800 text-white text-sm hover:bg-gray-950">
+                <option value="">Type of Request</option>
+                <option value="REQUEST">Request</option>
+                <option value="BORROW">Borrow items</option>
+                <option value="REPAIR">Out for Repair</option>
+                <option value="DISPOSAL">Out for disposal</option>
+            </select>
+
+            </div>
         
-                        <div className="sm:col-span-1"> 
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    name="propertyTag"
-                                    id="propertyTag"
-                                    onChange={handleId}
-                                    placeholder=""
-                                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
-                                />
-                                <label
-                                    htmlFor="propertyTag"
-                                    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-                                >
-                                    Enter Property Tag
-                                </label>
-                            </div>
-                        </div>
+            <div className="sm:col-span-1"> 
+          <div className="relative">
+            <input
+                type="text"
+                name="propertyTag"
+                id="propertyTag"
+                onChange={handleId}
+                placeholder=""
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+        />
+        <label
+			htmlFor="propertyTag"
+		    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+		>
+			Enter Property Tag
+		    </label>
+        </div>
+        </div>
        
 
-                        <div className="sm:col-span-1"> 
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    name="request"
-                                    id="request"
-                                    onChange={handleRemark}
-                                    placeholder=""
-                                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
-                                />
-                                <label
-                                htmlFor="request"
-                                className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-                                >
-                                    Requested by:
-                                </label>
-                            </div>
-                        </div>
+        <div className="sm:col-span-1"> 
+          <div className="relative">
+            <input
+                type="text"
+                name="request"
+                id="request"
+                onChange={handleRemark}
+                placeholder=""
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+        />
+        <label
+			htmlFor="request"
+		    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+		>
+			Requested by:
+		    </label>
+        </div>
+        </div>
             
 
-                        <div className="sm:col-span-1"> 
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    name="quantity"
-                                    id="quantity"
-                                    onChange={handleNumber}
-                                    placeholder=""
-                                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
-                                />
-                                <label
-                                    htmlFor="quantity"
-                                    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                                        Enter Quantity
-                                </label>
-                            </div>
-                        </div>
-                
-                        <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
-                        onClick={handleRequest}>Request</button>
-                    </div>
-                </div>
-                <div className=" bg-maroon py-2 px-7 rounded-b-md border border-maroon"></div>
-            </div>   
+        <div className="sm:col-span-1"> 
+          <div className="relative">
+            <input
+                type="text"
+                name="quantity"
+                id="quantity"
+                onChange={handleNumber}
+                placeholder=""
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
+        />
+        <label
+			htmlFor="quantity"
+		    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+			Enter Quantity
+		    </label>
         </div>
-    </>
-    );
+        </div>
+                 
+    <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
+    onClick={handleRequest}>Request</button>
+    </div>
+    </div>
+    <div className=" bg-maroon py-2 px-7 rounded-b-md border border-maroon"></div>
+    </div>   
+    
+    </div>
+
+        </>
+    )
 }
