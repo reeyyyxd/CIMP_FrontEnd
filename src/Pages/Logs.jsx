@@ -268,7 +268,7 @@ export default function ViewAll( {user, setUser} ) {
             </div>
         </div>
     </div>  
-        <div className="mx-auto -mt-4 overflow-y-auto max-h-[500px] flex justify-center ml-52">    
+        <div className="mx-auto -mt-4 overflow-y-auto max-h-[500px] max-w-[1100px] flex justify-center ml-52">    
                     <table className="w-full text-sm text-center rtl:text-right ml-12 mr-1 text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-maroon dark:text-white hover:bg-red-900 sticky top-0">
                             <tr>
