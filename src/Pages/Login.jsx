@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import backgroundImage from "../assets/images/cat.jpg";
 import cit from "../assets/images/cit.png";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 export default function Login( {user, setUser, setSnackbarGreenOpen, setSnackbarRedOpen, setSnackbarMessage} ) {
 	const navigate = useNavigate();
@@ -220,6 +221,12 @@ export default function Login( {user, setUser, setSnackbarGreenOpen, setSnackbar
 							<StyledButton type="submit" variant="contained" color="primary">
 								Log In
 							</StyledButton>
+							<div style={{ textAlign: "center", marginTop: "10px" }}>
+								<span>Don't have an account? </span>
+								<NavLink to="/Register" style={{ textDecoration: "none", color: "#8C383E", fontWeight: "bold" }}>
+									Sign up
+								</NavLink>
+							</div>
 						</form>
 					</div>
 				</div>
