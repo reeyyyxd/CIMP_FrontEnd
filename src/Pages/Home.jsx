@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../Extras/navbar";
@@ -19,7 +19,7 @@ const ProfileContainer = styled.div`
 	display: flex;
 	align-items: center;
 	margin-top: 10px;
-	margin-left: 10px;
+	margin-left: -5px;
 `;
 
 const Image = styled.img`
@@ -48,6 +48,8 @@ const DropdownContainer = styled.div`
 export default function Home( {user, setUser} ) {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
+	const dropdownRef = useRef(null);
+
 	const toggleDropdown = () => {
 		setDropdownOpen(!dropdownOpen);
 	};
@@ -55,6 +57,20 @@ export default function Home( {user, setUser} ) {
 	const handleTabClick = (tab) => {
 		// Handle tab click
 	};
+
+	useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 	
 	return (
 		<div>
@@ -66,7 +82,7 @@ export default function Home( {user, setUser} ) {
 						<p style={{ marginTop: "10px" }}>{user.fname} {user.lname}</p>
 						<p style={{ fontSize: "10px", marginTop: "12px",}}>{user.type}</p>
 				  </ProfileText>
-					<DropdownContainer onClick={toggleDropdown}>
+					<DropdownContainer ref={dropdownRef} onClick={toggleDropdown}>
 						<FontAwesomeIcon
 							icon={faCaretDown}
 							style={{ marginLeft: "5px", color: "white", fontSize: "12px" }}

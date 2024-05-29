@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Home from './Home';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 
-export default function EditProfile ({ user, setUser }) {
+export default function EditProfile ({ user, setUser, setSnackbarGreenOpen, setSnackbarRedOpen, setSnackbarMessage }) {
     const [formData, setFormData] = useState({
         username: user.username,
         fname: user.fname,
@@ -12,8 +13,27 @@ export default function EditProfile ({ user, setUser }) {
         newPassword: '',
         confirmNewPassword: '',
     });
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleOpenDialog();
+        }
+    };
+
+    const handleOpenDialog = () => {
+        if (formData.oldPassword === '') {
+            setSnackbarMessage('Please fill out the old password field.')
+            setSnackbarRedOpen(true);
+        } else {
+            setOpenDialog(true);
+        }
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
+
     const navigate = useNavigate();
     const address = getIpAddress();
 
@@ -41,23 +61,24 @@ export default function EditProfile ({ user, setUser }) {
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleConfirm = async (e) => {
         e.preventDefault();
 
         const validate = await validateCredentials(formData.username, formData.oldPassword);
 
         if (formData.newPassword !== formData.confirmNewPassword) {
-            setErrorMessage('New and Confirm new password does not match.');
+            setSnackbarMessage('New Passwords do not match.')
+            setSnackbarRedOpen(true);
+            setOpenDialog(false);
             return;
         } else if (!validate) {
-            setErrorMessage('Incorrect old password.');
+            setSnackbarMessage('Incorrect old password')
+            setSnackbarRedOpen(true);
+            setOpenDialog(false);
             return;
         }
 
         try {
-            const confirmUpdate = window.confirm('Are you sure you want to save changes?');
-            if (!confirmUpdate) return;
-
             const updateData = formData.newPassword !== "" || formData.confirmNewPassword !== "" ? ({
                 fname: formData.fname,
                 lname: formData.lname,
@@ -70,7 +91,8 @@ export default function EditProfile ({ user, setUser }) {
 
             const response = await axios.put(`http://${address}:8080/updateUser/${user.uid}`, updateData);
             setUser(response.data);
-            setSuccessMessage('Profile updated successfully!');
+            setSnackbarMessage('Profile updated successfully!')
+            setSnackbarGreenOpen(true);
             navigate(-1);
         } catch (error) {
             setErrorMessage('Error updating profile.');
@@ -86,13 +108,11 @@ export default function EditProfile ({ user, setUser }) {
             <Home user={user} setUser={setUser} />
             <div className="flex justify-center">
                 <div className="w-full mt-32 ml-52 max-w-xl">
-                    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
+                    <form onSubmit={handleOpenDialog} style={{ display: "flex", flexDirection: "column" }}>
                     <div className="bg-maroon py-2 px-4 rounded-t-md border border-maroon"></div>
                     <div className="bg-white shadow-2xl px-8 pt-6 pb-8 mb-0">
-                    {errorMessage && <p style={{color: 'red', marginLeft: "180px"}}>{errorMessage}</p>}
                     <div className="p-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
                             <p className="m-auto sm:col-span-2 text-xl font-bold font-sans">Update Profile</p>
-                                
                                     <div className="relative">
                                         <input
                                             type="text"
@@ -100,6 +120,7 @@ export default function EditProfile ({ user, setUser }) {
                                             id="username"
                                             value={formData.username}
                                             onChange={handleChange}
+                                            onKeyDown={handleKeyDown}
                                             placeholder=""
                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
                                         />
@@ -118,6 +139,7 @@ export default function EditProfile ({ user, setUser }) {
                                             id="fname"
                                             value={formData.fname}
                                             onChange={handleChange}
+                                            onKeyDown={handleKeyDown}
                                             placeholder=""
                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
                                         />
@@ -136,6 +158,7 @@ export default function EditProfile ({ user, setUser }) {
                                             id="lname"
                                             value={formData.lname}
                                             onChange={handleChange}
+                                            onKeyDown={handleKeyDown}
                                             placeholder=""
                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
                                         />
@@ -154,6 +177,7 @@ export default function EditProfile ({ user, setUser }) {
                                             id="oldPassword"
                                             value={formData.oldPassword}
                                             onChange={handleChange}
+                                            onKeyDown={handleKeyDown}
                                             placeholder=""
                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
                                             required
@@ -173,6 +197,7 @@ export default function EditProfile ({ user, setUser }) {
                                             id="newPassword"
                                             value={formData.newPassword}
                                             onChange={handleChange}
+                                            onKeyDown={handleKeyDown}
                                             placeholder=""
                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
                                         />
@@ -191,6 +216,7 @@ export default function EditProfile ({ user, setUser }) {
                                             id="confirmNewPassword"
                                             value={formData.confirmNewPassword}
                                             onChange={handleChange}
+                                            onKeyDown={handleKeyDown}
                                             placeholder=""
                                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-md border-1 border border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-950 focus:outline-none focus:ring-0 focus:border-bl peer"
                                         />
@@ -204,15 +230,29 @@ export default function EditProfile ({ user, setUser }) {
                                 
         
                                 <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
-                                type="submit">CONFIRM</button>
+                                type="button" onClick={handleOpenDialog}>CONFIRM</button>
                                 <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
-                                onClick={handleBack}>BACK</button> 
+                                type="button" onClick={handleBack}>BACK</button> 
                         </div>
                     </div>
                     </form>
                     <div className=" bg-maroon py-2 px-7 rounded-b-md border border-maroon"></div>
                 </div>
             </div>
+            <Dialog open={openDialog} onClose={handleCloseDialog}>
+                <DialogTitle id="confirm-dialog">Confirm Changes</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>Are you sure you want to confirm?</DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded" onClick={handleConfirm}>
+                        Confirm
+                    </button>
+                    <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded" onClick={handleCloseDialog}>
+                        Cancel
+                    </button>
+                </DialogActions>
+            </Dialog>
         </>
     );
 }

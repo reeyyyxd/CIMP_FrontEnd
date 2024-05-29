@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { useNavigate } from "react-router-dom";
 
 const DropdownContent = styled.div`
 	position: absolute;
@@ -32,14 +32,13 @@ const Tab = styled.div`
 `;
 
 const ProfileDropdown = ({ isOpen, handleTabClick, user, setUser }) => {
-    const navigate = useNavigate(); // Initialize navigate function
+    const navigate = useNavigate();
 
     const logout = () => {
         setUser(null);
     };
 
     const handleProfileClick = () => {
-        // Navigate to EditProfile page
         navigate("/editprofile");
     };
 

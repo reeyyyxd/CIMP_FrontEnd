@@ -6,6 +6,7 @@ export default function Dashboard({ user, setUser }) {
     const [data, setData] = useState([]);
     const address = getIpAddress();
     const [logData, setLogData] = useState([]);
+    const [loader, setLoader] = useState(null);
     const columns = ["PROPERTY TAG", "ACCOUNTABLE PERSON", "UNIT COST", "QUANTITY", "TOTAL COST"];
     
     function getIpAddress() {
@@ -30,8 +31,8 @@ export default function Dashboard({ user, setUser }) {
         };
 
         fetchData();
-    }, [address]);
-
+    }, [loader]);
+      
     useEffect(() => {
         const fetchLogsData = async () => {
             try {
@@ -45,7 +46,7 @@ export default function Dashboard({ user, setUser }) {
         };
 
         fetchLogsData();
-    }, [address]);
+    }, [loader]);
 
     const convertTo12HourFormat = (time) => {
         const [hours, minutes] = time.split(':').map(Number);

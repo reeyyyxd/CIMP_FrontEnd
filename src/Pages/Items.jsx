@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Modal } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal } from "@mui/material";
 import axios from "axios";
 import Home from "./Home";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-export default function Items( {user, setUser} ) {
+export default function Items( { user, setUser, setSnackbarGreenOpen, setSnackbarRedOpen, setSnackbarMessage } ) {
 	const [id, setId] = useState("");
 	const [queryResults, setQueryResults] = useState([]);
 	const [LqueryResults, setLQueryResults] = useState([]);
 	const columns = ["PROPERTY TAG", "ACCOUNTABLE PERSON", "DEPARTMENT", "DESIGNATION", "INVOICE NUMBER", "INVOICE DATE", "ISSUE ORDER NUMBER", "LIFESPAN", "QUANTITY", "REMAKRS", "STATUS", "SUPPLIER", "TOTAL COST", "UNIT COST", "UNIT OF MEASURE"];
+	
+	const [openDialog, setOpenDialog] = useState(false);
+	const handleOpenDialog = () => {
+        setOpenDialog(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
 
 	const [formData, setFormData] = useState({
 		accPerson: "",
@@ -100,17 +109,20 @@ export default function Items( {user, setUser} ) {
 			},
 		})
 		.then(response => {
-			const newId = response.data.iid; 
+			const newId = response.data.iid;
+			const newName = response.data.description.name; 
 			setQueryResults(response.data);
 			setId(newId);
-			window.alert("Data added!");
+			// window.alert("Data added!");
+			setSnackbarMessage("Data added!");
+			setSnackbarGreenOpen(true);
+
 			console.log("Data added!");
 			console.log("New item ID:", newId); 
 			console.log(response.data);
 			
-			
 			axios.post(`http://${address}:8080/addLog`, {
-				description: "Added an Item",
+				description: `Added an Item: [${newId}] - ${newName}`,
 				type: "ADD"
 			}, {
 				params: {
@@ -121,7 +133,7 @@ export default function Items( {user, setUser} ) {
 			.then(response => {
 				setLQueryResults(response.data);
 				setShowAddItemModal(false);
-				setLoader(Math.random()*1000);
+				// setLoader(Math.random()*1000);
 			})
 			.catch(error => {
 				console.error("Error adding log:", error);
@@ -210,49 +222,47 @@ export default function Items( {user, setUser} ) {
     const handleDelete = (event) => {
 		event.preventDefault();
 		const itemId = selectedItem.iid;
-	
 		if (!itemId) {
 		  console.error('No item ID found to delete');
 		  return;
 		}
 	
-		const confirmDelete = window.confirm('Are you sure you want to delete this item?');
-	
-		if (confirmDelete) {
-		  axios.delete(`http://${address}:8080/item/deleteItem/${itemId}`)
-			.then(response => {
-			  if (response.status === 200) {
+		axios.delete(`http://${address}:8080/item/deleteItem/${itemId}`)
+		.then(response => {
+			if (response.status === 200) {
 
-				axios.post(`http://${address}:8080/addLog`, {
-					type: "DELETE",
-					description: "Deleted an Item"
-				}, {
-					params: {
-						uid: 1,
-						iid: itemId
-					}
-				})
-				.then(response => {
-					console.log(response.data);
-					
-				})
-				.catch(error => {
-					console.error("Error adding log:", error);
-				});
+			axios.post(`http://${address}:8080/addLog`, {
+				type: "DELETE",
+				description: `Deleted an Item: [${selectedItem.iid}] - ${selectedItem.description.name}`
+			}, {
+				params: {
+					uid: user.uid,
+					iid: itemId
+				}
+			})
+			.then(response => {
+				console.log(response.data);
 				
-				console.log('Item deleted successfully');
-				alert("Item Deleted");
-				setLoader(Math.random()*1000);
-				handleCloseOverlay();
-				
-			  } else {
-				console.error('Failed to delete item');
-			  }
 			})
 			.catch(error => {
-			  console.error('Error occurred during deletion:', error);
+				console.error("Error adding log:", error);
 			});
-		}
+			
+			console.log('Item deleted successfully');
+			// alert("Item Deleted");
+			setSnackbarMessage("Item deleted!");
+			setSnackbarGreenOpen(true);
+			// setLoader(Math.random()*1000);
+			handleCloseDialog();
+			handleCloseOverlay();
+			
+			} else {
+			console.error('Failed to delete item');
+			}
+		})
+		.catch(error => {
+			console.error('Error occurred during deletion:', error);
+		});
 	  };
 
 
@@ -265,7 +275,9 @@ export default function Items( {user, setUser} ) {
 			if (selectedItem) {
 				const url = `http://${address}:8080/item/updateItem/${selectedItem.iid}`;
 				await axios.put(url, selectedItem);
-				alert("Data updated");
+				// alert("Data updated");
+				setSnackbarMessage("Data updated!");
+				setSnackbarGreenOpen(true);
 				console.log("Item updated successfully");
 	
 				// Get the original item from the data or wherever it is stored
@@ -282,17 +294,17 @@ export default function Items( {user, setUser} ) {
 				// Construct description based on changed properties
 				let description;
 				if (changedProperties.length > 0) {
-					description = "Updated " + changedProperties.join(", ");
+					description = "Updated " + changedProperties.join(", ") + ` of: [${selectedItem.iid}] - ${selectedItem.description.name}`;
 				} else {
 					description = "Updated nothing";
 				}
 	
 				await axios.post(`http://${address}:8080/addLog`, {
-					type: "UPDATED",
+					type: "UPDATE",
 					description: description
 				}, {
 					params: {
-						uid: 1,
+						uid: user.uid,
 						iid: selectedItem.iid
 					}
 				})
@@ -881,7 +893,8 @@ export default function Items( {user, setUser} ) {
 								</button>
 							</div>
 							<button
-								onClick={handleDelete}
+								type="button"
+								onClick={handleOpenDialog}
 								className="bg-red-400 text-white px-4 py-2 rounded-md mt-1 mr-2"
 							>
 								Delete
@@ -1318,6 +1331,20 @@ export default function Items( {user, setUser} ) {
 					</div>
 				</form>
 			</Modal>
+			<Dialog open={openDialog} onClose={handleCloseDialog}>
+					<DialogTitle id="confirm-dialog">Confirm Changes</DialogTitle>
+					<DialogContent>
+						<DialogContentText>Are you sure you want to confirm?</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded" onClick={handleDelete}>
+							Confirm
+						</button>
+						<button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded" onClick={handleCloseDialog}>
+							Cancel
+						</button>
+					</DialogActions>
+            	</Dialog>
 		</>
 	);
 }

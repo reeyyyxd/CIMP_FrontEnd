@@ -7,18 +7,15 @@ import backgroundImage from "../assets/images/cat.jpg";
 import cit from "../assets/images/cit.png";
 import axios from "axios";
 
-export default function Login( {user, setUser} ) {
+export default function Login( {user, setUser, setSnackbarGreenOpen, setSnackbarRedOpen, setSnackbarMessage} ) {
 	const navigate = useNavigate();
 	const address = getIpAddress();
-	const [errorMessage, setErrorMessage] = useState('');
 	const [loginData, setLoginData] = useState({
 		username: '',
 		password: ''
 	})
 
 	const handleSubmit = (event) => {
-		event.preventDefault();
-
 		event.preventDefault();
     	const data = new FormData(event.currentTarget);
 
@@ -76,8 +73,9 @@ export default function Login( {user, setUser} ) {
 				document.getElementById("username").value="";
 				document.getElementById("password").value="";
 				document.getElementById("username").focus();
-				setErrorMessage("Username / Password is incorrect.");
-
+				// setErrorMessage("Username / Password is incorrect.");
+				setSnackbarMessage("Username / Password is incorrect.");
+				setSnackbarRedOpen(true);
 			} else {
 				setUser(response.data);
 	
@@ -85,7 +83,10 @@ export default function Login( {user, setUser} ) {
 					username: '',
 					password: ''
 				});
-	
+				
+				setSnackbarMessage("Login success!");
+				setSnackbarGreenOpen(true);
+
 				navigate("/dashboard");
 			}
 		  }).catch(error => {
@@ -190,7 +191,6 @@ export default function Login( {user, setUser} ) {
 									Welcome Back!
 								</h2>
 							</div>
-							{errorMessage && <p style={{ color: 'red', margin:"0 auto" }}>{errorMessage}</p>}
 							<TextField
 								InputLabelProps={{
 									style: { fontFamily: "Poppins", fontSize: "15px" },

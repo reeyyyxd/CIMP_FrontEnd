@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
 import PrintIcon from '@mui/icons-material/Print';
@@ -43,6 +43,21 @@ export default function Search( {user, setUser} ) {
             alert("service error")
          })
     }
+
+    useEffect(() => {
+        const fetchItemsData = async () => {
+            try {
+                const response = await axios.get(
+                    `http://${address}:8080/item/getAllItems`
+                );
+                setQueryResults(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+    
+        fetchItemsData();
+      }, []);
 
     const handlePrintTable = () => {
         const printableContent = generatePrintableTable();

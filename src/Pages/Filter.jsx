@@ -55,6 +55,21 @@ export default function Filter( {user, setUser} ) {
     return hostname;
   }
 
+  useEffect(() => {
+    const fetchItemsData = async () => {
+        try {
+            const response = await axios.get(
+                `http://${address}:8080/item/getAllItems`
+            );
+            setQueryResults(response.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    fetchItemsData();
+  }, []);
+
   const handleaccPer = event => {
     setacc_per(event.target.value)
   }

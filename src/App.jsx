@@ -1,4 +1,5 @@
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
+import { Alert, Snackbar } from "@mui/material"
 import { useState } from "react"
 
 import Login from "./Pages/Login"
@@ -12,10 +13,22 @@ import Request from "./Pages/Request"
 import Receive from "./Pages/Receive"
 import Dashboard from "./Pages/Dashboard"
 import EditProfile from "./Pages/EditProfile"
-
+import Register from "./Pages/Register"
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [snackbarGreenOpen, setSnackbarGreenOpen] = useState(false);
+  const [snackbarRedOpen, setSnackbarRedOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarGreenOpen(false);
+    setSnackbarRedOpen(false);
+  };
 
   function RequireAuth({ children }) {
     return user !== null ? (children) : (<Navigate to="/" replace />);
@@ -24,7 +37,11 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Login user={user} setUser={setUser}/>
+      element: <Login user={user} setUser={setUser} setSnackbarGreenOpen={setSnackbarGreenOpen} setSnackbarRedOpen={setSnackbarRedOpen} setSnackbarMessage={setSnackbarMessage} />
+    },
+    {
+      path: 'register',
+      element: <Register user={user} setUser={setUser} setSnackbarGreenOpen={setSnackbarGreenOpen} setSnackbarRedOpen={setSnackbarRedOpen} setSnackbarMessage={setSnackbarMessage} />
     },
     {
       path: 'home',
@@ -48,7 +65,7 @@ export default function App() {
     },
     {
       path: 'items',
-      element: <RequireAuth> <Item user={user} setUser={setUser} /> </RequireAuth>
+      element: <RequireAuth> <Item user={user} setUser={setUser} setSnackbarGreenOpen={setSnackbarGreenOpen} setSnackbarRedOpen={setSnackbarRedOpen} setSnackbarMessage={setSnackbarMessage} /> </RequireAuth>
     },
     {
       path: 'logs',
@@ -56,21 +73,45 @@ export default function App() {
     },
     {
       path: 'request',
-      element: <RequireAuth> <Request user={user} setUser={setUser} /> </RequireAuth>
+      element: <RequireAuth> <Request user={user} setUser={setUser} setSnackbarGreenOpen={setSnackbarGreenOpen} setSnackbarRedOpen={setSnackbarRedOpen} setSnackbarMessage={setSnackbarMessage} /> </RequireAuth>
     },
     {
       path: 'receive',
-      element: <RequireAuth> <Receive user={user} setUser={setUser} /> </RequireAuth>
+      element: <RequireAuth> <Receive user={user} setUser={setUser} setSnackbarGreenOpen={setSnackbarGreenOpen} setSnackbarRedOpen={setSnackbarRedOpen} setSnackbarMessage={setSnackbarMessage} /> </RequireAuth>
     },
     {
       path: 'editprofile',
-      element: <RequireAuth> <EditProfile user={user} setUser={setUser} /> </RequireAuth>
+      element: <RequireAuth> <EditProfile user={user} setUser={setUser} setSnackbarGreenOpen={setSnackbarGreenOpen} setSnackbarRedOpen={setSnackbarRedOpen} setSnackbarMessage={setSnackbarMessage} /> </RequireAuth>
     }
     
   ])
 
   return (
-    <RouterProvider router={router}/>
+    <>
+      <Snackbar open={snackbarGreenOpen} autoHideDuration={3500} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
+
+      <Snackbar open={snackbarRedOpen} autoHideDuration={3500} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="error"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
+
+      <RouterProvider router={router}/>
+    </>
   )
 
 }

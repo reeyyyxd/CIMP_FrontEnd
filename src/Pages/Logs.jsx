@@ -57,6 +57,21 @@ export default function ViewAll( {user, setUser} ) {
         fetchYear();
     }, []);
 
+    useEffect(() => {
+        const fetchLogsData = async () => {
+            try {
+                const response = await axios.get(
+                    `http://${address}:8080/getAllLogs`
+                );
+                setQueryResults(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchLogsData();
+    }, []);
+
     const fetchType = async () => {
         try {
             const response = await axios.get(`http://${address}:8080/item/logstype`);

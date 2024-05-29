@@ -2,7 +2,7 @@ import axios from "axios";
 import Home from "./Home";
 import { useState } from "react";
 
-export default function Receive( {user, setUser} ) {
+export default function Receive( {user, setUser, setSnackbarGreenOpen, setSnackbarRedOpen, setSnackbarMessage } ) {
 
     const [id, setId] = useState("");
     const [remarks, setRemarks] = useState("");
@@ -42,20 +42,24 @@ export default function Receive( {user, setUser} ) {
             }
         })
         .then(result => {
-            alert("Item Received");
+            // alert("Item Received");
+            setSnackbarMessage(`"[${result.data.iid}] - ${result.data.description.name}" received from ` + remarks);
+            setSnackbarGreenOpen(true);
             console.log(result.data);
-            setQueryResults(result.data);
+            handleLog(result.data);
         })
         .catch(error => {
             console.log(error);
-            alert("No Data found!");
+            // alert("No Data found!");
+            setSnackbarMessage("No data found.");
+            setSnackbarRedOpen(true);
         });
     }
 
-    const handleLog = () => {
+    const handleLog = (item) => {
         axios.post(`http://${address}:8080/addLog`, {
             type: "RECEIVE",
-            description: remarks + ", " + other
+            description: `Received "[${item.iid}] - ${item.description.name}" From: ` + remarks + " | Remarks: " + other
         }, {
             params: {
                 uid: user.uid,
@@ -138,7 +142,7 @@ export default function Receive( {user, setUser} ) {
                         </div>
         
                         <button className="bg-yellow-400 hover:bg-yellow-300 text-maroon font-bold py-2 px-4 border-b-4 border-yellow-600 hover:border-yellow-400 rounded"
-                        onClick={function(){handleReceive(); handleLog()}}>Receive</button> 
+                        onClick={handleReceive}>Receive</button> 
                     </div>
     
                 </div>
